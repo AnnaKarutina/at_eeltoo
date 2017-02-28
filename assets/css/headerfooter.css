@@ -1,0 +1,31 @@
+/* line below logo-bar */
+.container-fluid {
+    border-bottom: solid 5px #5498cb;
+}
+
+/* footer css*/
+.footer-info {
+    border-top: solid 1px grey;
+    margin-top: 3%;
+}
+
+.address {
+    float: left;
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.contact {
+    text-align: center;
+    margin-top: 2%;
+    margin-right: 20%;
+}
+
+.facebook {
+    list-style: none;
+    text-align: right;
+    margin-top: -3%;
+    margin-right: 5%;
+}
+/* footer css end */
