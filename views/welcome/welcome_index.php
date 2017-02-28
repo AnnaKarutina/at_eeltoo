@@ -1,4 +1,4 @@
-<h1>HTML + CSS.</h1>
+<h1 class="">HTML + CSS.</h1>
 <h5>Testi lahendamine</h5>
 <p>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ac condimentum odio,

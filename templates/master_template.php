@@ -50,7 +50,7 @@
         <ul class="facebook">
             <li>
                 <a href="http://www.facebook.com/kutseharidus">
-                    <img src="http://khk.ee/wp/wp-content/themes/khk/images/facebook.png">
+                    <img src="http://www.localhost/aastategija/images/fb_logo.png">
                 </a>
             </li>
         </ul>
