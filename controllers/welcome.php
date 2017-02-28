@@ -16,6 +16,8 @@ class welcome extends Controller
         }
 
         if(time() < strtotime($this->settings['start'])) {
+            var_dump(date('Y-m-d H:i:s', time()));
+            var_dump(date('Y-m-d H:i:s', strtotime($this->settings['start'])));
             exit('You arrived too early.');
         }
 
@@ -28,6 +30,7 @@ class welcome extends Controller
             'lastname' => $_POST['lastName'],
             'social_id' => $_POST['social_id']
         ]);
+
         echo "ok";
     }
 

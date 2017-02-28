@@ -1,5 +1,7 @@
 <?php namespace Halo;
 
+date_default_timezone_set('Europe/Tallinn');
+
 // Init composer auto-loading
 if (!@include_once("vendor/autoload.php")) {
 
