@@ -11,16 +11,18 @@ namespace Aastategija;
 
 class Questions
 {
+
     static function get() {
-        q('SELECT * FROM questions JOIN answers USING (question_id)', $q);
+        q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY RAND()', $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = $row['question'];
+            $questions[$row['question_id']]['question_id'] = $row['question_id'];
             $questions[$row['question_id']]['answers'][] = [
                 'id' => $row['answer_id'],
-                'text' => $row['answer_text']
+                'text' => htmlentities($row['answer_text'])
             ];
-
         }
-        return $questions;
+
+        return array_slice($questions, 0, 10);
     }
 }

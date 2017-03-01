@@ -61,7 +61,6 @@
         </div>
     </div>
 </div>
-<script src="assets/js/main.js"></script>
 
 <script>
     $('#btnLogin').on('click', function () {
@@ -74,6 +73,8 @@
             }, function (res) {
                 if (res == 'ok') {
                     window.location.href = 'test';
+                } else {
+                    alert(res);
                 }
             });
         }

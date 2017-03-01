@@ -16,8 +16,6 @@ class welcome extends Controller
         }
 
         if(time() < strtotime($this->settings['start'])) {
-            var_dump(date('Y-m-d H:i:s', time()));
-            var_dump(date('Y-m-d H:i:s', strtotime($this->settings['start'])));
             exit('You arrived too early.');
         }
 
@@ -25,11 +23,20 @@ class welcome extends Controller
             exit('You arrived too late.');
         }
 
-        insert('guests', [
+        $user_id =
+        insert('users', [
             'firstname' => $_POST['firstName'],
             'lastname' => $_POST['lastName'],
             'social_id' => $_POST['social_id']
         ]);
+
+        // in case the user already exists
+        if($user_id === false) {
+            $social_id = addslashes($_POST['social_id']);
+            $user_id = get_one("SELECT user_id FROM users WHERE social_id = '$social_id'");
+        }
+
+        $_SESSION['user_id'] = $user_id;
 
         echo "ok";
     }

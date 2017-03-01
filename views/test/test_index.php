@@ -1,5 +1,5 @@
-<form action="actions/validate_answers.php" method="POST" id="quiz">
-    <?php foreach ($questions as $question_id => $question): ?>
+<form action="test/confirm" method="POST" id="quiz">
+    <?php foreach ($questions as $question): ?>
         <article>
             <p><?= $question['question'] ?></p>
             <ul>
@@ -7,7 +7,7 @@
                     <li>
                         <label>
                             <input type="radio" value="<?= $answer['id'] ?>"
-                                   name="answers[<?= $question_id ?>]"> <?= $answer['text'] ?>
+                                   name="answers[<?= $question['question_id'] ?>]"> <?= $answer['text'] ?>
                         </label
                     </li>
                 <?php endforeach ?>
