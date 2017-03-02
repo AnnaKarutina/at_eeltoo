@@ -37,6 +37,7 @@ class welcome extends Controller
         }
 
         $_SESSION['user_id'] = $user_id;
+        $_SESSION['social_id'] = $_POST['social_id'];
 
         echo "ok";
     }

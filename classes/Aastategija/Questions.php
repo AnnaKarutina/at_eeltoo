@@ -32,4 +32,10 @@ class Questions
         $practicalText = get_first('SELECT practical_text FROM practical ORDER BY RAND()');
         return explode(';', $practicalText['practical_text'], -1);
     }
+
+    static function getResult() {
+        $user_id = $_SESSION['user_id'];
+        $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $user_id");
+        return $points['theoretical_points'];
+    }
 }

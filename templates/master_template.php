@@ -25,7 +25,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <img src="http://www.localhost/aastategija/images/khk_logo.png" style="height:45px;" alt="logo"/>
+            <img src="images/khk_logo.png" style="height:45px;" alt="logo"/>
         </div>
         <div class="navbar-form navbar-right">
             <h4></h4>
@@ -51,7 +51,7 @@
         <ul class="facebook">
             <li>
                 <a href="http://www.facebook.com/kutseharidus">
-                    <img src="http://www.localhost/aastategija/images/fb_logo.png">
+                    <img src="images/fb_logo.png">
                 </a>
             </li>
         </ul>

@@ -6,7 +6,7 @@
 <script src="assets/markup/vbscript.js"></script>
 <script src="assets/markup/xml.js"></script>
 
-<form action="test/confirm" method="post" id="target">
+<form action="test/result" method="post" id="target">
     <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML"></textarea>
     <br>
     <input type="hidden" value="Submit">
@@ -51,26 +51,6 @@
         mode: mixedMode
     });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <ul>
 <?php foreach ($practicalQuestions as $practicalQuestion): ?>
     <li><?= $practicalQuestion ?></li>
