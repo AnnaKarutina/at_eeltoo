@@ -1,10 +1,5 @@
+<!-- import custom markup JS -->
 <script src="assets/markup/codemirror.js"></script>
-<script src="assets/markup/css.js"></script>
-<script src="assets/markup/htmlmixed.js"></script>
-<script src="assets/markup/javascript.js"></script>
-<script src="assets/markup/selection-pointer.js"></script>
-<script src="assets/markup/vbscript.js"></script>
-<script src="assets/markup/xml.js"></script>
 
 <form action="test/result" method="post" id="target">
     <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML"></textarea>

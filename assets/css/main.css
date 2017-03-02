@@ -1,9 +1,17 @@
+/* import fonts */
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 /* font for front page text*/
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400);
 
+html {
+    height: 100%;
+}
 
 body {
+    position: relative;
+    margin: 0;
+    min-height: 100%;
+    padding-bottom: 120px;
     background-color: #eeeeee;
     font-family: Lato;
 }
@@ -13,9 +21,50 @@ iframe {
     height: 600px;
 }
 
-.test{
-    font-size: 20px;
+/************ FOOTER AND HEADER *********************/
+/* header */
+.container-fluid {
+    border-bottom: solid 3.5px #5498cb;
 }
+
+#khk-logo {
+    height: 45px;
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+
+/* header end */
+
+/* footer */
+#fb-logo {
+    height: 50px;
+}
+
+#fb-logo:hover {
+    opacity: 0.70;
+}
+
+.footer-block {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-top: solid 2px #5498cb;
+}
+/* footer end */
+/************ FOOTER AND HEADER END *********************/
+
+/************ FINISHED PAGE *******************************/
+#score {
+    border-top: solid 1px #5498cb;
+}
+/************ FINISHED PAGE END *******************************/
+
 /* container */
 .container p {
     text-align: justify;
@@ -28,7 +77,6 @@ iframe {
 .container h1 {
     text-align: center;
     padding-bottom: 3%;
-    border-top: solid 1px #5498cb;
     /*background-color: grey;*/
     padding-top: 3%;
     color: #5498cb;
@@ -44,8 +92,6 @@ mark.yellow {
 .container h5 {
     text-align: center;
     padding-top: 1%;
-    padding-bottom: 3%;
-    border-bottom: solid 1px #5498cb;
     /*background-color: grey;*/
     margin-top: -4%;
     color: #5498cb;
@@ -61,7 +107,7 @@ mark.yellow {
 }
 
 
-    /****** LOGIN MODAL ******/
+/****** LOGIN MODAL ******/
 .loginmodal-container {
     padding: 30px;
     max-width: 350px;
@@ -171,6 +217,8 @@ mark.yellow {
 }
 /************ LOGIN MODAL END *********************/
 
+/************ CHROME FORM FIX *********************/
 input:-webkit-autofill, input:focus:-webkit-autofill, input:hover:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px white inset!important;
 }
+/************ CHROME FORM END *********************/
