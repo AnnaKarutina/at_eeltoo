@@ -29,7 +29,7 @@ class admin extends Controller
         }
 
         // check if password matches the one in the database
-        if(password_verify($password, $realPassword) == $realPassword) {
+        if(password_verify($password, $realPassword) != $realPassword) {
             exit('Invalid username or password.');
         }
 
