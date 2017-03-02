@@ -1,0 +1,3 @@
+function validateAdmin() {
+    return true;
+}

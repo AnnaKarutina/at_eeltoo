@@ -7,76 +7,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/admin_main.css">
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
-
-    <style>
-        body {
-            padding-top: 50px;
-        }
-
-        .form-signin {
-            max-width: 330px;
-            padding: 15px;
-            margin: 0 auto;
-        }
-
-        .form-signin .form-signin-heading,
-        .form-signin .checkbox {
-            margin-bottom: 10px;
-        }
-
-        .form-signin .checkbox {
-            font-weight: normal;
-        }
-
-        .form-signin .form-control {
-            position: relative;
-            font-size: 16px;
-            height: auto;
-            padding: 10px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .form-signin .form-control:focus {
-            z-index: 2;
-        }
-
-        .modal-input input[type="text"] {
-            margin-bottom: -1px;
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-        }
-
-        .modal-input input[type="password"] {
-            margin-bottom: 10px;
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-        }
-
-        span.input-group-addon {
-            width: 50px;
-        }
-
-        div.input-group {
-            width: 100%;
-        }
-
-        form.form-signin {
-            background-color: #ffffff;
-        }
-    </style>
+    <script src="assets/js/admin_main.js"></script>
 </head>
-
 <body>
+
+<?php if (isset($auth->is_admin)): ?>
+<!-- Fixed navbar -->
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li <?= $this->controller == 'admin' ? 'class="active"' : ''?>><a href="admin"><?= __('Tulemused') ?></a></li>
+                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Praktilised ülesanded') ?></a></li>
+                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Teoreetilised ülesanded') ?></a></li>
+                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Seaded') ?></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="logout">Logi välja</a></li>
+            </ul>
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+</div>
+<?php endif; ?>
 
 <div class="container">
 
+    <?php if (!isset($auth->is_admin)): ?>
+    <!-- ADMIN LOGIN -->
     <form class="form-signin" method="post">
 
-        <h2 class="form-signin-heading"><?= __('Please sign in') ?></h2>
+        <h2 class="form-signin-heading"><?= __('Palun logige sisse') ?></h2>
 
         <?php if (isset($errors)) {
             foreach ($errors as $error): ?>
@@ -87,33 +58,53 @@
         } ?>
 
 
-        <label for="user"><?= __('Username') ?></label>
+        <label for="user"><?= __('Kasutaja') ?></label>
 
         <div class="input-group">
             <span class="input-group-addon"><i class="icon-user"></i></span>
-            <input id="user" name="email" type="text" class="form-control" placeholder="email" autofocus>
+            <input id="username" name="username" type="text" class="form-control" placeholder="Kasutaja" autofocus>
         </div>
 
         <br/>
 
-        <label for="pass"><?= __('Password') ?></label>
+        <label for="pass"><?= __('Parool') ?></label>
 
         <div class="input-group">
             <span class="input-group-addon"><i class="icon-key"></i></span>
-            <input id="pass" name="password" type="password" class="form-control" placeholder="******">
+            <input id="password" name="password" type="password" class="form-control" placeholder="******">
         </div>
 
         <br/>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?= __('Sign in') ?></button>
+        <button id="btnLogin" class="btn btn-lg btn-primary btn-block" type="submit"><?= __('Logi sisse') ?></button>
+
     </form>
+    <?php endif; ?>
+
+    <!-- Main component for a primary marketing message or call to action -->
+    <?php if (!file_exists("views/$controller/{$controller}_$action.php")) error_out('The view <i>views/' . $controller . '/' . $controller . '_' . $action . '.php</i> does not exist. Create that file.'); ?>
+    <?php @require "views/$controller/{$controller}_$action.php"; ?>
 
 </div>
 <!-- /container -->
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+<script>
+    $('#btnLogin').on('click', function () {
+        if (validateAdmin()) {
+            $.post('admin/login', {
+                "username": $("#username").val(),
+                "password": $("#password").val()
+            }, function (res) {
+                if (res == 'ok') {
+                    window.location.href = 'admin';
+                } else {
+                    alert(res);
+                }
+            });
+        }
+    });
+</script>
+
 </body>
 </html>

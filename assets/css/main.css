@@ -65,6 +65,7 @@ footer {
 }
 /************ FINISHED PAGE END *******************************/
 
+/********** TO DO ***************/
 /* container */
 .container p {
     text-align: justify;
@@ -105,7 +106,7 @@ mark.yellow {
     color: #5498cb;
     border-radius: 1.5em;
 }
-
+/********** TO DO END ***************/
 
 /****** LOGIN MODAL ******/
 .loginmodal-container {
