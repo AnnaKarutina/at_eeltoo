@@ -12,13 +12,10 @@ body {
 /* container */
 .container p {
     text-align: justify;
-    border-top: solid 1px #b3aca7;
-    border-bottom: solid 1px #b3aca7;
     padding: 20px 20px 20px 20px;
     display: block;
-    font-size: 20px;
+    font-size: 16px;
     line-height: 2em;
-
 }
 
 .container h1 {
@@ -49,11 +46,7 @@ mark.yellow {
 }
 /* button */
 .btn {
-    position: relative;
-    transition: .5s ease;
-    top: 80%;
-    left: 40%;
-    right: 40%;
+    transition: .2s ease;
     background-color: transparent;
     border-color: #5498cb;
     color: #5498cb;
