@@ -1,5 +1,5 @@
 <!-- import custom markup JS -->
-<script src="assets/markup/codemirror.js"></script>
+<script src="assets/js/codemirror.js"></script>
 
 <form action="test/result" method="post" id="target">
     <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML"></textarea>
