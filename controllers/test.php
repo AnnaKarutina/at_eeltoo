@@ -6,9 +6,11 @@ class test extends Controller
     function index()
     {
         $this->questions = Questions::get();
+        $this->practicalQuestions = Questions::getPractical();
     }
 
-    function confirm()
+    // confirm theoretical test answers and redirects user to practical test
+    function practical()
     {
         $answers = $_POST;
         $correctAnswers = 0;
@@ -21,4 +23,12 @@ class test extends Controller
             }
         }
     }
+
+    function confirm() {
+        echo '<pre>';
+        print_r(htmlentities($_POST['validateHTML']));
+        echo '</pre>';
+
+    }
+
 }

@@ -8,11 +8,12 @@
 
 namespace Aastategija;
 
-
+// database queries
 class Questions
 {
 
     static function get() {
+        // questions are ordered by randomly
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY RAND()', $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
@@ -22,10 +23,12 @@ class Questions
                 'text' => htmlentities($row['answer_text'])
             ];
         }
+
+        // slices questions by ten
         return array_slice($questions, 0, 10);
     }
 
-    static function get_practical() {
+    static function getPractical() {
         $practicalText = get_first('SELECT practical_text FROM practical ORDER BY RAND()');
         return explode(';', $practicalText['practical_text'], -1);
     }

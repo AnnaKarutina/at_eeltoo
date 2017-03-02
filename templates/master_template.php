@@ -6,6 +6,7 @@
     <title>Esileht</title>
     <link href="vendor/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/headerfooter.css" rel="stylesheet">
+    <link href="assets/markup/codemirror.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
