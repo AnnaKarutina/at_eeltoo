@@ -162,7 +162,6 @@ class Application
             // Get path from REQUEST_URI
             $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-
             // Strip directory from $path
             $project_directory = dirname($_SERVER['SCRIPT_NAME']);
             $path = substr($path, strlen($project_directory));
@@ -174,7 +173,6 @@ class Application
 
             // Remove empty values, due to leading or trailing or double slash, and renumber array from 0
             $path = array_values(array_filter($path));
-
 
             // Set controller, action and params
             $this->controller = isset($path[0]) ? array_shift($path) : DEFAULT_CONTROLLER;

@@ -2,6 +2,7 @@ body {
     padding-top: 50px;
 }
 
+/************** LOGIN PAGE ****************/
 .form-signin {
     max-width: 330px;
     padding: 15px;
@@ -54,3 +55,56 @@ div.input-group {
 form.form-signin {
     background-color: #ffffff;
 }
+/************** LOGIN PAGE END ****************/
+
+/************** RESULT PAGE ****************/
+.results td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.results tr:nth-child(even){background-color: #f2f2f2;}
+
+.results tr:hover {background-color: #ddd;}
+
+.results th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #5498cb;
+    color: white;
+}
+
+.not-graded {
+    color: red;
+}
+/************** RESULT PAGE END ****************/
+
+/************** THEORETICAL PAGE ****************/
+
+
+.question-head {
+    background-color: #5498cb;
+}
+
+.theoretical-container {
+    display: block;
+    margin: 0 auto;
+    max-width: 900px;
+}
+.theoretical tr:hover {background-color: #ddd;}
+
+.theoretical .questions {
+    width: 100%;
+    border: none;
+    background:rgba(0,0,0,0);
+    padding: 5px;
+}
+
+.theoretical .answers {
+    width: 100%;
+    border: none;
+    background:rgba(0,0,0,0);
+    padding: 10px;
+}
+/************** THEORETICAL PAGE END ****************/

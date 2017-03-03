@@ -1,3 +1,4 @@
+<?= $_SESSION['user_id'] ?>
 <!-- import custom markup JS -->
 <script src="assets/js/codemirror.js"></script>
 

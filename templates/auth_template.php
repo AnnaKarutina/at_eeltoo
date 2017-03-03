@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<?php if (isset($auth->is_admin)): ?>
+<?php if (isset($auth->is_admin) && $auth->is_admin): ?>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -27,10 +27,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li <?= $this->controller == 'admin' ? 'class="active"' : ''?>><a href="admin"><?= __('Tulemused') ?></a></li>
-                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Praktilised ülesanded') ?></a></li>
-                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Teoreetilised ülesanded') ?></a></li>
-                <li <?= $this->controller == 'changethis' ? 'class="active"' : ''?>><a href="admin"><?= __('Seaded') ?></a></li>
+                <li <?= isset($results) ? 'class="active"' : ''?>><a href="admin"><?= __('Tulemused') ?></a></li>
+                <li <?= isset($practical) ? 'class="active"' : ''?>><a href="admin/practical"><?= __('Praktilised ülesanded') ?></a></li>
+                <li <?= isset($theoretical) ? 'class="active"' : ''?>><a href="admin/theoretical"><?= __('Teoreetilised ülesanded') ?></a></li>
+                <li <?= isset($properties) ? 'class="active"' : ''?>><a href="admin/settings"><?= __('Seaded') ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="logout">Logi välja</a></li>

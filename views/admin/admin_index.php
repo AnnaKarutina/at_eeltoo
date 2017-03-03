@@ -1,26 +1,25 @@
 <!-- IF ADMIN -->
 <?php if ($auth->is_admin): ?>
-<h3><?= __("Admin") ?></h3>
-<ul class="list-group">
-    <?php foreach ($admin as $admin): ?>
-        <li class="list-group-item">
-            <a href="admin/<?= $admin['admin_id'] ?>/<?= $admin['admin_name'] ?>"><?= $admin['admin_name'] ?></a>
-        </li>
+
+    <h3><?= __("Tulemused") ?></h3>
+
+    <table class="table table-bordered results">
+        <tr>
+            <th>Nimi</th>
+            <th>Isikukood</th>
+            <th>Teoreetiline test</th>
+            <th>Praktiline test</th>
+            <th>Kokku</th>
+        </tr>
+    <?php foreach ($results as $result): ?>
+        <tr>
+            <td><?= $result['firstname'].' '.$result['lastname'] ?></td>
+            <td><?= $result['social_id'] ?></td>
+            <td><?= $result['theoretical_points'] ?></td>
+            <td><?= $result['practical_points'] == 0 ? '<span class="not-graded">Hindamata</span>' : $result['practical_points'] ?></td>
+            <td><?= $result['sum'] ?></td>
+        </tr>
     <?php endforeach ?>
-</ul>
+    </table>
 
-<h3><?= __("Add new admin") ?></h3>
-
-
-<form method="post" id="form">
-    <form id="form" method="post">
-        <table class="table table-bordered">
-            <tr>
-                <th><?= __("Name") ?></th>
-                <td><input type="text" name="data[admin_name]" placeholder=""/></td>
-            </tr>
-        </table>
-
-        <button class="btn btn-primary" type="submit"><?= __("Add") ?></button>
-    </form>
 <?php endif; ?>

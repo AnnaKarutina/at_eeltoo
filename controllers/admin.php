@@ -1,5 +1,7 @@
 <?php namespace Halo;
 
+use Aastategija\Administrator;
+
 class admin extends Controller
 {
     public $requires_auth = false;
@@ -41,13 +43,22 @@ class admin extends Controller
 
     function index()
     {
-        $this->admin = get_all("SELECT * FROM admin");
+        $this->results = Administrator::getResults();
     }
 
-    function view()
+    function practical() {
+        $this->practical = true;
+    }
+
+    function theoretical()
     {
-        $admin_id = $this->params[0];
-        $this->admin = get_first("SELECT * FROM admin WHERE admin_id = '{$admin_id}'");
+        $this->theoretical = true;
+        $this->questions = Administrator::getQuestions();
+    }
+
+    function settings()
+    {
+        $this->properties = true;
     }
 
     function edit()
