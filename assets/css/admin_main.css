@@ -2,6 +2,15 @@ body {
     padding-top: 50px;
 }
 
+/************** MODAL TWITCH FIX *****************/
+.modal-open {
+    padding-right: 0 !important;
+}
+html {
+    overflow-y: scroll !important;
+}
+/************** MODAL FIX END *****************/
+
 /************** LOGIN PAGE ****************/
 .form-signin {
     max-width: 330px;
@@ -94,6 +103,8 @@ form.form-signin {
 }
 .theoretical tr:hover {background-color: #ddd;}
 
+.theoretical tr:last-child:hover {background-color: transparent;}
+
 .theoretical .questions {
     width: 100%;
     border: none;
@@ -106,5 +117,35 @@ form.form-signin {
     border: none;
     background:rgba(0,0,0,0);
     padding: 10px;
+}
+
+.editTheoretical, .deleteTheoretical {
+    font-size: 14px;
+}
+
+.edit-successful {
+    opacity: 0;
+    color: green;
+}
+
+.edit-error {
+    opacity: 0;
+    color: red;
+}
+
+/*************** placeholder text ********************/
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color: #504f60;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #504f60;
+    opacity: 1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #504f60;
+    opacity: 1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #504f60;
 }
 /************** THEORETICAL PAGE END ****************/

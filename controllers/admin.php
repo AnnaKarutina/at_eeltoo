@@ -61,6 +61,51 @@ class admin extends Controller
         $this->properties = true;
     }
 
+    function AJAX_editTheoretical() {
+        $question = addslashes(array_values($_POST['question'])[0]);
+        $questionID = key($_POST['question']);
+        $answers = $_POST['answers'];
+        update('questions', ['question' => ''.$question.''], "question_id = '$questionID'");
+        foreach ($answers as $key=>$answer) {
+            $answer_text = addslashes($answer);
+            update('answers', ['answer_text' => ''.$answer_text.''], "answer_id = '$key'");
+        }
+        echo 'ok';
+    }
+
+    function AJAX_deleteTheoretical() {
+        $questionID = key($_POST['question']);
+        q("DELETE FROM answers WHERE question_id = '$questionID'");
+        q("DELETE FROM questions WHERE question_id = '$questionID'");
+        echo 'ok';
+    }
+
+    function AJAX_addTheoretical() {
+        $elements = $_POST;
+        foreach ($elements as $key=>$element) {
+            switch ($key) {
+                case 'question':
+                    insert('questions', ['question' => ''.$element.'']);
+                    $questionID = get_first('SELECT LAST_INSERT_ID() as question_id');
+                    break;
+                case 'correct':
+                    insert('answers', [
+                        'answer_text' => $element,
+                        'question_id' => $questionID['question_id'],
+                        'answer_correct' => 1
+                    ]);
+                    break;
+                default:
+                    insert('answers', [
+                        'answer_text' => $element,
+                        'question_id' => $questionID['question_id']
+                    ]);
+                    break;
+            }
+        }
+        echo 'ok';
+    }
+
     function edit()
     {
         $admin_id = $this->params[0];

@@ -19,7 +19,7 @@ class Administrator
 
     static function getQuestions() {
         // questions are ordered by randomly
-        q('SELECT * FROM questions JOIN answers USING (question_id)', $q);
+        q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY question_id DESC', $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
             $questions[$row['question_id']]['question_id'] = $row['question_id'];
