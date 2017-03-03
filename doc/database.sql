@@ -124,9 +124,10 @@ DROP TABLE IF EXISTS `results`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `results` (
   `result_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Autocreated',
-  `theoretical_points` varchar(50) NOT NULL COMMENT 'Autocreated',
+  `theoretical_points` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Autocreated',
   `user_id` int(10) unsigned NOT NULL,
   `practical_errors` blob,
+  `practical_points` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
@@ -139,7 +140,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (17,'4',16,NULL),(18,'7',18,NULL),(19,'9',19,NULL),(20,'1',20,NULL);
+INSERT INTO `results` VALUES (17,4,16,NULL,0),(18,7,18,NULL,6),(19,9,19,NULL,0),(20,1,20,NULL,0);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -247,7 +248,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_social_id_uindex` (`social_id`),
   UNIQUE KEY `UNIQUE` (`user_name`),
   UNIQUE KEY `users_user_name_social_id_uindex` (`user_name`,`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -256,7 +257,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(21,NULL,0,'',0,'test','test','3423423433');
+INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(21,NULL,0,'',0,'test','test','3423423433'),(22,NULL,0,'',0,'asdfa','asdfas','23423433434');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -269,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-03  0:32:51
+-- Dump completed on 2017-03-03  2:14:29
