@@ -9,7 +9,7 @@
                         <label>
                             <input type="radio" value="<?= $answer['id'] ?>"
                                    name="answers[<?= $question['question_id'] ?>]"> <?= $answer['text'] ?>
-                        </label
+                        </label>
                     </li>
                 <?php endforeach ?>
             </ul>

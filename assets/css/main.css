@@ -108,9 +108,63 @@ footer {
 
 /************ PRACTICAL PAGE *****************************/
 
+#practical-questions article{
+    border: solid 1px #fff;
+    background-color: #fff;
+    margin-top: 2%;
+    box-shadow: 5px 5px 3px lightgrey;
+    margin-bottom: 2%;
+}
+
+#practical-questions ul li{
+    list-style: none;
+    background: #d90;
+    border-radius: 1.5em;
+    color: #fff;
+    transition: 0.2s;
+    width: 50%;
+    padding: 1%;
+    margin-top: 1%;
+    margin-left: 25%;
+    margin-bottom: 1%;
+}
+
+#practical-checkbox{
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 11px solid #fff;
+    display: inline-block;
+    position: relative;
+    float: right;
+}
+
+#practical-checkbox:checked:after {
+    content: '✔';
+    font-size: 16px;
+    position: relative;
+    color: #d90;
+}
+
+#question-left{
+    background-color: transparent;
+    color: #fff;
+    margin-right: 30px;
+    float: left;
+    font-size: 18px;
+}
+
+#target{
+    background-color: #d90;
+    box-shadow: 5px 5px 3px lightgrey;
+
+}
+
 #submit-practical{
     margin-top: 2%;
+    margin-bottom: 2%;
     margin-left: 45%;
+    border-color: #fff;
+    color: #fff;
 }
 /************ PRACTICAL PAGE END *************************/
 
