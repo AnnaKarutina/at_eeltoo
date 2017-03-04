@@ -59,9 +59,74 @@ footer {
 /* footer end */
 /************ FOOTER AND HEADER END *********************/
 
+/************ TEST PAGE *********************************/
+#quiz ul li {
+    list-style: none;
+    margin-top: 1%;
+    margin-left: 32.5%;
+    margin-bottom: 3%;
+    line-height: 3em;
+    text-align: center;
+    background: #d90;
+    border-radius: 2em;
+    color: #fff;
+    transition: 0.2s;
+    cursor: pointer;
+    width: 30%;
+    padding: 0.5%;
+
+
+}
+
+#quiz ul li:hover{
+    background-color:  #ffc233;
+    color: #000;
+}
+
+#quiz label{
+    font-size: 18px;
+}
+
+#quiz p{
+    text-align: center;
+    margin-top: 1%;
+    font-size: 24px;
+}
+
+#quiz article{
+    border: solid 1px #fff;
+    background-color: #fff;
+    margin-top: 2%;
+    box-shadow: 5px 5px 3px lightgrey;
+}
+
+#submit-quiz{
+    margin-top: 2%;
+    margin-left: 45%;
+}
+/************ TEST PAGE END ******************************/
+
+/************ PRACTICAL PAGE *****************************/
+
+#submit-practical{
+    margin-top: 2%;
+    margin-left: 45%;
+}
+/************ PRACTICAL PAGE END *************************/
+
+
+
 /************ FINISHED PAGE *******************************/
 #score {
-    border-top: solid 1px #5498cb;
+    /*border-top: solid 1px #5498cb;*/
+    margin-top: 10%;
+}
+
+/* some yellow text or sign */
+mark.orange {
+    color: #d90;
+    background: none;
+    font-weight: bolder;
 }
 /************ FINISHED PAGE END *******************************/
 
@@ -82,12 +147,6 @@ footer {
     padding-top: 3%;
     color: #5498cb;
     width: 100%;
-}
-/* some yellow text or sign */
-mark.yellow {
-    color: yellow;
-    background: none;
-    font-weight: bolder;
 }
 
 .container h5 {

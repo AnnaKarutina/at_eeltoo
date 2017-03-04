@@ -4,8 +4,8 @@
 <form action="test/result" method="post" id="target">
     <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML"></textarea>
     <br>
-    <input type="hidden" value="Submit">
-        <a href="#" class="btn btn-info btn-lg form-button" data-toggle="modal" data-target=".confirm">Esita</a>
+    <input type="hidden"  value="Submit">
+        <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal" data-target=".confirm">Esita</a>
 </form>
 
 <!-- Confirm modal -->

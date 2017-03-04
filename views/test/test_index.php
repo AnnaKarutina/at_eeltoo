@@ -1,5 +1,5 @@
 <!-- main html generator -->
-<form action="test/practical" method="POST" id="quiz">
+<form action="test/practical " method="POST" id="quiz">
     <?php foreach ($questions as $question): ?>
         <article>
             <p><?= $question['question'] ?></p>
