@@ -168,6 +168,20 @@ footer {
 }
 /************ PRACTICAL PAGE END *************************/
 
+/************ PRACTICAL RESULT VIEW PAGE ******************/
+
+#ifm{
+    border: solid 1px #fff;
+    background-color: #fff;
+    box-shadow: 5px 5px 3px lightgrey;
+}
+
+#submit-view{
+    margin-top: 2%;
+    margin-left: 45%;
+}
+
+/************ PRACTICAL RESULT VIEW PAGE END **************/
 
 
 /************ FINISHED PAGE *******************************/
