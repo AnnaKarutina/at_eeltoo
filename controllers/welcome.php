@@ -16,11 +16,15 @@ class welcome extends Controller
         }
 
         if(time() < strtotime($this->settings['start'])) {
-            exit('You arrived too early.');
+            exit('Test is closed at the moment. Please try again later.');
         }
 
         if(time() > strtotime($this->settings['end'])) {
-            exit('You arrived too late.');
+            exit('Test is closed at the moment. Please try again later.');
+        }
+
+        if($_POST['password'] != $this->settings['pwd']) {
+            exit('Invalid PIN.');
         }
 
         $user_id =

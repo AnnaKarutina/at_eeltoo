@@ -12,7 +12,7 @@ namespace Aastategija;
 class Questions
 {
 
-    static function get() {
+    public static function get() {
         // questions are ordered by randomly
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY RAND()', $q);
         while ($row = mysqli_fetch_assoc($q)) {
@@ -24,8 +24,11 @@ class Questions
             ];
         }
 
-        // slices questions by ten
-        return array_slice($questions, 0, 10);
+        // get nr of questions needed from settings
+        $questionCount = get_first('SELECT * FROM settings');
+
+        // slice the questions where needed
+        return array_slice($questions, 0, $questionCount['nr_of_questions']);
     }
 
     static function getPractical() {

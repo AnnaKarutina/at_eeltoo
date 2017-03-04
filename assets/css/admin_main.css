@@ -119,7 +119,7 @@ form.form-signin {
     padding: 10px;
 }
 
-.editTheoretical, .deleteTheoretical {
+.editTheoretical, .deleteTheoretical, .addTheoretical {
     font-size: 14px;
 }
 
@@ -149,3 +149,21 @@ form.form-signin {
     color: #504f60;
 }
 /************** THEORETICAL PAGE END ****************/
+
+/************** SETTINGS PAGE  ****************/
+.settings-btn {
+    font-size: 14px;
+    padding: 3px;
+    width: 80px;
+}
+
+.settings-selection {
+    font-size: 18px;
+}
+
+#liveTime {
+    color: red;
+    font-size: 18px;
+}
+
+/************** SETTINGS PAGE END ****************/

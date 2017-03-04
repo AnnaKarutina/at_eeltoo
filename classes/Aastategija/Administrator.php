@@ -32,4 +32,10 @@ class Administrator
         // slices questions by ten
         return $questions;
     }
+
+    static function countQuestions() {
+        $totalQuestions = q('SELECT * FROM questions');
+        return $totalQuestions;
+
+    }
 }

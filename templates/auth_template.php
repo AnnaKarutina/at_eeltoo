@@ -45,9 +45,9 @@
 
     <?php if (!isset($auth->is_admin)): ?>
     <!-- ADMIN LOGIN -->
-    <form class="form-signin" method="post">
+    <form class="form-signin" method="post" autocomplete="off">
 
-        <h2 class="form-signin-heading"><?= __('Palun logige sisse') ?></h2>
+        <h2 class="form-signin-heading" ><?= __('Palun logige sisse') ?></h2>
 
         <?php if (isset($errors)) {
             foreach ($errors as $error): ?>

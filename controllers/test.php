@@ -30,7 +30,8 @@ class test extends Controller
         if (empty(get_first("SELECT user_id FROM results WHERE user_id = $user_id"))) {
             insert('results', [
                 'user_id' => $user_id,
-                'theoretical_points' => $correctAnswers
+                'theoretical_points' => $correctAnswers,
+                'nr_of_questions' => $this->settings['nr_of_questions']
             ]);
         }
     }
@@ -51,8 +52,8 @@ class test extends Controller
             '::1'
         );
 
-        // if in localhost, skip HTML validator as it needs live URL
-        if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+        // if in localhost, skip HTML validator as it needs live URL... also check the settings
+        if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist) && $this->settings['htmlvalidator'] == 1){
             $html = 'https://validator.w3.org/nu/?&doc=' . BASE_URL.'results/'.$social_id.'.html' . '&out=json';
 
             // get the json data

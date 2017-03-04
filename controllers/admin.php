@@ -59,12 +59,66 @@ class admin extends Controller
     function settings()
     {
         $this->properties = true;
+        $this->settings;
+        $this->totalQuestions = Administrator::countQuestions();
+        $this->time;
+    }
+
+    function AJAX_editQuestionCount() {
+        $questionCount = addslashes($_POST['nr_of_questions']);
+        update('settings', ['nr_of_questions' => ''.$questionCount.''], "id = '1'");
+        echo 'ok';
+    }
+
+    function AJAX_openTest() {
+        $testHours = addslashes($_POST['test_hours']);
+        $currentDate = date('Y-m-d H:i:s');
+        update('settings', [
+            'start' => $currentDate,
+            'end' => date('Y-m-d H:i:s', strtotime ("+$testHours hour"))
+            ], "id = '1'");
+        echo 'ok';
+    }
+
+    function AJAX_closeTest() {
+        update('settings', [
+            'start' => NULL,
+            'end' => NULL
+        ], "id = '1'");
+        echo 'ok';
+    }
+
+    function AJAX_liveTime() {
+        if ($this->time['time'] > 0) {
+            echo $this->time['time'];
+        } else {
+            echo 'Test on suletud';
+        }
+    }
+
+    function AJAX_validationOption() {
+        $validateHTML = addslashes($_POST['validationOption']);
+        update('settings', ['htmlvalidator' => ''.$validateHTML.''], "id = '1'");
+        echo 'ok';
+    }
+
+    function AJAX_generatePassword() {
+        $randomPIN = generateRandomPIN(4);
+        update('settings', ['pwd' => ''.$randomPIN.''], "id = '1'");
+        exit(generateRandomPIN(4));
     }
 
     function AJAX_editTheoretical() {
+        $answers = $_POST['answers'];
+
+        foreach ($answers as $answer) {
+            if($answer == NULL) {
+                exit('All fields are required.');
+            }
+        }
+
         $question = addslashes(array_values($_POST['question'])[0]);
         $questionID = key($_POST['question']);
-        $answers = $_POST['answers'];
         update('questions', ['question' => ''.$question.''], "question_id = '$questionID'");
         foreach ($answers as $key=>$answer) {
             $answer_text = addslashes($answer);
@@ -81,7 +135,19 @@ class admin extends Controller
     }
 
     function AJAX_addTheoretical() {
+
+        if(empty($_POST)) {
+            exit('All fields are required.');
+        }
+
         $elements = $_POST;
+
+        foreach ($elements as $element) {
+            if($element == NULL) {
+                exit('All fields are required.');
+            }
+        }
+
         foreach ($elements as $key=>$element) {
             switch ($key) {
                 case 'question':

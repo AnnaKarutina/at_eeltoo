@@ -5,10 +5,12 @@ class Controller
     public $template = 'master';
     public $requires_auth = true;
     public $settings;
+    public $time;
 
     function __construct()
     {
         $this->settings=get_first('SELECT * FROM settings');
+        $this->time=get_first('SELECT TIMEDIFF(end, NOW()) as time FROM settings');
     }
 
     function render($template)

@@ -54,7 +54,7 @@ CREATE TABLE `answers` (
   PRIMARY KEY (`answer_id`),
   KEY `question_id` (`question_id`),
   CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `questions` (
   `question_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question` text,
   PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,7 +111,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (7,'Milline on suurima pealkirja HTML element?'),(8,'Millise HTML elemendiga saab sooritada reavahet?'),(9,'Kuidas tähistatakse listi elementi?'),(10,'Mida tähendab CSS?'),(11,'Kuidas rõhutada teksti(itaaliapärane)?'),(12,'Kuidas muuta tekst paksuks?'),(13,'Milliste märkidega alustatakse HTMLis kommentaari?'),(14,'Millise HTMLi märgendiga määratakse lehekülje pealkiri?'),(15,'Millist HTMLi märgendit kasutatakse klõpsatava veebilingi jaoks?'),(16,'Kuidas alustatakse HTMLi dokumenti?'),(17,'Kuidas sisestatakse pilti?'),(18,'Kuidas sisestatakse videot?'),(19,'Kuidas sisestatakse heliklippi?'),(20,'Kuidas määrata HTML dokumendi keel?'),(21,'Kuidas muuta HTML dokumendis paragrahvi stiili?'),(22,'Kuidas määrata font-iks Verdana?'),(23,'Kuidas määrata taustavärvi?'),(24,'Kuidas joondada paragrahvi paremale?'),(25,'Mille jaoks kasutatakse <div> märgendeid?'),(26,'Millist järgmistest märgenditest kasutatakse mitmerealise tekstisisestuse haldamiseks?'),(27,'Millist atribuuti kasutatakse ridade arvu tähistamiseks?'),(28,'Kuidas teha järjestatud listi?'),(29,'Kuidas teha järjestamata listi?'),(30,'Milline on <img> märgendi atribuut?'),(31,'Millist järgnevatest atribuutidest kasutatakse fonti nime täpsustamiseks?'),(32,'Kus määratakse HTMLi koodis lehekülje pealkiri?'),(33,'Mitu märgendit on tavalises elemendis?'),(34,'Millist atribuuti kasutatakse, et klikitav link avaneks uues aknas?'),(35,'Milline järgmistest HTMLi märgenditest pole kehtiv?'),(58,'tere');
+INSERT INTO `questions` VALUES (7,'Milline on suurima pealkirja HTML element?'),(8,'Millise HTML elemendiga saab sooritada reavahet?'),(9,'Kuidas tähistatakse listi elementi?'),(10,'Mida tähendab CSS?'),(11,'Kuidas rõhutada teksti(itaaliapärane)?'),(12,'Kuidas muuta tekst paksuks?'),(13,'Milliste märkidega alustatakse HTMLis kommentaari?'),(14,'Millise HTMLi märgendiga määratakse lehekülje pealkiri?'),(15,'Millist HTMLi märgendit kasutatakse klõpsatava veebilingi jaoks?'),(16,'Kuidas alustatakse HTMLi dokumenti?'),(17,'Kuidas sisestatakse pilti?'),(18,'Kuidas sisestatakse videot?'),(19,'Kuidas sisestatakse heliklippi?'),(20,'Kuidas määrata HTML dokumendi keel?'),(21,'Kuidas muuta HTML dokumendis paragrahvi stiili?'),(22,'Kuidas määrata font-iks Verdana?'),(23,'Kuidas määrata taustavärvi?'),(24,'Kuidas joondada paragrahvi paremale?'),(25,'Mille jaoks kasutatakse <div> märgendeid?'),(26,'Millist järgmistest märgenditest kasutatakse mitmerealise tekstisisestuse haldamiseks?'),(27,'Millist atribuuti kasutatakse ridade arvu tähistamiseks?'),(28,'Kuidas teha järjestatud listi?'),(29,'Kuidas teha järjestamata listi?'),(30,'Milline on <img> märgendi atribuut?'),(31,'Millist järgnevatest atribuutidest kasutatakse fonti nime täpsustamiseks?'),(32,'Kus määratakse HTMLi koodis lehekülje pealkiri?'),(33,'Mitu märgendit on tavalises elemendis?'),(34,'Millist atribuuti kasutatakse, et klikitav link avaneks uues aknas?'),(35,'Milline järgmistest HTMLi märgenditest pole kehtiv?');
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,11 +127,12 @@ CREATE TABLE `results` (
   `theoretical_points` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Autocreated',
   `user_id` int(10) unsigned NOT NULL,
   `practical_errors` blob,
-  `practical_points` tinyint(4) DEFAULT NULL,
+  `practical_points` tinyint(4) DEFAULT '0',
+  `nr_of_questions` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -140,7 +141,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (17,4,16,NULL,0),(18,7,18,NULL,6),(19,9,19,NULL,0),(20,1,20,NULL,0);
+INSERT INTO `results` VALUES (17,4,16,NULL,0,10),(18,7,18,NULL,6,10),(19,9,19,NULL,0,10),(20,1,20,NULL,0,10),(21,5,25,NULL,0,10);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,10 +156,7 @@ CREATE TABLE `settings` (
   `id` char(1) NOT NULL,
   `pwd` varchar(255) NOT NULL,
   `nr_of_questions` tinyint(4) NOT NULL,
-  `development_mode` tinyint(4) NOT NULL,
-  `imagecomparison` tinyint(4) NOT NULL,
   `htmlvalidator` tinyint(4) NOT NULL,
-  `livehtml` tinyint(4) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -171,32 +169,8 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('1','$2y$10$jFC8Sx4pEHQbBglfwAihAuhDtfIyQEnzol0beSg75ca//xSV.WzTC',10,1,1,1,0,'2017-02-28 15:32:48','2017-03-28 15:32:51');
+INSERT INTO `settings` VALUES ('1','3905',10,1,'2017-03-04 02:31:31','2017-03-04 06:31:31');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tests`
---
-
-DROP TABLE IF EXISTS `tests`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tests` (
-  `test_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'Autocreated',
-  `test_name` varchar(50) NOT NULL COMMENT 'Autocreated',
-  PRIMARY KEY (`test_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tests`
---
-
-LOCK TABLES `tests` WRITE;
-/*!40000 ALTER TABLE `tests` DISABLE KEYS */;
-INSERT INTO `tests` VALUES (1,'test #1'),(2,'test #2');
-/*!40000 ALTER TABLE `tests` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -248,7 +222,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_social_id_uindex` (`social_id`),
   UNIQUE KEY `UNIQUE` (`user_name`),
   UNIQUE KEY `users_user_name_social_id_uindex` (`user_name`,`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +231,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(21,NULL,0,'',0,'test','test','3423423433'),(22,NULL,0,'',0,'asdfa','asdfas','23423433434');
+INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(21,NULL,0,'',0,'test','test','3423423433'),(22,NULL,0,'',0,'asdfa','asdfas','23423433434'),(23,NULL,0,'',0,'test','test','2342342342342'),(24,NULL,0,'',0,'Renee','Saks','30303003000'),(25,NULL,0,'',0,'Testin','Seda','39222002202');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -270,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-03 19:08:35
+-- Dump completed on 2017-03-04  2:46:43
