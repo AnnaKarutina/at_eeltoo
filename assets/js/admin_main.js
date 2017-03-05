@@ -5,7 +5,7 @@ $(document).ready(function () {
     $('#password').val("");
 
     // theoretical questions ajax edit
-    $(".editTheoretical").click(function () {
+    $(".editTheoretical").click(function (event) {
         event.preventDefault();
         var data = $(this).closest('form').serialize();
         var selectorSuccessful = $(this).closest('form').find('.edit-successful').attr('id');
@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 
     // theoretical questions ajax delete
-    $(".deleteTheoretical").click(function () {
+    $(".deleteTheoretical").click(function (event) {
 
         event.preventDefault();
         var selectorForm = $(this).closest('form').attr('id');
@@ -49,11 +49,9 @@ $(document).ready(function () {
         });
     });
 
-    // theoretical questions ajax delete
-    $(".addTheoretical").click(function () {
+    // add theoretical questions
+    $(".addTheoretical").click(function (event) {
         event.preventDefault();
-        var selectorForm = $(this).closest('form').attr('id');
-        var id1 = ($(document.getElementById(selectorForm)));
         var data = $(this).closest('form').serialize();
 
         $.post('admin/addTheoretical', data,
@@ -67,7 +65,7 @@ $(document).ready(function () {
     });
 
     // change nr of questions setting
-    $(".editQuestionCount").click(function () {
+    $(".editQuestionCount").click(function (event) {
         event.preventDefault();
         var selectorForm = $(this).closest('form').attr('id');
         var id1 = ($(document.getElementById(selectorForm)));
@@ -87,7 +85,8 @@ $(document).ready(function () {
     });
 
     // generate password
-    $('#generatePassword').on('click', function (e) {
+    $('#generatePassword').on('click', function (event) {
+        event.preventDefault();
 
         $.post('admin/generatePassword', {password: this.value}, function (res) {
             $('#generatedPassword').val(res);
@@ -97,7 +96,7 @@ $(document).ready(function () {
     });
 
     // open test
-    $(".openTest").click(function () {
+    $(".openTest").click(function (event) {
         event.preventDefault();
         var selectorForm = $(this).closest('form').attr('id');
         var id1 = ($(document.getElementById(selectorForm)));
@@ -125,7 +124,7 @@ $(document).ready(function () {
     }, 1000);
 
     // close test
-    $(".closeTest").click(function () {
+    $(".closeTest").click(function (event) {
         event.preventDefault();
         var selectorForm = $(this).closest('form').attr('id');
         var id1 = ($(document.getElementById(selectorForm)));
@@ -144,8 +143,8 @@ $(document).ready(function () {
             });
     });
 
-    // close test
-    $(".validationOption").click(function () {
+    // html validation option
+    $(".validationOption").click(function (event) {
         event.preventDefault();
         var selectorForm = $(this).closest('form').attr('id');
         var id1 = ($(document.getElementById(selectorForm)));
