@@ -7,13 +7,43 @@ class test extends Controller
 
     function index()
     {
-        $this->questions = Questions::get();
+        // handle redirection if necessary
+        if(isset($_SESSION['result'])) {
+            header('Location: result');
+            exit();
+        } else if(isset($_SESSION['practical'])) {
+            header('Location: practical');
+            exit();
+        }
+
+        // catch the questions into session
+        if(!isset($_SESSION['questions'])) {
+            $_SESSION['questions'] = Questions::get();
+        }
+
+        $this->questions = $_SESSION['questions'];
+        $_SESSION['theoretical'] = true;
     }
 
     // confirm theoretical test answers and redirects user to practical test
     function practical()
     {
-        $this->practicalQuestions = Questions::getPractical();
+        // handle redirection if necessary
+        if(isset($_SESSION['result'])) {
+            header('Location: result');
+            exit();
+        } else if(!isset($_SESSION['theoretical'])) {
+            header('Location: ../');
+            exit();
+        }
+
+        // cache the practical task
+        if(!isset($_SESSION['task'])) {
+            $_SESSION['task'] = Questions::getPractical();
+        }
+
+        $this->practicalQuestions = $_SESSION['task'];
+        $_SESSION['practical'] = true;
         $user_id = $_SESSION['user_id'];
         $answers = $_POST;
         $correctAnswers = 0;
@@ -39,18 +69,35 @@ class test extends Controller
     // write HTML file, get HTML errors using W3 validator
     function result()
     {
+
+        // handle redirection if necessary
+        if(!isset($_SESSION['practical'])) {
+            header('Location: ../');
+            exit();
+        }
+
         $user_id = $_SESSION['user_id'];
         $social_id = $_SESSION['social_id'];
-        $html = $_POST['validateHTML'];
-        $htmlFile = fopen('results/' . $social_id . '.html', 'w');
-        fwrite($htmlFile, $html);
-        fclose($htmlFile);
-
         // localhost
         $whitelist = array(
             '127.0.0.1',
             '::1'
         );
+
+        if(!isset($_SESSION['practical'])) {
+            header('Location: ../');
+            exit();
+        }
+        $_SESSION['result'] = true;
+
+        if(!empty($_POST)) {
+            $html = $_POST['validateHTML'];
+            $htmlFile = fopen('results/' . $social_id . '.html', 'w');
+            fwrite($htmlFile, $html);
+            fclose($htmlFile);
+            // update practical points, if -1 then practical is done but ungraded
+            update('results', ['practical_points' => -1], "user_id = '$user_id'");
+        }
 
         // if in localhost, skip HTML validator as it needs live URL... also check the settings
         if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist) && $this->settings['htmlvalidator'] == 1){
@@ -86,6 +133,7 @@ class test extends Controller
     function finished()
     {
         $this->points = Questions::getResult();
+        killSession();
     }
 }
 

@@ -50,4 +50,14 @@
         <span id="validationOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
 
+    <script>
+        // refresh time
+        setInterval(function(){
+            $.post('admin/liveTime', 'test',
+                function (res) {
+                    $('#liveTime').html(res);
+                });
+        }, 1000);
+    </script>
+
 <?php endif; ?>

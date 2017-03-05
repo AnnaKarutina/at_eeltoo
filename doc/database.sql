@@ -54,7 +54,7 @@ CREATE TABLE `answers` (
   PRIMARY KEY (`answer_id`),
   KEY `question_id` (`question_id`),
   CONSTRAINT `answers_ibfk_1` FOREIGN KEY (`question_id`) REFERENCES `questions` (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=99 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=94 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +102,7 @@ CREATE TABLE `questions` (
   `question_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `question` text,
   PRIMARY KEY (`question_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,12 +127,12 @@ CREATE TABLE `results` (
   `theoretical_points` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'Autocreated',
   `user_id` int(10) unsigned NOT NULL,
   `practical_errors` blob,
-  `practical_points` tinyint(4) DEFAULT '0',
+  `practical_points` tinyint(4) DEFAULT '-2',
   `nr_of_questions` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (17,4,16,NULL,0,10),(18,7,18,NULL,6,10),(19,9,19,NULL,0,10),(20,1,20,NULL,0,10),(21,5,25,NULL,0,10);
+INSERT INTO `results` VALUES (17,4,16,NULL,-1,10),(18,7,18,NULL,6,10),(19,9,19,NULL,-1,10),(20,1,20,NULL,-1,10),(21,5,25,NULL,-1,10),(22,2,26,NULL,-2,10),(23,3,27,NULL,-2,10);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,7 +169,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('1','3905',10,1,'2017-03-04 02:31:31','2017-03-04 06:31:31');
+INSERT INTO `settings` VALUES ('1','3905',10,1,'2017-03-05 19:13:11','2017-03-06 03:13:11');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_social_id_uindex` (`social_id`),
   UNIQUE KEY `UNIQUE` (`user_name`),
   UNIQUE KEY `users_user_name_social_id_uindex` (`user_name`,`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +231,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(21,NULL,0,'',0,'test','test','3423423433'),(22,NULL,0,'',0,'asdfa','asdfas','23423433434'),(23,NULL,0,'',0,'test','test','2342342342342'),(24,NULL,0,'',0,'Renee','Saks','30303003000'),(25,NULL,0,'',0,'Testin','Seda','39222002202');
+INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Säks','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(25,NULL,0,'',0,'Testin','Seda','39222002202'),(26,NULL,0,'',0,'renee','test','30303030303'),(27,NULL,0,'',0,'Mina','Olen','302999232300');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -244,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-04  2:46:43
+-- Dump completed on 2017-03-06  1:02:55

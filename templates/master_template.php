@@ -27,7 +27,9 @@
             <img id="khk-logo" src="images/khk_logo.png" alt="logo"/>
         </div>
         <div class="navbar-form navbar-right">
-            <h4></h4>
+            <?php if(isset($_SESSION['user_id'])): ?>
+                <h4><?= $_SESSION['name'].', '.$_SESSION['social_id'] ?></h4>
+            <?php endif; ?>
         </div>
     </div>
 </nav>

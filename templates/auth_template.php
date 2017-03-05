@@ -43,7 +43,7 @@
 
 <div class="container">
 
-    <?php if (!isset($auth->is_admin)): ?>
+    <?php if (!isset($auth->is_admin) || !($auth->is_admin)): ?>
     <!-- ADMIN LOGIN -->
     <form class="form-signin" method="post" autocomplete="off">
 
@@ -88,10 +88,8 @@
 </div>
 <!-- /container -->
 
-
 <script>
     $('#btnLogin').on('click', function () {
-        if (validateAdmin()) {
             $.post('admin/login', {
                 "username": $("#username").val(),
                 "password": $("#password").val()
@@ -102,7 +100,6 @@
                     alert(res);
                 }
             });
-        }
     });
 </script>
 

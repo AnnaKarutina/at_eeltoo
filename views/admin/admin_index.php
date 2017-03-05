@@ -18,7 +18,15 @@
             <td><?= $result['social_id'] ?></td>
             <td><?= $result['theoretical_points'] ?></td>
             <td><?= $result['nr_of_questions'] ?></td>
-            <td><?= $result['practical_points'] == 0 ? '<span class="not-graded">Hindamata</span>' : $result['practical_points'] ?></td>
+            <td>
+                <?php if($result['practical_points'] == -2): ?>
+                    <span class="not-graded">Tegemata</span>
+                <?php elseif($result['practical_points'] == -1): ?>
+                    <span class="not-graded">Hindamata</span>
+                <?php else: ?>
+                    <?= $result['practical_points'] ?>
+                <?php endif; ?>
+            </td>
             <td><?= $result['sum'] ?></td>
         </tr>
     <?php endforeach ?>

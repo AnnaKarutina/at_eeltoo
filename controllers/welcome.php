@@ -6,6 +6,14 @@ class welcome extends Controller
 
     function index()
     {
+        if (isset($_SESSION['practical'])) {
+            header('Location: test/practical');
+            exit();
+        } else if (isset($_SESSION['theoretical'])) {
+            header('Location: test');
+            exit();
+        }
+
         $this->users = get_all("SELECT * FROM users");
     }
 
@@ -42,6 +50,7 @@ class welcome extends Controller
 
         $_SESSION['user_id'] = $user_id;
         $_SESSION['social_id'] = $_POST['social_id'];
+        $_SESSION['name'] = $_POST['firstName'].' '.$_POST['lastName'];
 
         echo "ok";
     }

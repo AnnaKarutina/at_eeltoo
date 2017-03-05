@@ -115,14 +115,6 @@ $(document).ready(function () {
             });
     });
 
-    // refresh time
-    setInterval(function(){
-        $.post('admin/liveTime', 'test',
-            function (res) {
-                $('#liveTime').html(res);
-            });
-    }, 1000);
-
     // close test
     $(".closeTest").click(function (event) {
         event.preventDefault();
@@ -164,7 +156,3 @@ $(document).ready(function () {
     });
 
 });
-
-function validateAdmin() {
-    return true;
-}
