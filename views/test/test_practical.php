@@ -1,9 +1,9 @@
 <!-- import custom markup JS -->
 <script src="assets/js/codemirror.js"></script>
-
 <div id="practical-questions">
     <article>
         <ul>
+            <h3 class="toDo">Lahenda ToDo-listi järgmised ülesanded ✔:</h3>
             <?php foreach ($practicalQuestions as $practicalQuestion): ?>
 
                 <li>

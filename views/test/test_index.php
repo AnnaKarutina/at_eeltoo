@@ -1,4 +1,5 @@
 <!-- main html generator -->
+<h1 class="quiz-title">CSS & HTML / Vali õige vastus</h1>
 <form action="test/practical " method="POST" id="quiz">
     <?php foreach ($questions as $question): ?>
         <article>
@@ -7,8 +8,9 @@
                 <?php foreach ($question['answers'] as $answer): ?>
                     <li>
                         <label>
-                            <input type="radio" value="<?= $answer['id'] ?>"
-                                   name="answers[<?= $question['question_id'] ?>]"> <?= $answer['text'] ?>
+                            <input class="quiz-radio" type="radio" value="<?= $answer['id'] ?>"
+                                   name="answers[<?= $question['question_id'] ?>]">
+                            <mark class="answer-right"><?= $answer['text'] ?></mark>
                         </label>
                     </li>
                 <?php endforeach ?>
@@ -26,8 +28,8 @@
                 <h4 id="checked"></h4>
             </div>
             <div class="modal-footer">
-                <button id = "yes" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
-                <button id = "no" type="button" class="btn btn-primary">Ei</button>
+                <button id="yes" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
+                <button id="no" type="button" class="btn btn-primary">Ei</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

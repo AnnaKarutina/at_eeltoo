@@ -60,6 +60,11 @@ footer {
 /************ FOOTER AND HEADER END *********************/
 
 /************ TEST PAGE *********************************/
+
+.quiz-title{
+    text-shadow: 4px 4px 6px lightblue;
+}
+
 #quiz ul li {
     list-style: none;
     margin-top: 1%;
@@ -100,6 +105,25 @@ footer {
     box-shadow: 5px 5px 3px lightgrey;
 }
 
+.answer-right{
+    background: transparent;
+    color: #fff;
+}
+
+.quiz-radio{
+    -webkit-appearance: none;
+    background-color: #fff;
+    border: 10px solid #fff;
+    border-radius: 30%;
+}
+
+.quiz-radio:checked:after {
+    content: '✔';
+    font-size: 16px;
+    position: relative;
+    color: #d90;
+}
+
 #submit-quiz{
     margin-top: 2%;
     margin-left: 45%;
@@ -107,6 +131,11 @@ footer {
 /************ TEST PAGE END ******************************/
 
 /************ PRACTICAL PAGE *****************************/
+.toDo{
+    text-align: center;
+    margin-bottom: 2%;
+
+}
 
 #practical-questions article{
     border: solid 1px #fff;
@@ -132,7 +161,8 @@ footer {
 #practical-checkbox{
     -webkit-appearance: none;
     background-color: #fff;
-    border: 11px solid #fff;
+    border: 10px solid #fff;
+    border-radius: 30%;
     display: inline-block;
     position: relative;
     float: right;
@@ -188,6 +218,9 @@ footer {
 #score {
     /*border-top: solid 1px #5498cb;*/
     margin-top: 10%;
+    box-shadow: 5px 5px 3px lightgrey;
+    background-color: #fff;
+
 }
 
 /* some yellow text or sign */
@@ -195,6 +228,13 @@ mark.orange {
     color: #d90;
     background: none;
     font-weight: bolder;
+    margin-bottom: 2%;
+}
+
+.finish-p{
+    height: 20%;
+    background-color: transparent;
+    font-size: 21px;
 }
 /************ FINISHED PAGE END *******************************/
 
