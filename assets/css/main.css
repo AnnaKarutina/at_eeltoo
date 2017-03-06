@@ -270,7 +270,7 @@ mark.orange {
     text-align: justify;
     padding: 20px 20px 20px 20px;
     display: block;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 2em;
 }
 
@@ -279,6 +279,24 @@ mark.orange {
     padding-bottom: 3%;
     /*background-color: grey;*/
     padding-top: 3%;
+    color: #5498cb;
+    width: 100%;
+}
+
+.container h3 {
+    text-align: center;
+    padding-top: 1%;
+    /*background-color: grey;*/
+    margin-top: -4%;
+    color: #5498cb;
+    width: 100%;
+}
+
+.container h4 {
+    text-align: center;
+    padding-top: 1%;
+    /*background-color: grey;*/
+    margin-top: -4%;
     color: #5498cb;
     width: 100%;
 }
@@ -298,6 +316,7 @@ mark.orange {
     border-color: #5498cb;
     color: #5498cb;
     border-radius: 1.5em;
+
 }
 /********** TO DO END ***************/
 
