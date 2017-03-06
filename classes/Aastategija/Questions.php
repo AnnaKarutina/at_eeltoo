@@ -37,8 +37,14 @@ class Questions
     }
 
     static function getResult() {
-        $user_id = $_SESSION['user_id'];
-        $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $user_id");
-        return $points['theoretical_points'];
+        // get result only if user is logged in
+        if(isset($_SESSION['user_id'])) {
+            $user_id = $_SESSION['user_id'];
+            $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $user_id");
+            return $points['theoretical_points'];
+        } else {
+            $points = -1;
+            return $points;
+        }
     }
 }

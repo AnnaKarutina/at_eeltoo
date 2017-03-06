@@ -37,6 +37,7 @@
     </form>
 
     <span id="liveTime"><?= $time['time'] ?></span>
+    <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : '' ?></span>
     <hr>
 
     <h4>HTML koodi valideerimine W3C API kaudu (tegemisel)</h4>

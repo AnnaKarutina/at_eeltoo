@@ -13,7 +13,7 @@ class Administrator
 {
     static function getResults()
     {
-        return get_all("SELECT *, (results.theoretical_points + 
+        return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
         IF(results.practical_points>0,results.practical_points,0)) AS sum 
         FROM results INNER JOIN users WHERE results.user_id = users.user_id ORDER BY 
         IF(results.practical_points >= 0, sum, results.practical_points) DESC");

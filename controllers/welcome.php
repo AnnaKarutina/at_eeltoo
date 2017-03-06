@@ -1,12 +1,14 @@
 <?php namespace Halo;
 
+use Aastategija\Questions;
+
 class welcome extends Controller
 {
     public $requires_auth = false;
 
     function index()
     {
-        if (isset($_SESSION['practical'])) {
+        if (isset($_SESSION['practical']) || Questions::getResult() >= 0) {
             header('Location: test/practical');
             exit();
         } else if (isset($_SESSION['theoretical'])) {
@@ -46,6 +48,16 @@ class welcome extends Controller
         if($user_id === false) {
             $social_id = addslashes($_POST['social_id']);
             $user_id = get_one("SELECT user_id FROM users WHERE social_id = '$social_id'");
+        }
+
+        // in case the user has already finished the test
+        if(get_first("SELECT practical_points FROM results WHERE user_id = $user_id")['practical_points'] != -2) {
+            exit('Your earlier test result was already submitted.');
+        }
+
+        // insert result default values only if user does not exist
+        if(empty(get_one("SELECT user_id FROM results WHERE user_id = '$user_id'"))) {
+            insert('results', ['user_id' => $user_id]);
         }
 
         $_SESSION['user_id'] = $user_id;

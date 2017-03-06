@@ -4,7 +4,7 @@ use Aastategija\Questions;
 
 class test extends Controller
 {
-
+    // theoretical test page
     function index()
     {
         // handle redirection if necessary
@@ -14,6 +14,9 @@ class test extends Controller
         } else if(isset($_SESSION['practical'])) {
             header('Location: practical');
             exit();
+        } else if (Questions::getResult() >= 0) {
+            header('Location: test/practical');
+            exit();
         }
 
         // catch the questions into session
@@ -22,19 +25,42 @@ class test extends Controller
         }
 
         $this->questions = $_SESSION['questions'];
+
+        // the user has started theoretical quiz
         $_SESSION['theoretical'] = true;
     }
 
     // confirm theoretical test answers and redirects user to practical test
     function practical()
     {
+
         // handle redirection if necessary
         if(isset($_SESSION['result'])) {
             header('Location: result');
             exit();
-        } else if(!isset($_SESSION['theoretical'])) {
-            header('Location: ../');
-            exit();
+        }
+
+        // check the theoretical answers if necessary
+        if(Questions::getResult() == -1) {
+            // get user answers
+            $_SESSION['practical'] = true;
+            $user_id = $_SESSION['user_id'];
+            $answers = $_POST;
+            $correctAnswers = 0;
+
+            foreach ($answers as $answer) {
+                foreach ($answer as $value) {
+                    $check = get_first("SELECT answer_correct FROM answers WHERE answer_id = $value");
+                    if ($check['answer_correct'] == 1) {
+                        $correctAnswers++;
+                    }
+                }
+            }
+            // update table
+            update('results', [
+                'theoretical_points' => $correctAnswers,
+                'nr_of_questions' => $this->settings['nr_of_questions']
+            ], "user_id = '$user_id'");
         }
 
         // cache the practical task
@@ -42,28 +68,11 @@ class test extends Controller
             $_SESSION['task'] = Questions::getPractical();
         }
 
+        // use the test
         $this->practicalQuestions = $_SESSION['task'];
+
+        // the user has started practical test
         $_SESSION['practical'] = true;
-        $user_id = $_SESSION['user_id'];
-        $answers = $_POST;
-        $correctAnswers = 0;
-
-        foreach ($answers as $answer) {
-            foreach ($answer as $value) {
-                $check = get_first("SELECT answer_correct FROM answers WHERE answer_id = $value");
-                if ($check['answer_correct'] == 1) {
-                    $correctAnswers++;
-                }
-            }
-        }
-
-        if (empty(get_first("SELECT user_id FROM results WHERE user_id = $user_id"))) {
-            insert('results', [
-                'user_id' => $user_id,
-                'theoretical_points' => $correctAnswers,
-                'nr_of_questions' => $this->settings['nr_of_questions']
-            ]);
-        }
     }
 
     // write HTML file, get HTML errors using W3 validator

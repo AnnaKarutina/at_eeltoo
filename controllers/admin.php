@@ -64,6 +64,17 @@ class admin extends Controller
         $this->time;
     }
 
+    function AJAX_allowAgain() {
+        $result = update('results', [
+            'theoretical_points' => -1,
+            'practical_errors' => '',
+            'practical_points' => -2,
+            'nr_of_questions' => 0
+        ], "user_id = {$_POST['user_id']}");
+
+        echo 'ok';
+    }
+
     function AJAX_editQuestionCount() {
         $questionCount = addslashes($_POST['nr_of_questions']);
         update('settings', ['nr_of_questions' => ''.$questionCount.''], "id = '1'");
@@ -89,7 +100,7 @@ class admin extends Controller
     }
 
     function AJAX_liveTime() {
-        if ($this->time['time'] > 0) {
+        if ($this->time['time'] >= 0) {
             echo $this->time['time'];
         } else {
             echo 'Test on suletud';
