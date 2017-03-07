@@ -220,7 +220,7 @@ footer {
     margin-left: 45%;
 }
 
-iframe {
+#result-iframe{
     position: absolute;
     margin-left: auto;
     margin-right: auto;
@@ -237,6 +237,18 @@ iframe {
 
 #iframe-container {
     padding-bottom: 400px;
+}
+
+#preview {
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: 5px 5px 3px lightgrey;
+}
+
+.CodeMirror {
+    height: 412px;
 }
 
 @media (min-width: 10px) and (max-width: 1000px) {

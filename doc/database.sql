@@ -132,7 +132,7 @@ CREATE TABLE `results` (
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (17,4,16,NULL,-1,10),(18,7,18,NULL,6,10),(19,-1,19,'',-2,0),(20,0,20,'',0,10),(21,5,25,NULL,-1,10),(22,2,26,NULL,-2,10),(23,3,27,NULL,-2,10),(24,-1,28,NULL,-2,10),(33,3,39,'',-2,3);
+INSERT INTO `results` VALUES (40,1,53,NULL,1,3),(41,0,54,NULL,7,3),(42,2,55,NULL,9,3),(43,2,56,NULL,-2,3);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -159,6 +159,7 @@ CREATE TABLE `settings` (
   `htmlvalidator` tinyint(4) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
+  `livehtml` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -169,7 +170,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('1','3905',3,1,NULL,NULL);
+INSERT INTO `settings` VALUES ('1','3905',3,1,'2017-03-07 18:40:03','2017-03-07 22:40:03',1);
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +223,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_social_id_uindex` (`social_id`),
   UNIQUE KEY `UNIQUE` (`user_name`),
   UNIQUE KEY `users_user_name_social_id_uindex` (`user_name`,`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -231,7 +232,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Test','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(25,NULL,0,'',0,'Testin','Seda','39222002202'),(26,NULL,0,'',0,'renee','test','30303030303'),(27,NULL,0,'',0,'Mina','Olen','302999232300'),(28,NULL,0,'',0,'Test','Rest','392001010101'),(39,NULL,0,'',0,'Renee','Test','123456789');
+INSERT INTO `users` VALUES (17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Test','39002202734'),(53,NULL,0,'',0,'Mati','Murakas','39046582901'),(54,NULL,0,'',0,'Aadu','Must','39029405941'),(55,NULL,0,'',0,'Martin','Jalakas','39384950911'),(56,NULL,0,'',0,'Proovime','Midagi','392002002022');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -244,4 +245,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-07  0:50:24
+-- Dump completed on 2017-03-07 21:05:52

@@ -138,11 +138,8 @@ $(document).ready(function () {
     // html validation option
     $(".validationOption").click(function (event) {
         event.preventDefault();
-        var selectorForm = $(this).closest('form').attr('id');
-        var id1 = ($(document.getElementById(selectorForm)));
         var data = $(this).closest('form').serialize();
 
-        console.log(id1);
         $.post('admin/validationOption', data,
             function (res) {
                 if (res == 'ok') {
@@ -151,6 +148,25 @@ $(document).ready(function () {
                 } else {
                     $('#validationOption-successful').hide();
                     $('#validationOption-error').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
+                }
+            });
+    });
+
+    // live html option
+    $(".liveOption").click(function (event) {
+        event.preventDefault();
+        var data = $(this).closest('form').serialize();
+
+        $.post('admin/liveOption', data,
+            function (res) {
+                if (res == 'ok') {
+                    console.log(res);
+                    $('#liveOption-error').hide();
+                    $('#liveOption-successful').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
+                } else {
+                    console.log(res);
+                    $('#liveOption-successful').hide();
+                    $('#liveOption-error').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
                 }
             });
     });

@@ -144,5 +144,6 @@ class test extends Controller
         $this->points = Questions::getResult();
         killSession();
     }
+
 }
 

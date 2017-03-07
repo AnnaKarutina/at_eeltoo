@@ -17,13 +17,62 @@
     </article>
 </div>
 
+<?php if($this->settings['livehtml'] == 1): ?>
+<div class="row">
+    <div class="col-md-6">
+        <div class="center">
+            <h2>Koodi kirjutamine</h2>
+        </div>
+        <form action="test/result" method="post" id="target">
+            <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
+            <br>
+            <input type="hidden" value="Submit">
+            <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"
+               data-target=".confirm">Esita</a>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <div class="center">
+            <h2>Eelvaade</h2>
+        </div>
+        <iframe id="preview"></iframe>
+    </div>
+</div>
+
+<script>
+    // start the live editor magic! :)
+    $( document ).ready(function() {
+        var delay;
+
+        editor.on("change", function () {
+            clearTimeout(delay);
+            delay = setTimeout(updatePreview, 30);
+        });
+
+        function updatePreview() {
+            var previewFrame = document.getElementById('preview');
+            var preview = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            preview.open();
+            preview.write(editor.getValue());
+            preview.close();
+        }
+        setTimeout(updatePreview, 30);
+    });
+
+</script>
+
+<?php else: ?>
+<div class="center">
+    <h2>Koodi kirjutamine</h2>
+</div>
 <form action="test/result" method="post" id="target">
-    <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML"></textarea>
+    <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
     <br>
     <input type="hidden" value="Submit">
     <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"
        data-target=".confirm">Esita</a>
 </form>
+<?php endif; ?>
 
 <!-- Confirm modal -->
 <div class="modal fade confirm">
@@ -42,15 +91,14 @@
 
 
 <script>
+
     $("#yes").click(function () {
         $("#target").submit();
     });
     $("#no").click(function () {
         $('.confirm').modal('hide');
     });
-</script>
 
-<script>
     var mixedMode = {
         name: "htmlmixed",
         scriptTypes: [{
@@ -62,9 +110,11 @@
                 mode: "vbscript"
             }]
     };
+
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
         lineNumbers: true,
         mode: mixedMode
     });
+
 </script>
 

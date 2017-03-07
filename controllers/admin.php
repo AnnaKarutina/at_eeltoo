@@ -132,6 +132,12 @@ class admin extends Controller
         exit(generateRandomPIN(4));
     }
 
+    function AJAX_liveOption() {
+        $livehtml = addslashes($_POST['liveOption']);
+        update('settings', ['livehtml' => ''.$livehtml.''], "id = '1'");
+        echo 'ok';
+    }
+
     function AJAX_editTheoretical() {
         $answers = $_POST['answers'];
 
@@ -194,23 +200,6 @@ class admin extends Controller
             }
         }
         echo 'ok';
-    }
-
-    function edit()
-    {
-        $admin_id = $this->params[0];
-        $this->admin = get_first("SELECT * FROM admin WHERE admin_id = '{$admin_id}'");
-    }
-
-    function post_edit()
-    {
-        $data = $_POST['data'];
-        insert('admin', $data);
-    }
-
-    function ajax_delete()
-    {
-        exit(q("DELETE FROM admin WHERE admin_id = '{$_POST['admin_id']}'") ? 'Ok' : 'Fail');
     }
 
 }

@@ -6,12 +6,12 @@
     <h4>Teoreetiliste küsimuste arv testis</h4>
     <form method="POST" id="editQuestionCount">
         <select name="nr_of_questions" class="settings-selection">
-            <?php for ($i=1; $i<=$totalQuestions; $i++): ?>
+            <?php for ($i = 1; $i <= $totalQuestions; $i++): ?>
                 <option value="<?= $i; ?>" <?= ($i == $settings['nr_of_questions']) ? 'selected' : ''; ?>><?= $i; ?></option>
             <?php endfor ?>
         </select>
         <a href="" class="btn btn-info btn-lg form-button editQuestionCount settings-btn">Muuda</a>
-        <span id="editQuestionCount-successful"  class="edit-successful">Muutmine edukas</span>
+        <span id="editQuestionCount-successful" class="edit-successful">Muutmine edukas</span>
         <span id="editQuestionCount-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
     <hr>
@@ -19,14 +19,15 @@
     <h4>Testi PIN-kood</h4>
     <form action="#">
         <input type="text" name="password" id="generatedPassword" value="<?= $settings['pwd'] ?>">
-        <input type="button" class="btn btn-info btn-lg form-button settings-btn" id="generatePassword" value="Genereeri">
+        <input type="button" class="btn btn-info btn-lg form-button settings-btn" id="generatePassword"
+               value="Genereeri">
     </form>
     <hr>
 
     <h4>Testi avamine määratud ajaperioodiks (tunnid)</h4>
     <form method="POST" id="openTest">
         <select name="test_hours" class="settings-selection">
-            <?php for ($i=2; $i<=8; $i++): ?>
+            <?php for ($i = 2; $i <= 8; $i++): ?>
                 <option value="<?= $i; ?>" <?= ($i == 4) ? 'selected' : ''; ?>><?= $i; ?></option>
             <?php endfor ?>
         </select>
@@ -39,20 +40,32 @@
     <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : '' ?></span>
     <hr>
 
-    <h4>HTML koodi valideerimine W3C API kaudu (tegemisel)</h4>
+    <h4>HTML koodi valideerimine W3C API kaudu</h4>
     <form method="POST" id="validationOption">
         <select name="validationOption" class="settings-selection">
-                <option value="1" <?= ($settings['htmlvalidator'] == 1) ? 'selected' : ''; ?>>Jah</option>
-                <option value="0" <?= ($settings['htmlvalidator'] == 0) ? 'selected' : ''; ?>>Ei</option>
+            <option value="1" <?= ($settings['htmlvalidator'] == 1) ? 'selected' : ''; ?>>Jah</option>
+            <option value="0" <?= ($settings['htmlvalidator'] == 0) ? 'selected' : ''; ?>>Ei</option>
         </select>
         <a href="" class="btn btn-info btn-lg form-button validationOption settings-btn">Muuda</a>
         <span id="validationOption-successful" class="edit-successful">Muutmine edukas</span>
         <span id="validationOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
+    <hr>
+
+    <h4>HTML-i reaalajas eelvaade praktilise ülesande juures</h4>
+    <form method="POST" id="liveOption">
+        <select name="liveOption" class="settings-selection">
+            <option value="1" <?= ($settings['livehtml'] == 1) ? 'selected' : ''; ?>>Jah</option>
+            <option value="0" <?= ($settings['livehtml'] == 0) ? 'selected' : ''; ?>>Ei</option>
+        </select>
+        <a href="" class="btn btn-info btn-lg form-button liveOption settings-btn">Muuda</a>
+        <span id="liveOption-successful" class="edit-successful">Muutmine edukas</span>
+        <span id="liveOption-error" class="edit-error">Muutmine ebaõnnestus</span>
+    </form>
 
     <script>
         // refresh time
-        setInterval(function(){
+        setInterval(function () {
             $.post('admin/liveTime', 'test',
                 function (res) {
                     $('#liveTime').html(res);

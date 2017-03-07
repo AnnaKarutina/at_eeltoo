@@ -6,6 +6,7 @@
     <div class="panel-group" id="accordion">
 
         <?php foreach ($results as $result): ?>
+            <?php if ($result['practical_points'] != -2): ?>
 
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -52,6 +53,7 @@
                 </div>
             </div>
 
+            <?php endif; ?>
         <?php endforeach ?>
 
     </div>
