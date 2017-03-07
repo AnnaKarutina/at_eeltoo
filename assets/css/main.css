@@ -16,6 +16,11 @@ body {
     font-family: Lato;
 }
 
+.welcome-text{
+    box-shadow: 5px 5px 3px lightgrey;
+    background-color: #fff;
+}
+
 /************ FOOTER AND HEADER *********************/
 /* header */
 .container-fluid {
