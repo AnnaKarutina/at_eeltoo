@@ -89,7 +89,8 @@
 <!-- /container -->
 
 <script>
-    $('#btnLogin').on('click', function () {
+    $('#btnLogin').on('click', function (event) {
+            event.preventDefault();
             $.post('admin/login', {
                 "username": $("#username").val(),
                 "password": $("#password").val()
