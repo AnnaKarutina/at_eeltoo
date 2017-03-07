@@ -4,7 +4,7 @@
     Tere tulemast Tartu Kutsehariduskeskuse noorem tarkvaraarendaja ja veebispetsialisti eriala sisseastumiskatsetele!<br />
     Sind ootavad ees valikvastustega teoreetiline test ja praktiline test HTMLi ja CSSi kohta. Teoreetiline test sisaldab
     10 küsimust, kus igal küsimusel on ainult üks õige vastus. Praktilises ülesandes tuleb lähtuvalt ülesande sisust
-    kirjutada koodi kasutades HTMLi ja CSSi elemente. <br />  Testi lõpus näed oma tulemust ning saad suunduda ingliskeelsele
+    kirjutada koodi kasutades HTMLi ja CSSi elemente. Testi lõpus näed oma tulemust ning saad suunduda ingliskeelsele
     vestlusele.
 </p>
 <div class="center">
