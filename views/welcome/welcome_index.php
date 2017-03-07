@@ -7,8 +7,10 @@
     kirjutada koodi kasutades HTMLi ja CSSi elemente. <br />  Testi lõpus näed oma tulemust ning saad suunduda ingliskeelsele
     vestlusele.
 </p>
-<center><a href="#" class="btn btn-info btn-lg" data-toggle="modal"
-           data-target="#login-modal">Registreeri testile</a></center>
+<div class="center">
+<a href="#" class="btn btn-info btn-lg" data-toggle="modal"
+           data-target="#login-modal">Registreeri testile</a>
+</div>
 
 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog"

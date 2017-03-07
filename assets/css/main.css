@@ -306,6 +306,9 @@ mark.orange {
     width: 100%;
 }
 
+.center {
+    text-align: center;
+}
 .container h5 {
     text-align: center;
     padding-top: 1%;
@@ -321,6 +324,7 @@ mark.orange {
     border-color: #5498cb;
     color: #5498cb;
     border-radius: 1.5em;
+    text-align: center;
 
 }
 /********** TO DO END ***************/
