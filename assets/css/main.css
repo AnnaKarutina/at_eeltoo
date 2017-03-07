@@ -56,6 +56,15 @@ footer {
     left: 0;
     border-top: solid 2px #5498cb;
 }
+
+@media (min-width: 10px) and (max-width: 1000px) {
+
+    footer {
+        position: static;
+        height: 60px;
+        margin-top: 20px;
+    }
+}
 /* footer end */
 /************ FOOTER AND HEADER END *********************/
 
