@@ -36,7 +36,6 @@
         <span id="openTest-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
 
-    <span id="liveTime"><?= $time['time'] ?></span>
     <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : '' ?></span>
     <hr>
 
