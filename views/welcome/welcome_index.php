@@ -26,14 +26,15 @@
                 <input type="text" name="social_id" id="social_id" placeholder="Isikukood"/>
                 <input type="text" id="prevent_autofill" value="" style="display:none;"/>
                 <input type="password" id="password" placeholder="Parool"/>
-                <input type="button" id="btnLogin" class="login loginmodal-submit" value="Alusta">
+                <input type="submit" id="btnLogin" class="login loginmodal-submit" value="Alusta">
             </form>
         </div>
     </div>
 </div>
 
 <script>
-    $('#btnLogin').on('click', function () {
+    $('#btnLogin').on('click', function (event) {
+        event.preventDefault();
         if (validateForm()) {
             $.post('welcome/register', {
                 "firstName": $("#firstName").val(),

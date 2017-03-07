@@ -27,9 +27,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li <?= isset($results) ? 'class="active"' : ''?>><a href="admin"><?= __('Tulemused') ?></a></li>
+                <li <?= isset($resultpage) ? 'class="active"' : ''?>><a href="admin"><?= __('Tulemused') ?></a></li>
                 <li <?= isset($practical) ? 'class="active"' : ''?>><a href="admin/practical"><?= __('Praktilised ülesanded') ?></a></li>
                 <li <?= isset($theoretical) ? 'class="active"' : ''?>><a href="admin/theoretical"><?= __('Teoreetilised ülesanded') ?></a></li>
+                <li <?= isset($grading) ? 'class="active"' : ''?>><a href="admin/grading"><?= __('Hindamine') ?></a></li>
                 <li <?= isset($properties) ? 'class="active"' : ''?>><a href="admin/settings"><?= __('Seaded') ?></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

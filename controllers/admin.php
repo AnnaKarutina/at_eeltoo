@@ -43,6 +43,7 @@ class admin extends Controller
 
     function index()
     {
+        $this->resultpage = true;
         $this->results = Administrator::getResults();
     }
 
@@ -56,12 +57,24 @@ class admin extends Controller
         $this->questions = Administrator::getQuestions();
     }
 
+    function grading()
+    {
+        $this->grading = true;
+        $this->results = Administrator::getResults();
+    }
+
     function settings()
     {
         $this->properties = true;
         $this->settings;
         $this->totalQuestions = Administrator::countQuestions();
         $this->time;
+    }
+
+    function AJAX_gradePractical() {
+        update('results', ['practical_points' => $_POST['grade']], "user_id = {$_POST['user_id']}");
+
+        echo 'ok';
     }
 
     function AJAX_allowAgain() {
