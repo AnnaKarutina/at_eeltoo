@@ -145,32 +145,6 @@ LOCK TABLES `results` WRITE;
 INSERT INTO `results` VALUES (40,1,53,NULL,1,3,'2017-03-08 14:04:06'),(41,0,54,NULL,7,3,'2017-03-08 14:04:09'),(42,2,55,NULL,9,3,'2017-03-08 14:04:10'),(43,2,56,NULL,-2,3,'2017-03-08 14:04:11');
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`admin`@`localhost`*/ /*!50003 TRIGGER results_deleted
-BEFORE DELETE ON results
-FOR EACH ROW
-  INSERT INTO results_log
-  SET result_id = OLD.result_id,
-    theoretical_points = OLD.theoretical_points,
-    user_id = OLD.user_id,
-    practical_errors = OLD.practical_errors,
-    practical_points = OLD.practical_points,
-    nr_of_questions = OLD.nr_of_questions,
-    firstname = (SELECT firstname FROM results INNER JOIN users ON results.user_id = users.user_id WHERE results.user_id = OLD.user_id),
-    lastname = (SELECT lastname FROM results INNER JOIN users ON results.user_id = users.user_id WHERE results.user_id = OLD.user_id) */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `results_log`
