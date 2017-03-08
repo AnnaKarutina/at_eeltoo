@@ -63,6 +63,11 @@ class admin extends Controller
         $this->results = Administrator::getResults();
     }
 
+    function log()
+    {
+        $this->log = true;
+        $this->resultsLog = Administrator::getLog();
+    }
     function settings()
     {
         $this->properties = true;

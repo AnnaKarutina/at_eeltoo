@@ -19,6 +19,14 @@ class Administrator
         IF(results.practical_points >= 0, sum, results.practical_points) DESC");
     }
 
+    static function getLog()
+    {
+        return get_all("SELECT *, (IF(results_log.theoretical_points>0, results_log.theoretical_points,0) + 
+        IF(results_log.practical_points>0,results_log.practical_points,0)) AS sum 
+        FROM results_log INNER JOIN users WHERE results_log.user_id = users.user_id ORDER BY 
+        IF(results_log.practical_points >= 0, sum, results_log.practical_points) DESC");
+    }
+
     static function getQuestions() {
         // questions are ordered by randomly
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY question_id DESC', $q);
