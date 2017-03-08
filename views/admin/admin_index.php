@@ -50,7 +50,24 @@
     <?php endforeach ?>
     </table>
 
-    <button type="button" id="pushToLog" >Tühjenda</button>
+    <button type="button" id="pushToLog" data-toggle="modal" data-target=".confirm">Tühjenda</button>
+    <span id="pushToLog-successful" class="edit-successful">Muutmine edukas</span>
+    <span id="pushToLog-error" class="edit-error">Muutmine ebaõnnestus</span>
+
+    <div class="modal fade confirm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Oled sa kindel, et soovid tabelit tühjendada? Tagasiteed ei ole!</h4>
+                    <h4 id="checked"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button id="yes" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
+                    <button id="no" type="button" class="btn btn-primary">Ei</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 
     <script>
         // allow user to take the test again in case of error or change of heart
@@ -66,10 +83,27 @@
                 });
         });
 
-        // allow admin to delete files from result page and push them to the log table
-        $("#pushToLog").click(function() {
-            alert('töötab?')
 
+        // allow admin to delete files from result page and push them to the log table
+        $("#pushToLog").click(function(event) {
+            event.preventDefault();
+
+            $( "#yes" ).click(function() {
+                $.post('admin/pushToLog',
+                    function (res) {
+                        if (res == 'ok') {
+                             $('#pushToLog-error').hide();
+                             $('#pushToLog-successful').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
+                        } else {
+                             $('#pushToLog-successful').hide();
+                             $('#pushToLog-error').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
+                        }
+                    });
+
+            });
+            $( "#no" ).click(function() {
+                $('.confirm').modal('hide');
+            });
         });
     </script>
 

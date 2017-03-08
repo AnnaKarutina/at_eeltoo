@@ -88,6 +88,11 @@ class admin extends Controller
         echo 'ok';
     }
 
+    function AJAX_pushToLog() {
+        q('DELETE FROM results');
+        echo 'ok';
+    }
+
     function AJAX_editQuestionCount() {
         $questionCount = addslashes($_POST['nr_of_questions']);
         update('settings', ['nr_of_questions' => ''.$questionCount.''], "id = '1'");
