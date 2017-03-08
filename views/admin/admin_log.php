@@ -40,7 +40,7 @@
                         <?= $resultLog['practical_points'] ?>
                     <?php endif; ?>
                 </td>
-                <td><?= date("d.m.Y", strtotime($result['date']));;?></td>
+                <td><?= date("d.m.Y", strtotime($resultLog['date']));;?></td>
                 <td><?= $resultLog['sum'] ?></td>
             </tr>
         <?php endforeach ?>
