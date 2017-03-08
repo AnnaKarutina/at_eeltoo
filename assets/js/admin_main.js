@@ -157,7 +157,9 @@ $(document).ready(function () {
         event.preventDefault();
         var data = $(this).closest('form').serialize();
 
-        $.post('admin/liveOption', data,
+        console.log(data);
+
+       $.post('admin/liveOption', data,
             function (res) {
                 if (res == 'ok') {
                     console.log(res);
