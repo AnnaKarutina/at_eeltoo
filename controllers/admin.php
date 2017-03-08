@@ -92,7 +92,7 @@ class admin extends Controller
 
         echo 'ok';
     }
-
+    
     function AJAX_pushToLog() {
         q('DELETE FROM results');
         echo 'ok';

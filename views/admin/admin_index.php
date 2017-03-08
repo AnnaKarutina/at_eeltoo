@@ -94,6 +94,7 @@
                         if (res == 'ok') {
                              $('#pushToLog-error').hide();
                              $('#pushToLog-successful').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
+                             window.location.reload();
                         } else {
                              $('#pushToLog-successful').hide();
                              $('#pushToLog-error').fadeOut(75).fadeIn(75).animate({opacity: 1}, 500).delay(1000);
