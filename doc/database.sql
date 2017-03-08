@@ -87,7 +87,7 @@ CREATE TABLE `practical` (
 
 LOCK TABLES `practical` WRITE;
 /*!40000 ALTER TABLE `practical` DISABLE KEYS */;
-INSERT INTO `practical` VALUES (1,'1. tee seda; 2. tee toda; 3. tee kolmandat; 4. tee ka seda'),(2,'1. ära tee seda; 2. ära tee toda; 3. ära tee kolmandat; 4. ära tee ka seda');
+INSERT INTO `practical` VALUES ('1', '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks sinine, fontiks Verdana ja suuruseks 35 pikslit.; 2. Loo paragrahv, mille sisuks on vabalt valitud tekst. Määra paragrahvi värvuseks punane, fontiks Arial ja suuruseks 40 pikslit.; 3. Loo tabel, kus on kaks rida ja kolm veergu. Esimese rea esimesse veergu kirjuta "Eesnimi", teise veergu "Vanus" ja kolmandasse veergu "Lemmik värv". Teise rea veergudesse kirjuta esimese rea veergudele vastavad väärtused.; 4. Määra tabelile ühe piksline must raam, joonda tekst keskele, kasuta fonti Calibri ja määra teksti suuruseks 40 pikslit. Tabeli laiuseks määra 70%.;');
 /*!40000 ALTER TABLE `practical` ENABLE KEYS */;
 UNLOCK TABLES;
 

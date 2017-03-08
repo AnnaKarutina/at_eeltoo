@@ -121,3 +121,5 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `answer_correct`, `question_i
   (NULL, '<h7>', '1', '35'),
   (NULL, '<h4>', '0', '35'),
   (NULL, '<h2>', '0', '35');
+
+INSERT INTO `practical` VALUES ('1', '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks sinine, fontiks Verdana ja suuruseks 35 pikslit.; 2. Loo paragrahv, mille sisuks on vabalt valitud tekst. Määra paragrahvi värvuseks punane, fontiks Arial ja suuruseks 40 pikslit.; 3. Loo tabel, kus on kaks rida ja kolm veergu. Esimese rea esimesse veergu kirjuta "Eesnimi", teise veergu "Vanus" ja kolmandasse veergu "Lemmik värv". Teise rea veergudesse kirjuta esimese rea veergudele vastavad väärtused.; 4. Määra tabelile ühe piksline must raam, joonda tekst keskele, kasuta fonti Calibri ja määra teksti suuruseks 40 pikslit. Tabeli laiuseks määra 70%.;');
