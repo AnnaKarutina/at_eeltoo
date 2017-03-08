@@ -10,6 +10,7 @@
             <th>T. test (punktid)</th>
             <th>Küsimusi</th>
             <th>P. test (punktid)</th>
+            <th>Kuupäev</th>
             <th>Kokku (punktid)</th>
         </tr>
         <?php foreach ($resultsLog as $resultLog): ?>
@@ -39,6 +40,7 @@
                         <?= $resultLog['practical_points'] ?>
                     <?php endif; ?>
                 </td>
+                <td><?= date("d.m.Y", strtotime($result['date']));;?></td>
                 <td><?= $resultLog['sum'] ?></td>
             </tr>
         <?php endforeach ?>

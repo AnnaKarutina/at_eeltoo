@@ -11,6 +11,7 @@
             <th>Küsimusi</th>
             <th>P. test (punktid)</th>
             <th>Kokku (punktid)</th>
+            <th>Kuupäev</th>
             <th>Korduv</th>
         </tr>
     <?php foreach ($results as $result): ?>
@@ -41,6 +42,7 @@
                 <?php endif; ?>
             </td>
             <td><?= $result['sum'] ?></td>
+            <td><?= date("d.m.Y", strtotime($result['date']));;?></td>
             <td>
                 <?php if($result['practical_points'] != -2 && $result['practical_points'] != -2): ?>
                     <button type="button" id="<?= $result['user_id']; ?>" class="allowAgain">Luba</button>
