@@ -46,4 +46,8 @@
         <?php endforeach ?>
     </table>
 
+    <?php if(empty($resultsLog)): ?>
+        <h4>Pole midagi kuvada</h4>
+    <?php endif; ?>
+
 <?php endif; ?>

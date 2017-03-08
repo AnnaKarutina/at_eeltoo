@@ -52,6 +52,10 @@
     <?php endforeach ?>
     </table>
 
+    <?php if(empty($results)): ?>
+        <h4>Pole midagi kuvada</h4>
+    <?php endif; ?>
+
     <button type="button" id="pushToLog" data-toggle="modal" data-target=".confirm">Tühjenda</button>
     <span id="pushToLog-successful" class="edit-successful">Muutmine edukas</span>
     <span id="pushToLog-error" class="edit-error">Muutmine ebaõnnestus</span>
