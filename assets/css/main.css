@@ -74,8 +74,7 @@ footer {
     text-shadow: 4px 4px 6px lightblue;
 }
 
-#quiz ul li {
-    list-style: none;
+.test-label{
     margin-top: 1%;
     margin-left: 32.5%;
     margin-bottom: 3%;
@@ -92,10 +91,26 @@ footer {
 
 }
 
-#quiz ul li:hover{
+#quiz ul li{
+    list-style: none;
+}
+
+.test-label:hover{
     background-color:  #ffc233;
     color: #000;
 }
+
+.test-label:active{
+    background-color:  #ffc233;
+    color: #000;
+}
+
+.test-label:focus{
+    background-color:  #ffc233;
+    color: #000;
+}
+
+
 
 #quiz label{
     font-size: 18px;
@@ -112,11 +127,6 @@ footer {
     background-color: #fff;
     margin-top: 2%;
     box-shadow: 5px 5px 3px lightgrey;
-}
-
-.answer-right{
-    background: transparent;
-    color: #fff;
 }
 
 .quiz-radio{
@@ -346,6 +356,7 @@ mark.orange {
     color: #5498cb;
     border-radius: 1.5em;
     text-align: center;
+    margin-top: 20px;
 
 }
 /********** TO DO END ***************/

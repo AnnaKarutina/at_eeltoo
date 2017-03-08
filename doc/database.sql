@@ -1,8 +1,8 @@
--- MySQL dump 10.16  Distrib 10.1.19-MariaDB, for Win32 (AMD64)
+-- MySQL dump 10.16  Distrib 10.1.21-MariaDB, for Win32 (AMD64)
 --
 -- Host: 127.0.0.1    Database: 127.0.0.1
 -- ------------------------------------------------------
--- Server version	10.1.19-MariaDB
+-- Server version	10.1.21-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -132,7 +132,7 @@ CREATE TABLE `results` (
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,8 +141,65 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (40,1,53,NULL,1,3),(41,0,54,NULL,7,3),(42,2,55,NULL,9,3),(43,2,56,NULL,-2,3);
+INSERT INTO `results` VALUES (35,-1,68,NULL,-2,NULL);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_unicode_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER results_deleted
+BEFORE DELETE ON results
+FOR EACH ROW
+INSERT INTO results_log
+SET result_id = OLD.result_id,
+theoretical_points = OLD.theoretical_points,
+user_id = OLD.user_id,
+practical_errors = OLD.practical_errors,
+practical_points = OLD.practical_points,
+nr_of_questions = OLD.nr_of_questions,
+firstname = (SELECT firstname FROM results INNER JOIN users ON results.user_id = users.user_id WHERE results.user_id = OLD.user_id),
+lastname = (SELECT lastname FROM results INNER JOIN users ON results.user_id = users.user_id WHERE results.user_id = OLD.user_id) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Table structure for table `results_log`
+--
+
+DROP TABLE IF EXISTS `results_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `results_log` (
+  `result_id` int(10) unsigned NOT NULL,
+  `theoretical_points` tinyint(4) NOT NULL DEFAULT '-1',
+  `user_id` int(10) unsigned NOT NULL,
+  `practical_errors` blob,
+  `practical_points` tinyint(4) DEFAULT '-2',
+  `nr_of_questions` tinyint(3) unsigned DEFAULT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  PRIMARY KEY (`result_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `results_log`
+--
+
+LOCK TABLES `results_log` WRITE;
+/*!40000 ALTER TABLE `results_log` DISABLE KEYS */;
+INSERT INTO `results_log` VALUES (23,3,27,NULL,-2,10,'',''),(24,-1,28,NULL,-2,10,'',''),(33,3,39,'',-2,3,'Renee',''),(34,-1,67,NULL,-2,NULL,'fsadf','sdfa');
+/*!40000 ALTER TABLE `results_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -159,7 +216,6 @@ CREATE TABLE `settings` (
   `htmlvalidator` tinyint(4) NOT NULL,
   `start` datetime DEFAULT NULL,
   `end` datetime DEFAULT NULL,
-  `livehtml` tinyint(3) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -170,7 +226,7 @@ CREATE TABLE `settings` (
 
 LOCK TABLES `settings` WRITE;
 /*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-INSERT INTO `settings` VALUES ('1','3905',3,1,'2017-03-07 18:40:03','2017-03-07 22:40:03',1);
+INSERT INTO `settings` VALUES ('1','3905',3,1,'2017-03-07 11:06:20','2017-03-07 15:06:20');
 /*!40000 ALTER TABLE `settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,7 +279,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_social_id_uindex` (`social_id`),
   UNIQUE KEY `UNIQUE` (`user_name`),
   UNIQUE KEY `users_user_name_social_id_uindex` (`user_name`,`social_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +288,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Test','39002202734'),(53,NULL,0,'',0,'Mati','Murakas','39046582901'),(54,NULL,0,'',0,'Aadu','Must','39029405941'),(55,NULL,0,'',0,'Martin','Jalakas','39384950911'),(56,NULL,0,'',0,'Proovime','Midagi','392002002022');
+INSERT INTO `users` VALUES (16,NULL,0,'',0,'Aadu','Kala','34343434343'),(17,'admin',1,'$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm',0,'Renee','Test','39002202734'),(18,NULL,0,'',0,'Kalle','Maasikas','39200029202'),(19,NULL,0,'',0,'Mari','Murakas','40430002022'),(20,NULL,0,'',0,'Taavi','Uus','3923229923232'),(25,NULL,0,'',0,'Testin','Seda','39222002202'),(26,NULL,0,'',0,'renee','test','30303030303'),(27,NULL,0,'',0,'Mina','Olen','302999232300'),(28,NULL,0,'',0,'Test','Rest','392001010101'),(39,NULL,0,'',0,'Renee','Test','123456789'),(67,NULL,0,'',0,'fsadf','sdfa','252525252525'),(68,NULL,0,'',0,'sdf','sdfad','4545454545454');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -245,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-03-07 21:05:52
+-- Dump completed on 2017-03-07 16:48:16

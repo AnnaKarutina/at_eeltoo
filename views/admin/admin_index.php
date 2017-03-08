@@ -50,6 +50,8 @@
     <?php endforeach ?>
     </table>
 
+    <button type="button" id="pushToLog" >Tühjenda</button>
+
     <script>
         // allow user to take the test again in case of error or change of heart
         $(".allowAgain").click(function() {
@@ -62,6 +64,12 @@
                         alert(res);
                     }
                 });
+        });
+
+        // allow admin to delete files from result page and push them to the log table
+        $("#pushToLog").click(function() {
+            alert('töötab?')
+
         });
     </script>
 

@@ -7,10 +7,10 @@
             <ul>
                 <?php foreach ($question['answers'] as $answer): ?>
                     <li>
-                        <label>
+                        <label class="test-label">
                             <input class="quiz-radio" type="radio" value="<?= $answer['id'] ?>"
                                    name="answers[<?= $question['question_id'] ?>]">
-                            <mark class="answer-right"><?= $answer['text'] ?></mark>
+                            <?= $answer['text'] ?>
                         </label>
                     </li>
                 <?php endforeach ?>
