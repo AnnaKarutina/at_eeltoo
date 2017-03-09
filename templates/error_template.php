@@ -12,26 +12,7 @@
 
 <div class="container">
 
-    <br/>
-    <br/>
-
-    <?php if (isset($errors)): ?>
-
-
-        <?php foreach ($errors as $error): ?>
-
-            <div class="alert alert-danger"><?= $error ?></div>
-
-        <?php endforeach; ?>
-
-
-    <?php else: ?>
-
-
-        Tundmatu viga!
-
-
-    <?php endif; ?>
+<h1>Nüüd sa oled küll omadega eksinud...</h1>
 
 </div>
 <!-- /container -->

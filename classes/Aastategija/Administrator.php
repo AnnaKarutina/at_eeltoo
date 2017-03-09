@@ -48,4 +48,23 @@ class Administrator
         return $totalQuestions;
 
     }
+
+    static function getPracticalQuestions() {
+        $practicalQuestions = get_all('SELECT * FROM practical ORDER BY practical_id DESC');
+        $oneTask['id'] = array();
+        $oneTask['title'] = array();
+        $oneTask['description'] = array();
+        foreach ($practicalQuestions as $practicalQuestion) {
+            $oneTask['id'][] = $practicalQuestion['practical_id'];
+            $oneTask['title'][] = $practicalQuestion['practical_title'];
+            $oneTask['description'][] = explode(';',$practicalQuestion['practical_text'] , -1);
+        }
+
+       /* echo '<pre>';
+        print_r($oneTask);
+        echo '</pre>';*/
+        return $oneTask;
+        //$practicalText = explode(';', , -1);
+        //return $practicalText;
+    }
 }

@@ -49,6 +49,7 @@ class admin extends Controller
 
     function practical() {
         $this->practical = true;
+        $this->practicalQuestions = Administrator::getPracticalQuestions();
     }
 
     function theoretical()
@@ -209,6 +210,39 @@ class admin extends Controller
                     break;
             }
         }
+        echo 'ok';
+    }
+
+    function AJAX_editPractical() {
+        $practicalText = str_replace("\n", '', $_POST['practical_text']);
+        $practicalId = $_POST['practical_id'];
+        $practicalTitle = $_POST['practical_title'];
+        update('practical', [
+            'practical_text' => ''.$practicalText.'',
+            'practical_title' => ''.$practicalTitle.''
+        ], "practical_id = '$practicalId'");
+        echo 'ok';
+    }
+
+    function AJAX_deletePractical() {
+        $practicalId = $_POST['practical_id'];
+        q("DELETE FROM practical WHERE practical_id = '$practicalId'");
+        echo 'ok';
+    }
+
+    function AJAX_addPractical() {
+        if(empty($_POST['practical_title'] && $_POST['practical_text'])) {
+            exit('All fields are required!');
+        }
+
+        $practicalTitle = $_POST['practical_title'];
+        $practicalText = str_replace("\n", '', $_POST['practical_text']);
+
+        insert('practical', [
+            'practical_text' => $practicalText,
+            'practical_title' => $practicalTitle
+        ]);
+
         echo 'ok';
     }
 
