@@ -36,7 +36,7 @@
                 <li <?= isset($properties) ? 'class="active"' : ''?>><a href="admin/settings"><?= __('Seaded') ?></a></li>
             </ul>
             <div class="nav navbar-nav navbar-right logout">
-                <a href="#" class="btn btn-info btn-lg">
+                <a href="logout" class="btn btn-info btn-lg">
                     <span class="glyphicon glyphicon-log-out"></span> <span class="log-out-txt">Logi välja</span>
                 </a>
             </div>
