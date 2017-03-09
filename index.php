@@ -20,7 +20,7 @@ if (file_exists('config.php')) {
 
 
 // Project constants
-define('PROJECT_NAME', 'halo');
+define('PROJECT_NAME', 'Aastategija | Administratsioon');
 define('PROJECT_NATIVE_LANGUAGE', 'en');
 define('DEFAULT_CONTROLLER', 'welcome');
 

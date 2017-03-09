@@ -11,6 +11,21 @@ html {
 }
 /************** MODAL FIX END *****************/
 
+/************** NAVBAR *****************/
+.navbar-default {
+    box-shadow: 2px 1px 1px lightgrey;
+}
+
+.logout {
+    margin-top: 2px;
+}
+
+.glyphicon-log-out, .log-out-txt {
+    height: 20px;
+    font-size: 16px;
+}
+/************** NAVBAR END *****************/
+
 /************** LOGIN PAGE ****************/
 .form-signin {
     max-width: 330px;

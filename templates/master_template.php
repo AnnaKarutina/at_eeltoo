@@ -3,7 +3,8 @@
 <html>
 <head>
     <base href="<?= BASE_URL ?>">
-    <title>Esileht</title>
+    <title>Sisseastumine</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href="vendor/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/codemirror.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">

@@ -5,6 +5,7 @@
     <title><?= PROJECT_NAME ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="assets/css/admin_main.css">
@@ -34,9 +35,11 @@
                 <li <?= isset($log) ? 'class="active"' : ''?>><a href="admin/log"><?= __('Logi') ?></a></li>
                 <li <?= isset($properties) ? 'class="active"' : ''?>><a href="admin/settings"><?= __('Seaded') ?></a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="logout">Logi välja</a></li>
-            </ul>
+            <div class="nav navbar-nav navbar-right logout">
+                <a href="#" class="btn btn-info btn-lg">
+                    <span class="glyphicon glyphicon-log-out"></span> <span class="log-out-txt">Logi välja</span>
+                </a>
+            </div>
         </div>
         <!--/.nav-collapse -->
     </div>
