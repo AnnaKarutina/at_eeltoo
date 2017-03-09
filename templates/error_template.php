@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
-    <link href="../assets/css/404.css" rel="stylesheet">
+    <link href="<?= BASE_URL ?>/assets/css/404.css" rel="stylesheet">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             there and watch this goat.</h2>
     </div>
 
-    <img id="goat" src="../assets/goat.jpg" alt="goat">
+    <img id="goat" src="<?= BASE_URL ?>/assets/goat.jpg" alt="goat">
 
 </div>
 <!-- /container -->
