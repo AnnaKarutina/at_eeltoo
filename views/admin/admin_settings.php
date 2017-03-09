@@ -37,7 +37,7 @@
         <span id="openTest-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
 
-    <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : '' ?></span>
+    <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : 'Test on suletud' ?></span>
     <hr>
 
     <h4>HTML koodi valideerimine W3C API kaudu</h4>

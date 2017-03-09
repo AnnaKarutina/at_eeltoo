@@ -1,0 +1,10 @@
+.wrapper {
+    padding-top: 25px;
+    text-align: center;
+}
+
+#goat {
+    display: block;
+    margin: 0 auto;
+    height: 500px;
+}
