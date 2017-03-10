@@ -39,9 +39,11 @@
 
 
 <script>
-    $(document).ready(function(){
-        $('input').click(function(){
 
+    $(document).ready(function(){
+
+        // check the entire answer text boxes when clicked
+        $('input').click(function(){
             $('input').each(function () {
                 $('input').closest('li').removeClass("active-answer");
             });
@@ -49,7 +51,21 @@
             $('input:checked').each(function () {
                 $('input:checked').closest('li').addClass("active-answer");
             });
-
         });
+
+        // if some questions are left unanswered then warn the user
+        $("#submit-quiz").click(function() {
+            var questionCount = <?= count($questions); ?>;
+            var numberOfCheckedRadio = $('input:radio:checked').length;
+            if (numberOfCheckedRadio != questionCount && (questionCount - numberOfCheckedRadio) !== 1) {
+                $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimust");
+            } else if ((questionCount - numberOfCheckedRadio) === 1) {
+                $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimus");
+            } else {
+                $('#checked').hide();
+            }
+        });
+
     });
+
 </script>
