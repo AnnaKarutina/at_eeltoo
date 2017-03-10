@@ -3,13 +3,12 @@
 <div id="practical-questions">
     <article>
         <ul>
-            <h3 class="toDo">Lahenda ToDo-listi järgmised ülesanded ✔:</h3>
+            <h2 class="toDo">Lahenda järgmised ülesanded:</h2>
             <?php foreach ($practicalQuestions as $practicalQuestion): ?>
 
                 <li>
                     <label>
-                        <mark id="question-left"><?= $practicalQuestion ?></mark>
-                        <input id="practical-checkbox" type="checkbox">
+                        <?= $practicalQuestion ?>
                     </label>
                 </li>
             <?php endforeach ?>
@@ -20,20 +19,19 @@
 <?php if($this->settings['livehtml'] == 1): ?>
 <div class="row">
     <div class="col-md-6">
-        <div class="center">
-            <h2>Koodi kirjutamine</h2>
-        </div>
         <form action="test/result" method="post" id="target">
+            <div class="practical-div"><mark class="practical-heading center"><h2>Koodi kirjutamine:</h2></mark></div>
             <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
             <br>
             <input type="hidden" value="Submit">
             <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"
                data-target=".confirm">Esita</a>
+            <br>
         </form>
     </div>
     <div class="col-md-6">
         <div class="center">
-            <h2>Eelvaade</h2>
+            <div class="preview-div"><h2 class="preview-heading center">Eelvaade:</h2></div>
         </div>
         <iframe id="preview"></iframe>
     </div>
@@ -62,15 +60,15 @@
 </script>
 
 <?php else: ?>
-<div class="center">
-    <h2>Koodi kirjutamine</h2>
-</div>
+
 <form action="test/result" method="post" id="target">
+    <div class="practical-div"><mark class="practical-heading center"><h2>Koodi kirjutamine:</h2></mark></div>
     <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
     <br>
     <input type="hidden" value="Submit">
     <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"
        data-target=".confirm">Esita</a>
+    <br>
 </form>
 <?php endif; ?>
 
