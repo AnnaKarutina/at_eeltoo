@@ -40,14 +40,14 @@
 
             <?php foreach ($results as $result): ?>
             <?php if ($result['practical_points'] != -2): ?>
-            <?php if (!isset($active)): ?>
-            <div class="tab-pane fade in active" id="user-<?= $result['user_id'] ?>">
-                <?php else: ?>
                 <div class="tab-pane fade" id="user-<?= $result['user_id'] ?>">
-                    <?php endif; ?>
-                    <?php $active = true; ?>
                     <h4>
-                        <?= $result['firstname'] . ' ' . $result['lastname'] . ', ' . $result['social_id'] ?>
+                        <?=
+                        $result['firstname'] . ' ' .
+                        $result['lastname'] . ', ' .
+                        $result['social_id'] . ', ' .
+                        date("d.m.Y", strtotime($result['date']));
+                        ?>
                     </h4>
 
                     <button id="view-<?= $result['user_id'] ?>" class="preview"
@@ -61,27 +61,37 @@
                     <pre>
                             <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
                         </pre>
+                    <?php if(!empty($result['practical_errors'])): ?>
                     <h4>HTML errorid</h4>
+                    <?php if(empty(unserialize($result['practical_errors']))): ?>
+                    <h6>Document checking completed. No errors or warnings to show.</h6>
+                    <?php endif; ?>
                     <ul>
-                        <?php foreach (unserialize($result['errors']) as $error): ?>
+                        <?php foreach (unserialize($result['practical_errors']) as $error): ?>
                             <li><?= $error; ?></li>
-                        <?php endforeach ?>
+                        <?php endforeach; ?>
+                        <?php endif; ?>
                     </ul>
                     <!-- grading -->
                     <h4>Hindamine</h4>
-                    <div class="clearBoth"></div>
+
+
+                    <div class="btn-group" data-toggle="pill">
                     <?php for ($i = 0; $i <= 10; $i++): ?>
                         <?php if ($result['practical_points'] == $i): ?>
-                            <input type="radio" checked="checked"
-                                   name="<?= $result['user_id'] ?>" value="<?= $i; ?>"> <?= $i; ?>
+                            <label id="<?= $result['user_id'] ?>" class="btn active focus">
+                                <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>" checked>
+                                <span><?= $i; ?></span>
+                            </label>
                         <?php else: ?>
-                            <input type="radio" name="<?= $result['user_id'] ?>"
-                                   value="<?= $i; ?>"> <?= $i; ?>
+                        <label id="<?= $result['user_id'] ?>" class="btn">
+                            <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
+                            <span><?= $i; ?></span>
+                        </label>
                         <?php endif ?>
                     <?php endfor ?>
-                    <div class="clearBoth"></div>
-                    <br>
-                    <button id="<?= $result['user_id'] ?>" class="btn btn-success grading">Hinda</button>
+                    </div>
+
                     <?php if ($result['practical_points'] == -1): ?>
                         <span class="not-graded-<?= $result['user_id'] ?> not-graded">Hindamata</span>
                     <?php else: ?>
@@ -125,29 +135,37 @@
 
     <script>
 
+        // make the first items active
+        $('ul#myTabs li:first').addClass('active');
+        $('.tab-content .tab-pane:first').addClass('in active');
 
         // display preview window on click
         $(".preview").on('click', function (event) {
             var div = '#show-' + this.id;
         });
 
-        // send the grade
-        $(".grading").on('click', function (e) {
-            event.preventDefault();
+        // fancy grading
+        $('label').on('click', function (event) {
+            event.stopPropagation();
+
             var id = this.id;
             var value = $('input[name=' + id + ']:checked').val();
+
+            $(this).closest('.btn-group').find('.active').removeClass('active focus');
+            $(this).addClass('active focus');
 
             $.post('admin/gradePractical', {'user_id': id, 'grade': value},
                 function (res) {
                     if (res == 'ok') {
                         // window.location.reload();
                         $('#graded-' + id).html('"' + value + '"');
-                        $('.graded-' + id).hide().html("Hinnatud").fadeIn('slow');
+                        $('.graded-' + id).hide().html("Hinnatud").fadeIn('fast');
                     } else {
                         alert(res);
                     }
                 });
-        });
+
+        })
 
     </script>
 

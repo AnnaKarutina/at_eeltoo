@@ -107,29 +107,6 @@ form.form-signin {
     font-weight: bold;
     color: black;
 }
-
-.graded-green {
-    font-weight: bold;
-    color: green;
-}
-
-.preview-modal {
-    width: 100%;
-    height: 500px;
-    border: 1px solid black;
-    background-color: white;
-    box-shadow: 5px 5px 3px lightgrey;
-}
-
-.left-side {
-    height: 475px;
-    overflow: auto;
-}
-
-.tab-content {
-    margin-bottom: 60px;
-}
-
 /************** RESULT PAGE END ****************/
 
 /************** THEORETICAL PAGE ****************/
@@ -217,3 +194,78 @@ form.form-signin {
 }
 
 /************** SETTINGS PAGE END ****************/
+
+/************** GRADING PAGE *********************/
+label.btn span {
+    font-size: 1.5em ;
+}
+
+div[data-toggle="pill"] label.active{
+    color: #7AA3CC;
+}
+
+div[data-toggle="pill"] label input{
+    display: none!important;
+}
+
+div[data-toggle="pill"] label {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 2em;
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: top;
+    cursor: pointer;
+    border: 0px solid
+    #c8c8c8;
+    border-radius: 3px;
+    color: #c8c8c8;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+div[data-toggle="pill"] label:hover {
+    color: #7AA3CC;
+}
+
+div[data-toggle="pill"] label:active, div[data-toggle="pills"] label.active {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+div[data-toggle="pill"] label.hover {
+    outline: none!important;
+    display: none;
+}
+
+.graded-green {
+    font-weight: bold;
+    color: green;
+}
+
+.preview-modal {
+    width: 100%;
+    height: 500px;
+    border: 1px solid black;
+    background-color: white;
+    box-shadow: 5px 5px 3px lightgrey;
+}
+
+.left-side {
+    height: 475px;
+    overflow: auto;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.tab-content {
+    margin-bottom: 60px;
+}
+/****************** GRADING PAGE END ***********************/

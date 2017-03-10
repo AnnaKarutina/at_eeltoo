@@ -21,7 +21,7 @@
             there and watch this goat.</h2>
     </div>
 
-    <img id="goat" src="<?= BASE_URL ?>/assets/goat.jpg" alt="goat">
+    <img id="goat" src="<?= BASE_URL ?>/images/goat.jpg" alt="goat">
 
     <?php if (isset($errors)): ?>
 

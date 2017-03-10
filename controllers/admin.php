@@ -61,7 +61,7 @@ class admin extends Controller
     function grading()
     {
         $this->grading = true;
-        $this->results = Administrator::getResults();
+        $this->results = Administrator::getGradings();
     }
 
     function log()

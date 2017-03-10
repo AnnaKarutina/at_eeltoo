@@ -19,6 +19,14 @@ class Administrator
         IF(results.practical_points >= 0, sum, results.practical_points) DESC");
     }
 
+    static function getGradings()
+    {
+        return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
+        IF(results.practical_points>0,results.practical_points,0)) AS sum 
+        FROM results INNER JOIN users WHERE results.user_id = users.user_id ORDER BY 
+        date ASC");
+    }
+
     static function getLog()
     {
         return get_all("SELECT *, (IF(results_log.theoretical_points>0, results_log.theoretical_points,0) + 
@@ -28,7 +36,6 @@ class Administrator
     }
 
     static function getQuestions() {
-        // questions are ordered by randomly
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY question_id DESC', $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
