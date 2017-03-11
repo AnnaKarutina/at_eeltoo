@@ -143,3 +143,7 @@ function killSession() {
     session_destroy();
 }
 
+function hideString($str) {
+    return substr($str, 0, 1).str_repeat("*", strlen($str) - 1);
+}
+

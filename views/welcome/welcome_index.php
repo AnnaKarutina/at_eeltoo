@@ -7,6 +7,9 @@
         10 küsimust, kus igal küsimusel on ainult üks õige vastus. Praktilises ülesandes tuleb lähtuvalt ülesande sisust
         kirjutada koodi kasutades HTMLi ja CSSi elemente. Testi lõpus näed oma tulemust ning saad suunduda ingliskeelsele
         vestlusele.
+        <?php if($this->settings['scores'] == 1): ?>
+        Testi lõpptulemusi saate näha <a href="scores/" target="_blank">siit.</a>
+        <?php endif; ?>
     </p>
 </div>
 <div class="center">

@@ -149,6 +149,14 @@ class admin extends Controller
         echo 'ok';
     }
 
+    function AJAX_scoreOption() {
+        $score = addslashes($_POST['scoreOption']);
+        $scorePrivate = addslashes($_POST['scorePrivateOption']);
+        update('settings', ['scores' => ''.$score.''], "id = '1'");
+        update('settings', ['scores_private' => ''.$scorePrivate.''], "id = '1'");
+        echo 'ok';
+    }
+
     function AJAX_editTheoretical() {
         $answers = $_POST['answers'];
 

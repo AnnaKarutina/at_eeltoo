@@ -36,6 +36,13 @@ body {
     padding: 7px;
 }
 
+/************** PUBLIC RESULTS **********************/
+#public-results {
+    margin-top: 60px;
+}
+/************** PUBLIC RESULTS END **********************/
+
+
 /************ FOOTER AND HEADER *********************/
 /* header */
 .container-fluid {

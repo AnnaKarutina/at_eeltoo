@@ -47,4 +47,5 @@ class Questions
             return $points;
         }
     }
+
 }

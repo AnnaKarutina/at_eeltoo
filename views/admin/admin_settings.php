@@ -62,6 +62,22 @@
         <span id="liveOption-successful" class="edit-successful">Muutmine edukas</span>
         <span id="liveOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
+    <hr>
+
+    <h4>Avalik pingerida</h4>
+    <form method="POST" id="scoreOption">
+        <select name="scoreOption" class="settings-selection">
+            <option value="1" <?= ($settings['scores'] == 1) ? 'selected' : ''; ?>>Jah</option>
+            <option value="0" <?= ($settings['scores'] == 0) ? 'selected' : ''; ?>>Ei</option>
+        </select>
+        <select name="scorePrivateOption" class="settings-selection">
+            <option value="1" <?= ($settings['scores_private'] == 1) ? 'selected' : ''; ?>>Nimi peidetud</option>
+            <option value="0" <?= ($settings['scores_private'] == 0) ? 'selected' : ''; ?>>Nimi nähtav</option>
+        </select>
+        <a href="" class="btn btn-info btn-lg form-button scoreOption settings-btn">Muuda</a>
+        <span id="scoreOption-successful" class="edit-successful">Muutmine edukas</span>
+        <span id="scoreOption-error" class="edit-error">Muutmine ebaõnnestus</span>
+    </form>
 
     <script>
         // refresh time
