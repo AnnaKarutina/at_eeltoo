@@ -155,7 +155,7 @@
 
             });
             $( "#no-delete" ).click(function() {
-                $('.confirm').modal('hide');
+                $('.confirm-delete').modal('hide');
             });
         });
 
