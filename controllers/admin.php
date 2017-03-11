@@ -93,6 +93,12 @@ class admin extends Controller
 
         echo 'ok';
     }
+
+    function AJAX_deleteResult() {
+        $id = addslashes($_POST['user_id']);
+        q("DELETE FROM results WHERE user_id = $id");
+        echo 'ok';
+    }
     
     function AJAX_pushToLog() {
         q('DELETE FROM results');
