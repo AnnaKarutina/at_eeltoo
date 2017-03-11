@@ -135,37 +135,41 @@
 
     <script>
 
-        // make the first items active
-        $('ul#myTabs li:first').addClass('active');
-        $('.tab-content .tab-pane:first').addClass('in active');
+        $(document).ready(function () {
+            // make the first items active
+            $('ul#myTabs li:first').addClass('active');
+            $('.tab-content .tab-pane:first').addClass('in active');
 
-        // display preview window on click
-        $(".preview").on('click', function (event) {
-            var div = '#show-' + this.id;
+            // display preview window on click
+            $(".preview").on('click', function (event) {
+                var div = '#show-' + this.id;
+            });
+
+            // fancy grading
+            $('label').on('click', function (event) {
+
+                var id = this.id;
+                var value = $('input[name=' + id + ']:checked').val();
+
+                $(this).closest('.btn-group').find('.active').removeClass('active focus');
+                $(this).addClass('active focus');
+
+                event.stopPropagation();
+
+                $.post('admin/gradePractical', {'user_id': id, 'grade': value},
+                    function (res) {
+                        if (res == 'ok') {
+                            // window.location.reload();
+                            $('#graded-' + id).html('"' + value + '"');
+                            $('.graded-' + id).hide().html("Hinnatud").fadeIn('fast');
+                        } else {
+                            alert(res);
+                        }
+                    });
+
+            })
         });
 
-        // fancy grading
-        $('label').on('click', function (event) {
-            event.stopPropagation();
-
-            var id = this.id;
-            var value = $('input[name=' + id + ']:checked').val();
-
-            $(this).closest('.btn-group').find('.active').removeClass('active focus');
-            $(this).addClass('active focus');
-
-            $.post('admin/gradePractical', {'user_id': id, 'grade': value},
-                function (res) {
-                    if (res == 'ok') {
-                        // window.location.reload();
-                        $('#graded-' + id).html('"' + value + '"');
-                        $('.graded-' + id).hide().html("Hinnatud").fadeIn('fast');
-                    } else {
-                        alert(res);
-                    }
-                });
-
-        })
 
     </script>
 
