@@ -163,6 +163,38 @@ class admin extends Controller
         echo 'ok';
     }
 
+    function AJAX_changePassword() {
+        $old = addslashes($_POST['old-password']);
+        $real = get_one("SELECT password FROM users WHERE user_id = '{$_SESSION['user_id']}'");
+        $new1 = addslashes($_POST['password1']);
+        $new2 = addslashes($_POST['password2']);
+
+        if(empty($old) || empty($new1) || empty($new2)) {
+            exit('All fields are required.');
+        }
+
+        if(password_verify($old, $real) != $real) {
+            exit('Invalid password.');
+        }
+
+        if($new1 != $new2) {
+            exit('Passwords do not match.');
+        }
+
+        $new = password_hash($new1, PASSWORD_DEFAULT);
+        $query = update('users', ['password' => ''.$new.''], "user_id = '{$_SESSION['user_id']}'");
+
+        if($query) {
+            echo 'ok';
+        } else {
+            exit('Something went wrong. Please try again.');
+        }
+
+        //$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm
+
+
+    }
+
     function AJAX_editTheoretical() {
         $answers = $_POST['answers'];
 

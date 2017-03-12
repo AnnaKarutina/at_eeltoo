@@ -241,6 +241,18 @@ form.form-signin {
     font-size: 18px;
 }
 
+#passwordForm {
+    margin-bottom: 80px;
+}
+
+#passwordForm input{
+    margin-bottom: 15px;
+}
+
+.passwordform-text {
+    margin-bottom: 20px;
+}
+
 /************** SETTINGS PAGE END ****************/
 
 /************** GRADING PAGE *********************/
