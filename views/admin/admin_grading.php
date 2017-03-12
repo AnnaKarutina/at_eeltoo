@@ -50,6 +50,7 @@
                         ?>
                     </h4>
 
+                    <?php if(file_exists('results/'.$result['social_id'].'.html')): ?>
                     <button id="view-<?= $result['user_id'] ?>" class="preview"
                             data-target="#modal-<?= $result['user_id'] ?>"
                             data-toggle="modal">
@@ -58,6 +59,9 @@
                     <a href="results/<?= $result['social_id'] ?>.html" target="_blank">Link</a>
                     <br>
                     <br>
+                    <?php else: ?>
+                    <h5>Antud isiku kohta puudub HTML fail</h5>
+                    <?php endif; ?>
                     <pre>
                             <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
                         </pre>

@@ -1,3 +1,4 @@
+/* TODO, fix this because modal fix already has overflow property */
 html{
     position:relative;
     min-height: 94%;
@@ -35,6 +36,7 @@ footer {
     right: 0;
     margin: -3em;
     border-top: solid 2px #5498cb;
+    background: #fcf7cc;
 }
 
 .modal-footer{
@@ -67,12 +69,30 @@ html {
 }
 
 .logout {
-    margin-top: 2px;
+    display: block;
+    margin-top: 10px;
+}
+
+.logout a {
+    height: 30px;
+    padding: 2px 10px 10px 10px;
 }
 
 .glyphicon-log-out, .log-out-txt {
-    height: 20px;
-    font-size: 16px;
+    font-size: 14px;
+}
+
+.navbar-admin {
+    background: #194f72;
+}
+
+.navbar-admin a {
+    color: white!important;
+    text-shadow: none!important;
+}
+
+.navbar-admin .active a {
+    background: #2980b9 !important;
 }
 /************** NAVBAR END *****************/
 

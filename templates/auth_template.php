@@ -8,16 +8,16 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="assets/css/admin_main.css">
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/css/admin_main.css">
     <script src="assets/js/admin_main.js"></script>
 </head>
 <body>
 
 <?php if (isset($auth->is_admin) && $auth->is_admin): ?>
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top navbar-admin">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
