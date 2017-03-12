@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // initialize tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+
     // clear any input that might have been saved via browser itself earlier
     $('#username').val("");
     $('#password').val("");

@@ -64,8 +64,22 @@ html {
 /************** MODAL FIX END *****************/
 
 /************** NAVBAR *****************/
+#khk-logo {
+    float:left;
+    position: relative;
+    padding: 5px;
+    height: 50px;
+}
+
 .navbar-default {
     box-shadow: 2px 1px 1px lightgrey;
+}
+
+@media (min-width: 10px) and (max-width: 1000px) {
+
+    .log-out-txt, #khk-logo {
+        display: none;
+    }
 }
 
 .logout {
@@ -83,7 +97,11 @@ html {
 }
 
 .navbar-admin {
-    background: #194f72;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #5498cb, #194f72); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5498cb, #194f72); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5498cb, #194f72); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5498cb, #194f72); /* Standard syntax */
 }
 
 .navbar-admin a {
@@ -92,7 +110,7 @@ html {
 }
 
 .navbar-admin .active a {
-    background: #2980b9 !important;
+    background: #194f72 !important;
 }
 /************** NAVBAR END *****************/
 
