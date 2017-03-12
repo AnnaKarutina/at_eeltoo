@@ -2,6 +2,54 @@ body {
     padding-top: 50px;
 }
 
+/*************** FOOTER ****************/
+#fb-logo {
+    height: 50px;
+}
+
+#fb-logo:hover {
+    opacity: 0.70;
+}
+
+.footer-block {
+    text-align: center;
+    padding: 10px 0px 10px 0px;
+}
+
+html{
+    position:relative;
+    min-height: 100%;
+}
+/*Normalise html and body elements */
+html,body{
+    margin:0;
+    padding:0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: -3em;
+    border-top: solid 2px #5498cb;
+}
+
+.modal-footer{
+    display: block !important;
+    margin: auto !important;
+}
+
+@media (min-width: 10px) and (max-width: 1000px) {
+
+    footer {
+        position: static;
+        height: 60px;
+        margin-top: 20px;
+    }
+}
+
+/**************** FOOTER END *********************/
 /************** MODAL TWITCH FIX *****************/
 .modal-open {
     padding-right: 0 !important;

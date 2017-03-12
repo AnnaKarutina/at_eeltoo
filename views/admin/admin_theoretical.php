@@ -64,4 +64,19 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <footer>
+        <div class="col-md-4 footer-block">
+            <span>Tartu Kutsehariduskeskus</span><br/>
+            <span>Kopli 1, 50115 Tartu</span><br/>
+        </div>
+        <div class="col-md-4 footer-block">
+            <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
+            <span>Telefon: 7 361 866</span><br/>
+        </div>
+        <div class="col-md-4 footer-block">
+            <a href="http://www.facebook.com/kutseharidus">
+                <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
+            </a>
+        </div>
+    </footer>
 <?php endif; ?>
