@@ -77,6 +77,11 @@ class admin extends Controller
         $this->time;
     }
 
+    function help()
+    {
+        $this->help = true;
+    }
+
     function AJAX_gradePractical() {
         update('results', ['practical_points' => $_POST['grade']], "user_id = {$_POST['user_id']}");
 

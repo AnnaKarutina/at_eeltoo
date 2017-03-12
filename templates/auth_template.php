@@ -35,6 +35,7 @@
                 <li <?= isset($grading) ? 'class="active"' : ''?>><a href="admin/grading"><?= __('Hindamine') ?></a></li>
                 <li <?= isset($log) ? 'class="active"' : ''?>><a href="admin/log"><?= __('Logi') ?></a></li>
                 <li <?= isset($properties) ? 'class="active"' : ''?>><a href="admin/settings"><?= __('Seaded') ?></a></li>
+                <li <?= isset($help) ? 'class="active"' : ''?>><a href="admin/help"><?= __('Abi') ?></a></li>
             </ul>
             <div class="nav navbar-nav navbar-right logout">
                 <a href="logout" class="btn btn-info btn-lg"
