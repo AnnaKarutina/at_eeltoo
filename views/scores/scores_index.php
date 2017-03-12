@@ -27,7 +27,7 @@
                                 <?= $score['practical_points'] ?>
                             <?php endif; ?>
                         </td>
-                        <td><?= $score['sum'] ?></td>
+                        <td><?= $score['sum'] ?> / <?= $score['nr_of_questions']+10 ?></td>
                         <td><?= date("d.m.Y", strtotime($score['date'])); ?></td>
                     </tr>
                 <?php endif; ?>

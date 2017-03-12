@@ -96,12 +96,26 @@ class admin extends Controller
 
     function AJAX_deleteResult() {
         $id = addslashes($_POST['user_id']);
+        $socialId = get_first("SELECT social_id from users WHERE user_id = $id")['social_id'];
+
+        if(file_exists('results/'.$socialId.'.html')) {
+            unlink('results/'.$socialId.'.html');
+        }
+
         q("DELETE FROM results WHERE user_id = $id");
         echo 'ok';
     }
+
     
     function AJAX_pushToLog() {
         q('DELETE FROM results');
+
+        foreach (glob("results/*.html") as $filename) {
+            if (is_file($filename)) {
+                unlink($filename);
+            }
+        }
+
         echo 'ok';
     }
 
