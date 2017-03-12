@@ -75,15 +75,31 @@ html {
     box-shadow: 2px 1px 1px lightgrey;
 }
 
+@media (min-width: 768px) and (max-width: 1000px) {
+
+    .log-out-txt {
+        display: none;
+    }
+}
+
 @media (min-width: 10px) and (max-width: 1000px) {
 
-    .log-out-txt, #khk-logo {
+    #khk-logo {
         display: none;
+    }
+
+    .logout {
+        padding-right: 10px;
+    }
+
+    .navbar-admin {
+        background: #194f72!important;
     }
 }
 
 .logout {
     display: block;
+    float: right;
     margin-top: 10px;
 }
 
@@ -98,10 +114,10 @@ html {
 
 .navbar-admin {
     background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #5498cb, #194f72); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #5498cb, #194f72); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #5498cb, #194f72); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #5498cb, #194f72); /* Standard syntax */
+    background: -webkit-linear-gradient(left, #5498cb, #194f72 75%); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #5498cb, #194f72 75%); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #5498cb, #194f72 75%); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #5498cb, #194f72 75%); /* Standard syntax */
 }
 
 .navbar-admin a {
@@ -111,6 +127,10 @@ html {
 
 .navbar-admin .active a {
     background: #194f72 !important;
+}
+
+.navbar-admin li:not(:active):hover {
+    background: #5498cb !important;
 }
 /************** NAVBAR END *****************/
 
