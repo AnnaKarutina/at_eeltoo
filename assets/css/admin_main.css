@@ -380,12 +380,15 @@ div[data-toggle="pill"] label.hover {
 .left-side {
     height: 475px;
     overflow: auto;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
+    box-shadow: 5px 5px 3px lightgrey;
+    border: 1px solid lightblue;
 }
 
 .tab-content {
+    padding: 10px;
     margin-bottom: 60px;
+    min-height: 475px;
+    box-shadow: 5px 5px 3px lightgrey;
+    border: 1px solid lightblue;
 }
 /****************** GRADING PAGE END ***********************/
