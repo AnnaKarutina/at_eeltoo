@@ -8,9 +8,9 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="vendor/components/bootstrap/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="assets/css/admin_main.css">
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="assets/css/admin_main.css">
     <script src="assets/js/admin_main.js"></script>
 </head>
 <body>
@@ -18,7 +18,6 @@
 <?php if (isset($auth->is_admin) && $auth->is_admin): ?>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top navbar-admin">
-    <img id="khk-logo" src="images/khk_logo.png" alt="logo"/>
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -95,6 +94,21 @@
 
 </div>
 <!-- /container -->
+<footer>
+    <div class="col-md-4 footer-block">
+        <span>Tartu Kutsehariduskeskus</span><br/>
+        <span>Kopli 1, 50115 Tartu</span><br/>
+    </div>
+    <div class="col-md-4 footer-block">
+        <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
+        <span>Telefon: 7 361 866</span><br/>
+    </div>
+    <div class="col-md-4 footer-block">
+        <a href="http://www.facebook.com/kutseharidus">
+            <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
+        </a>
+    </div>
+</footer>
 
 <script>
     $('#btnLogin').on('click', function (event) {

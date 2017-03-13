@@ -6,109 +6,110 @@
     <?php if (empty($results)): ?>
         <h4>Pole midagi kuvada</h4>
     <?php endif; ?>
+    <div class="grading-wrapper">
+        <!-- NAVIGATION -->
+        <div class="col-md-3 left-side">
+            <ul class="nav nav-pills nav-stacked" id="myTabs">
+                <?php foreach ($results as $result): ?>
+                    <?php if ($result['practical_points'] != -2): ?>
+                        <li>
+                            <a href="#user-<?= $result['user_id'] ?>"
+                               data-toggle="pill">
+                                <?= $result['firstname'] . ' ' . $result['lastname'] . ', ' . $result['social_id'] ?>
+                                <br>
+                                <?php if ($result['practical_points'] == -2): ?>
+                                    <span class="not-graded">Tegemata</span>
+                                <?php elseif ($result['practical_points'] == -1): ?>
+                                    <span class="not-graded-<?= $result['user_id'] ?> not-graded">Hindamata</span>
+                                <?php else: ?>
+                                    <span class="graded">Hinnatud: </span>
+                                    <span class="graded"
+                                          id="graded-<?= $result['user_id'] ?>">"<?= $result['practical_points'] ?>
+                                        "</span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            </ul>
+        </div>
 
-    <!-- NAVIGATION -->
-    <div class="col-md-3 left-side">
-        <ul class="nav nav-pills nav-stacked" id="myTabs">
-            <?php foreach ($results as $result): ?>
-                <?php if ($result['practical_points'] != -2): ?>
-                    <li>
-                        <a href="#user-<?= $result['user_id'] ?>"
-                           data-toggle="pill">
-                            <?= $result['firstname'] . ' ' . $result['lastname'] . ', ' . $result['social_id'] ?>
-                            <br>
-                            <?php if ($result['practical_points'] == -2): ?>
-                                <span class="not-graded">Tegemata</span>
-                            <?php elseif ($result['practical_points'] == -1): ?>
-                                <span class="not-graded-<?= $result['user_id'] ?> not-graded">Hindamata</span>
+
+        <!-- CONTENT -->
+        <div class="col-md-9">
+            <div class="tab-content">
+
+                <?php foreach ($results as $result): ?>
+                    <?php if ($result['practical_points'] != -2): ?>
+                        <div class="tab-pane fade" id="user-<?= $result['user_id'] ?>">
+                            <h4>
+                                <?=
+                                $result['firstname'] . ' ' .
+                                $result['lastname'] . ', ' .
+                                $result['social_id'] . ', ' .
+                                date("d.m.Y", strtotime($result['date']));
+                                ?>
+                            </h4>
+
+                            <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
+                                <button id="view-<?= $result['user_id'] ?>" class="preview"
+                                        data-target="#modal-<?= $result['user_id'] ?>"
+                                        data-toggle="modal">
+                                    Eelvaade
+                                </button>
+                                <a href="results/<?= $result['social_id'] ?>.html" target="_blank">Link</a>
+                                <br>
+                                <br>
                             <?php else: ?>
-                                <span class="graded">Hinnatud: </span>
-                                <span class="graded"
-                                      id="graded-<?= $result['user_id'] ?>">"<?= $result['practical_points'] ?>"</span>
+                                <h5>Antud isiku kohta puudub HTML fail</h5>
                             <?php endif; ?>
-                        </a>
-                    </li>
-                <?php endif; ?>
-            <?php endforeach ?>
-        </ul>
-    </div>
-
-
-    <!-- CONTENT -->
-    <div class="col-md-9">
-        <div class="tab-content">
-
-            <?php foreach ($results as $result): ?>
-                <?php if ($result['practical_points'] != -2): ?>
-                    <div class="tab-pane fade" id="user-<?= $result['user_id'] ?>">
-                        <h4>
-                            <?=
-                            $result['firstname'] . ' ' .
-                            $result['lastname'] . ', ' .
-                            $result['social_id'] . ', ' .
-                            date("d.m.Y", strtotime($result['date']));
-                            ?>
-                        </h4>
-
-                        <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
-                            <button id="view-<?= $result['user_id'] ?>" class="preview"
-                                    data-target="#modal-<?= $result['user_id'] ?>"
-                                    data-toggle="modal">
-                                Eelvaade
-                            </button>
-                            <a href="results/<?= $result['social_id'] ?>.html" target="_blank">Link</a>
-                            <br>
-                            <br>
-                        <?php else: ?>
-                            <h5>Antud isiku kohta puudub HTML fail</h5>
-                        <?php endif; ?>
-                        <pre>
+                            <pre>
                             <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
                         </pre>
-                        <?php if (!empty($result['practical_errors'])): ?>
-                        <h4>HTML errorid</h4>
-                    <?php if (empty(unserialize($result['practical_errors']))): ?>
-                        <h6>Document checking completed. No errors or warnings to show.</h6>
-                    <?php endif; ?>
-                        <ul>
-                            <?php foreach (unserialize($result['practical_errors']) as $error): ?>
-                                <li><?= $error; ?></li>
-                            <?php endforeach; ?>
-                            <?php endif; ?>
-                        </ul>
-                        <!-- grading -->
-                        <h4>Hindamine</h4>
-
-
-                        <div class="btn-group" data-toggle="pill">
-                            <?php for ($i = 0; $i <= 10; $i++): ?>
-                                <?php if ($result['practical_points'] == $i): ?>
-                                    <label id="<?= $result['user_id'] ?>" class="btn active focus">
-                                        <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
-                                        <span><?= $i; ?></span>
-                                    </label>
-                                <?php else: ?>
-                                    <label id="<?= $result['user_id'] ?>" class="btn">
-                                        <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
-                                        <span><?= $i; ?></span>
-                                    </label>
-                                <?php endif ?>
-                            <?php endfor ?>
-                        </div>
-
-                        <?php if ($result['practical_points'] == -1): ?>
-                            <span class="bottom-not-graded-<?= $result['user_id'] ?> not-graded">Hindamata</span>
-                        <?php else: ?>
-                            <span class="graded-<?= $result['user_id'] ?> graded-green">Hinnatud</span>
+                            <?php if (!empty($result['practical_errors'])): ?>
+                            <h4>HTML errorid</h4>
+                        <?php if (empty(unserialize($result['practical_errors']))): ?>
+                            <h6>Document checking completed. No errors or warnings to show.</h6>
                         <?php endif; ?>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach ?>
+                            <ul>
+                                <?php foreach (unserialize($result['practical_errors']) as $error): ?>
+                                    <li><?= $error; ?></li>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
+                            <!-- grading -->
+                            <h4>Hindamine</h4>
+
+
+                            <div class="btn-group" data-toggle="pill">
+                                <?php for ($i = 0; $i <= 10; $i++): ?>
+                                    <?php if ($result['practical_points'] == $i): ?>
+                                        <label id="<?= $result['user_id'] ?>" class="btn active focus">
+                                            <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
+                                            <span><?= $i; ?></span>
+                                        </label>
+                                    <?php else: ?>
+                                        <label id="<?= $result['user_id'] ?>" class="btn">
+                                            <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
+                                            <span><?= $i; ?></span>
+                                        </label>
+                                    <?php endif ?>
+                                <?php endfor ?>
+                            </div>
+
+                            <?php if ($result['practical_points'] == -1): ?>
+                                <span class="bottom-not-graded-<?= $result['user_id'] ?> not-graded">Hindamata</span>
+                            <?php else: ?>
+                                <span class="graded-<?= $result['user_id'] ?> graded-green">Hinnatud</span>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach ?>
+            </div>
         </div>
-    </div>
 
     </div>
-
+    </div>
     <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
         <?php foreach ($results as $result): ?>
             <?php if ($result['practical_points'] != -2): ?>
@@ -139,21 +140,6 @@
         <?php endforeach ?>
     <?php endif; ?>
 
-    <footer>
-        <div class="col-md-4 footer-block">
-            <span>Tartu Kutsehariduskeskus</span><br/>
-            <span>Kopli 1, 50115 Tartu</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
-            <span>Telefon: 7 361 866</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <a href="http://www.facebook.com/kutseharidus">
-                <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
-            </a>
-        </div>
-    </footer>
 
     <script>
 

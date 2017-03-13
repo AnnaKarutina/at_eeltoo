@@ -2,31 +2,48 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Praktilised ülesanded") ?></h3>
+    <div class="practical-box">
+    <h4 class="h4-custom">Praktilise ülesande lisamine</h4>
+    <input type="text" id="new-title" placeholder="Ülesande pealkiri">
+        <br>
+        <br>
+    <textarea class="practical-description" id="new-description" placeholder=
+"Ülesannete lisamisel tuleb iga ülesanne jaotada punktideks ning iga punkti lõppu tuleb märkida semikoolon.
 
-    <h4>Praktilise ülesande lisamine</h4>
-    <input type="text" id="new-title" placeholder="Pealkiri">
-    <textarea class="practical-description" id="new-description" placeholder="Praktilise ülesande kirjeldus"></textarea>
+Näide:
+1. Lisa reavahe.;
+2. Muuda taust siniseks.;
+3. Muuda enda nime suurus 32px.;
+"></textarea>
+        <br>
+        <br>
     <button id="add-practical" class="btn btn-info">Lisa</button>
+    </div>
     <br>
     <br>
     <br>
 
-    <h4>Praktiliste ülesannete redigeerimine</h4>
     <?php $x=-1; ?>
     <?php foreach ($practicalQuestions['title'] as $key => $title): ?>
+        <div class="practical-box">
+            <h4 class="h4-custom">Praktilise ülesande redigeerimine</h4>
         <?php $x++; ?>
         <form action="POST" class="form">
         <input type="text" value="<?= $title; ?>" id="title-<?= $practicalQuestions['id'][$x] ?>">
+            <br>
+            <br>
         <textarea name="description-<?= $key ?>" id="description-<?= $practicalQuestions['id'][$x] ?>"
         class="practical-description"
         value="<?= implode(";\n", $practicalQuestions['description'][$key]) . ';' ?>">
 <?= implode(";\n", $practicalQuestions['description'][$key]) . ';' ?>
         </textarea>
         </form>
+            <br>
         <button id="<?= $practicalQuestions['id'][$x] ?>" class="btn btn-info editPractical">Muuda</button>
         <button id="<?= $practicalQuestions['id'][$x] ?>" class="btn btn-info deletePractical" data-toggle="modal" data-target=".confirm">Kustuta</button>
         <span id="success-<?= $practicalQuestions['id'][$x] ?>"  class="edit-successful">Muutmine edukas</span>
         <span id="error-<?= $practicalQuestions['id'][$x] ?>" class="edit-error">Muutmine ebaõnnestus</span>
+    </div>
         <br>
         <br>
         <br>
@@ -47,21 +64,7 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
-    <footer>
-        <div class="col-md-4 footer-block">
-            <span>Tartu Kutsehariduskeskus</span><br/>
-            <span>Kopli 1, 50115 Tartu</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
-            <span>Telefon: 7 361 866</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <a href="http://www.facebook.com/kutseharidus">
-                <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
-            </a>
-        </div>
-    </footer>
+
 
     <script>
 
@@ -136,6 +139,43 @@
 
         });
 
+        $(function() {
+            var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
+            // Disable for chrome which already supports multiline
+            if (! (!!window.chrome && !isOpera)) {
+                var style = $('<style>textarea[data-placeholder].active { color: grey; }</style>')
+                $('html > head').append(style);
+
+                $('textarea[placeholder]').each(function(index) {
+                    var text  = $(this).attr('placeholder');
+                    var match = /\r|\n/.exec(text);
+
+                    if (! match)
+                        return;
+
+                    $(this).attr('placeholder', '');
+                    $(this).attr('data-placeholder', text);
+                    $(this).addClass('active');
+                    $(this).val(text);
+                });
+
+                $('textarea[data-placeholder]').on('focus', function() {
+                    if ($(this).attr('data-placeholder') === $(this).val()) {
+                        $(this).attr('data-placeholder', $(this).val());
+                        $(this).val('');
+                        $(this).removeClass('active');
+                    }
+                });
+
+                $('textarea[data-placeholder]').on('blur', function() {
+                    if ($(this).val() === '') {
+                        var text = $(this).attr('data-placeholder');
+                        $(this).val(text);
+                        $(this).addClass('active');
+                    }
+                });
+            }
+        });
     </script>
 <?php endif; ?>

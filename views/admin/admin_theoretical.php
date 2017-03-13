@@ -6,10 +6,11 @@
     <h3><?= __("Teoreetilised ülesanded") ?></h3>
 
         <!-- add new question -->
+        <div class="table-box">
         <form method="POST" id="form[new]" class="form">
             <table class="table table-bordered theoretical">
                 <tr class="question-head">
-                    <td><input name="question"  class="questions" type="text" placeholder="KÜSIMUSE LISAMINE" value=""></td>
+                    <td class="question-heading"><input name="question"  class="questions" type="text" placeholder="KÜSIMUSE LISAMINE" value=""></td>
                 </tr>
                 <tr><td><input name="correct" class="answers" placeholder="Valik 1 (ÕIGE)" type="text" value=""></td></tr>
                 <tr><td><input name="wrong1" class="answers" type="text" placeholder="Valik 2" value=""></td></tr>
@@ -21,14 +22,15 @@
                 </tr>
             </table>
         </form>
-
+        </div>
     <!-- main questions -->
         <?php foreach ($questions as $question): ?>
+            <div class="table-box">
             <form method="POST" id="form[<?= $question['question_id'] ?>]" class="form">
             <table class="table table-bordered theoretical">
 
             <tr class="question-head">
-                <td><input name="question[<?= $question['question_id'] ?>]" class="questions" type="text" value="<?= $question['question'] ?>"></td>
+                <td class="question-heading"><input name="question[<?= $question['question_id'] ?>]" class="questions" type="text" value="<?= $question['question'] ?>"></td>
             </tr>
 
             <?php foreach ($question['answers'] as $answer): ?>
@@ -46,6 +48,7 @@
             </tr>
             </table>
             </form>
+            </div>
         <?php endforeach ?>
     </div>
 
@@ -63,20 +66,7 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-    <footer>
-        <div class="col-md-4 footer-block">
-            <span>Tartu Kutsehariduskeskus</span><br/>
-            <span>Kopli 1, 50115 Tartu</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
-            <span>Telefon: 7 361 866</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <a href="http://www.facebook.com/kutseharidus">
-                <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
-            </a>
-        </div>
-    </footer>
+    <br>
+    <br>
+    <br>
 <?php endif; ?>

@@ -1,8 +1,13 @@
-/* TODO, fix this because modal fix already has overflow property */
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url('opensans.woff2') format('woff2');
+}
+
 html{
     position:relative;
     min-height: 94%;
-    overflow-x: hidden;
 }
 
 /*Normalise html and body elements */
@@ -13,6 +18,8 @@ html,body{
 
 body {
     padding-top: 50px;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 /*************** FOOTER ****************/
@@ -34,7 +41,7 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
-    margin: -3em;
+    margin-bottom: -40px;
     border-top: solid 2px #5498cb;
     background: #fcf7cc;
 }
@@ -64,12 +71,6 @@ html {
 /************** MODAL FIX END *****************/
 
 /************** NAVBAR *****************/
-#khk-logo {
-    float:left;
-    position: relative;
-    padding: 5px;
-    height: 50px;
-}
 
 .navbar-default {
     box-shadow: 2px 1px 1px lightgrey;
@@ -91,21 +92,12 @@ html {
     .logout {
         padding-right: 10px;
     }
-
-    .navbar-admin {
-        background: #194f72!important;
-    }
 }
 
 .logout {
     display: block;
     float: right;
-    margin-top: 10px;
-}
-
-.logout a {
-    height: 30px;
-    padding: 2px 10px 10px 10px;
+    margin-top: -3px;
 }
 
 .glyphicon-log-out, .log-out-txt {
@@ -113,24 +105,26 @@ html {
 }
 
 .navbar-admin {
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #5498cb, #194f72 75%); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #5498cb, #194f72 75%); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #5498cb, #194f72 75%); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #5498cb, #194f72 75%); /* Standard syntax */
+    background:  #194f72;
+    /*font-size: 18px;*/
 }
 
 .navbar-admin a {
+    padding: 7px 9px !important;
+    margin-right: 4px;
+    margin-top: 7.5px;
+    border-radius: 5px;
     color: white!important;
     text-shadow: none!important;
 }
 
-.navbar-admin .active a {
-    background: #194f72 !important;
+.navbar-admin a:hover {
+    background: #5498cb!important;
 }
 
-.navbar-admin li:not(:active):hover {
-    background: #5498cb !important;
+.navbar-nav>.active>a {
+    background: #fcf7cc !important;
+    color: grey !important;
 }
 /************** NAVBAR END *****************/
 
@@ -190,6 +184,11 @@ form.form-signin {
 /************** LOGIN PAGE END ****************/
 
 /************** RESULT PAGE ****************/
+
+.table-box {
+    box-shadow: 5px 5px 7px #edf0f4;
+}
+
 .results td, th {
     border: 1px solid #ddd;
     padding: 8px;
@@ -215,11 +214,40 @@ form.form-signin {
     font-weight: bold;
     color: black;
 }
+
+#pushToLog {
+    width: 130px;
+    border-radius: 6px;
+    background-color: #5bc0de;
+    border-color: #5bc0de;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 60px;
+}
+
+
 /************** RESULT PAGE END ****************/
 
 /************** THEORETICAL PAGE ****************/
 
-
+.question-heading{
+    font-weight: bolder;
+    color: white;
+}
+.question-heading ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white !important;
+}
+.question-heading :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    white;
+    opacity:  1;
+}
+.question-heading ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    white;
+    opacity:  1;
+}
+.question-heading :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:   white;
+}
 .question-head {
     background-color: #5498cb;
 }
@@ -283,13 +311,36 @@ form.form-signin {
     width: 100%;
     height: 250px;
 }
+
+.practical-box {
+    box-shadow: 5px 5px 3px lightgrey;
+    padding: 20px;
+    background: #fcf7cc;
+    border: 1px solid lightblue;
+}
+
+.h4-custom {
+    font-weight: bold;
+}
 /************** PRACTICTAL PAGE END *********************/
 
 /************** SETTINGS PAGE  ****************/
+.settings-box{
+    box-shadow: 5px 5px 3px lightgrey;
+    background: #fcf7cc;
+    padding: 20px;
+    border: 1px solid lightblue;
+}
+
+.settings-hr{
+    border-bottom: 1px solid lightgrey;
+}
 .settings-btn {
     font-size: 14px;
     padding: 3px;
     width: 80px;
+    margin-bottom: 3px;
+    margin-left: 5px;
 }
 
 .settings-selection {
@@ -364,6 +415,15 @@ div[data-toggle="pill"] label.hover {
     display: none;
 }
 
+.nav-pills li:not(:active):hover {
+    background: #e5f1f9 !important;
+    border-radius: 5px;
+}
+
+.nav-pills>li>a:hover {
+    background: #e5f1f9;
+}
+
 .graded-green {
     font-weight: bold;
     color: green;
@@ -378,17 +438,25 @@ div[data-toggle="pill"] label.hover {
 }
 
 .left-side {
-    height: 475px;
+    height: 70vh;
     overflow: auto;
     box-shadow: 5px 5px 3px lightgrey;
     border: 1px solid lightblue;
 }
 
+.left-side a {
+    margin-top: 5px;
+}
+
 .tab-content {
     padding: 10px;
-    margin-bottom: 60px;
-    min-height: 475px;
+    overflow: auto;
+    height: 70vh;
     box-shadow: 5px 5px 3px lightgrey;
     border: 1px solid lightblue;
+}
+
+.grading-wrapper{
+    width: 100%;
 }
 /****************** GRADING PAGE END ***********************/

@@ -2,7 +2,8 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Seaded") ?></h3>
-    <hr>
+    <div class="settings-box">
+
     <h4>Teoreetiliste küsimuste arv testis</h4>
     <form method="POST" id="editQuestionCount">
         <select name="nr_of_questions" class="settings-selection">
@@ -14,7 +15,7 @@
         <span id="editQuestionCount-successful" class="edit-successful">Muutmine edukas</span>
         <span id="editQuestionCount-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>Testi PIN-kood</h4>
     <form action="#">
@@ -22,7 +23,7 @@
         <input type="button" class="btn btn-info btn-lg form-button settings-btn" id="generatePassword"
                value="Genereeri">
     </form>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>Testi avamine määratud ajaperioodiks (tunnid)</h4>
     <form method="POST" id="openTest">
@@ -38,7 +39,7 @@
     </form>
 
     <span id="liveTime"><?= $time['time'] > 0 ? $time['time'] : 'Test on suletud' ?></span>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>HTML koodi valideerimine W3C API kaudu</h4>
     <form method="POST" id="validationOption">
@@ -50,7 +51,7 @@
         <span id="validationOption-successful" class="edit-successful">Muutmine edukas</span>
         <span id="validationOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>HTML-i reaalajas eelvaade praktilise ülesande juures</h4>
     <form method="POST" id="liveOption">
@@ -62,7 +63,7 @@
         <span id="liveOption-successful" class="edit-successful">Muutmine edukas</span>
         <span id="liveOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>Avalik pingerida</h4>
     <form method="POST" id="scoreOption">
@@ -78,7 +79,7 @@
         <span id="scoreOption-successful" class="edit-successful">Muutmine edukas</span>
         <span id="scoreOption-error" class="edit-error">Muutmine ebaõnnestus</span>
     </form>
-    <hr>
+    <hr class="settings-hr">
 
     <h4>Administraatori parooli vahetamine</h4>
 
@@ -136,28 +137,12 @@
             </div>
         </div>
     </div>
-
+</div>
     <br>
     <br>
     <br>
     <br>
     <br>
-
-    <footer>
-        <div class="col-md-4 footer-block">
-            <span>Tartu Kutsehariduskeskus</span><br/>
-            <span>Kopli 1, 50115 Tartu</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
-            <span>Telefon: 7 361 866</span><br/>
-        </div>
-        <div class="col-md-4 footer-block">
-            <a href="http://www.facebook.com/kutseharidus">
-                <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
-            </a>
-        </div>
-    </footer>
 
     <script>
 
