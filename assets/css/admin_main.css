@@ -482,6 +482,12 @@ div[data-toggle="pill"] label.hover {
     width: 100%;
 }
 
+.list-none {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 /****************** GRADING PAGE END ***********************/
 
 /****************** HELP PAGE ***********************/

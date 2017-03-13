@@ -51,6 +51,12 @@
                                 ?>
                             </h4>
 
+                            <a href src="#" id="practical-<?= $result['user_id'] ?>" class="practical-text"
+                                    data-target="#practical-text-<?= $result['user_id'] ?>"
+                                    data-toggle="modal">
+                                <?= $result['practical_title']; ?>
+                            </a>
+
                             <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
                                 <button id="view-<?= $result['user_id'] ?>" class="preview"
                                         data-target="#modal-<?= $result['user_id'] ?>"
@@ -63,9 +69,9 @@
                             <?php else: ?>
                                 <h5>Antud isiku kohta puudub HTML fail</h5>
                             <?php endif; ?>
-                            <pre>
-                            <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
-                        </pre>
+<pre>
+<?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
+</pre>
                             <?php if (!empty($result['practical_errors'])): ?>
                             <h4>HTML errorid</h4>
                         <?php if (empty(unserialize($result['practical_errors']))): ?>
@@ -110,6 +116,35 @@
 
     </div>
     </div>
+
+    <?php foreach ($results as $result): ?>
+        <!-- PREVIEW MODALS -->
+        <div class="modal fade" id="practical-text-<?= $result['user_id'] ?>" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><?= $result['practical_title']; ?></h4>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="list-none">
+                        <?php foreach (explode(';', $result['practical_text'], -1) as $line ): ?>
+                            <li><?= $line; ?></li>
+                        <?php endforeach ?>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sulge</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    <?php endforeach ?>
+
+
     <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
         <?php foreach ($results as $result): ?>
             <?php if ($result['practical_points'] != -2): ?>
@@ -150,8 +185,8 @@
             $('.tab-content .tab-pane:first').addClass('in active');
 
             // display preview window on click
-            $(".preview").on('click', function (event) {
-                var div = '#show-' + this.id;
+            $(".practical-text").on('click', function (event) {
+                event.preventDefault();
             });
 
             // fancy grading

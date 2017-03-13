@@ -28,6 +28,11 @@ class test extends Controller
 
         // the user has started theoretical quiz
         $_SESSION['theoretical'] = true;
+
+        // update the nr of questions user got
+        update('results', [
+            'nr_of_questions' => $this->settings['nr_of_questions']
+        ], "user_id = '{$_SESSION['user_id']}'");
     }
 
     // confirm theoretical test answers and redirects user to practical test
@@ -58,8 +63,7 @@ class test extends Controller
             }
             // update table
             update('results', [
-                'theoretical_points' => $correctAnswers,
-                'nr_of_questions' => $this->settings['nr_of_questions']
+                'theoretical_points' => $correctAnswers
             ], "user_id = '$user_id'");
         }
 

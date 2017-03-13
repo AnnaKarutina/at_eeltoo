@@ -23,8 +23,8 @@ class Administrator
     {
         return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
         IF(results.practical_points>0,results.practical_points,0)) AS sum 
-        FROM results INNER JOIN users WHERE results.user_id = users.user_id ORDER BY 
-        date ASC");
+        FROM results INNER JOIN users ON results.user_id = users.user_id INNER JOIN
+        practical ON results.practical_id = practical.practical_id ORDER BY date ASC");
     }
 
     static function getLog()

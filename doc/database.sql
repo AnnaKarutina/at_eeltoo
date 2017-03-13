@@ -131,6 +131,7 @@ CREATE TABLE `results` (
   `practical_points` tinyint(4) DEFAULT '-2',
   `nr_of_questions` tinyint(3) unsigned DEFAULT NULL,
   `date` timestamp DEFAULT CURRENT_TIMESTAMP,
+  `practical_id` int(10) unsigned,
   PRIMARY KEY (`result_id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `results_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
