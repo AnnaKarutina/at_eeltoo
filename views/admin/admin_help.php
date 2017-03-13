@@ -30,8 +30,15 @@
         <ul>
             <li>Hindamise lehel saab vasakul asuvast tabelist valida isiku, kelle praktilist testi
                 hinnata. Hinnata saab 10-palli süsteemis ning hinde valimisel uuendatakse hinne
-                automaatselt. Vajutades nupule "Eelvaade" on võimalik samas aknas vaatada
-                sisseastuja HTMLi koodi tulemust. Lingile vajutades avaneb HTMLi koodi tulemus uues
+                automaatselt.
+            </li>
+            <li>
+                Vajutades ülesande pealkirjale avaneb ülesande kirjeldus moodulaknas.
+            </li>
+            <li>Vajutades nupule "Eelvaade" on võimalik moodulaknas vaadata
+                sisseastuja HTMLi koodi tulemust.
+            </li>
+            <li>Lingile vajutades avaneb HTMLi koodi tulemus uues
                 aknas.
             </li>
         </ul>
