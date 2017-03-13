@@ -264,6 +264,10 @@ form.form-signin {
     background-color: #5498cb;
 }
 
+.question-heading input:focus {
+    background-color: black;
+}
+
 .theoretical-container {
     display: block;
     margin: 0 auto;
