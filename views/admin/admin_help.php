@@ -21,9 +21,9 @@
             <li>Praktiliste ülesannete lehel saab lisada, muuta ja kustutada praktilisi ülesandeid.</li>
         </ul>
         <hr>
-        <h4>Teoreetilised ülesanded</h4>
+        <h4>Teoreetilised küsimused</h4>
         <ul>
-            <li>Teoreetiliste ülesannete lehel saab lisada, muuta ja kustutada teoreetilisi ülesandeid.</li>
+            <li>Teoreetiliste küsimuste lehel saab lisada, muuta ja kustutada teoreetilisi küsimusi.</li>
         </ul>
         <hr>
         <h4>Hindamine</h4>

@@ -3,7 +3,7 @@
 
     <div class="theoretical-container">
 
-    <h3><?= __("Teoreetilised ülesanded") ?></h3>
+    <h3><?= __("Teoreetilised küsimused") ?></h3>
 
         <!-- add new question -->
         <div class="table-box">
