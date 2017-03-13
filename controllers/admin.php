@@ -96,6 +96,12 @@ class admin extends Controller
             'nr_of_questions' => 0
         ], "user_id = {$_POST['user_id']}");
 
+        $social_id = get_first("SELECT social_id FROM users WHERE user_id = {$_POST['user_id']}")['social_id'];
+
+        if(file_exists('results/'.$social_id.'.html')) {
+            unlink('results/'.$social_id.'.html');
+        }
+
         echo 'ok';
     }
 

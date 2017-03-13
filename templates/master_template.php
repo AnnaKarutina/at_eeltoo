@@ -55,7 +55,7 @@
         <span>Telefon: 7 361 866</span><br/>
     </div>
     <div class="col-md-4 footer-block">
-        <a href="http://www.facebook.com/kutseharidus">
+        <a href="http://www.facebook.com/kutseharidus" target="_blank">
             <img id="fb-logo" src="images/fb_logo.png" alt="fb-logo">
         </a>
     </div>

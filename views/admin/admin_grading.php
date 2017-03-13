@@ -38,6 +38,9 @@
         <!-- CONTENT -->
         <div class="col-md-9">
             <div class="tab-content">
+                <?php if(empty($results['user_id'])): ?>
+                <h4>Midagi pole kuvada</h4>
+                <?php endif; ?>
 
                 <?php foreach ($results as $result): ?>
                     <?php if ($result['practical_points'] != -2): ?>
