@@ -1,5 +1,5 @@
 <!-- main html generator -->
-<h1 class="quiz-title">CSS & HTML / Vali õige vastus</h1>
+<h1 class="quiz-title">HTML & CSS - Vali õige vastus!</h1>
 <form action="test/practical " method="POST" id="quiz">
     <?php foreach ($questions as $question): ?>
     <div class="question-box">

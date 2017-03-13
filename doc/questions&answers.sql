@@ -28,7 +28,10 @@ INSERT INTO `questions` (`question_id`, `question`) VALUES
   (NULL, 'Kus määratakse HTMLi koodis lehekülje pealkiri?'),
   (NULL, 'Mitu märgendit on tavalises elemendis?'),
   (NULL, 'Millist atribuuti kasutatakse, et klikitav link avaneks uues aknas?'),
-  (NULL, 'Milline järgmistest HTMLi märgenditest pole kehtiv?');
+  (NULL, 'Milline järgmistest HTMLi märgenditest pole kehtiv?'),
+  (NULL, 'Kuidas tekitada tabelisse uus pealkirja lahter?'),
+  (NULL, 'Kuidas tekitada tabelisse uus rida?'),
+  (NULL, 'Kuidas tekitada tabelisse uus andmete lahter?');
 
 INSERT INTO `answers` (`answer_id`, `answer_text`, `answer_correct`, `question_id`) VALUES
   (NULL, 'HyperText Markup Language', '1', '6'),
@@ -80,7 +83,7 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `answer_correct`, `question_i
   (NULL, '<p type="font-size:10px">', '0', '21'),
   (NULL, '<p style=font-size:10px>', '0', '21'),
   (NULL, 'font-family: Verdana', '1', '22'),
-  (NULL, 'font-size: Verdana', '0', '22'),
+  (NULL, 'font-name: Verdana', '0', '22'),
   (NULL, 'font: Verdana', '0', '22'),
   (NULL, 'background-color: red', '1', '23'),
   (NULL, 'background color: red', '0', '23'),
@@ -106,9 +109,9 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `answer_correct`, `question_i
   (NULL, 'src', '1', '30'),
   (NULL, 'url', '0', '30'),
   (NULL, 'href', '0', '30'),
-  (NULL, 'face', '1', '31'),
+  (NULL, 'font-family', '1', '31'),
   (NULL, 'font', '0', '31'),
-  (NULL, 'fontname', '0', '31'),
+  (NULL, 'font-name', '0', '31'),
   (NULL, 'head tag-is', '1', '32'),
   (NULL, 'body tag-is', '0', '32'),
   (NULL, 'ükskõik kummas', '0', '32'),
@@ -120,8 +123,17 @@ INSERT INTO `answers` (`answer_id`, `answer_text`, `answer_correct`, `question_i
   (NULL, 'blank', '0', '34'),
   (NULL, '<h7>', '1', '35'),
   (NULL, '<h4>', '0', '35'),
-  (NULL, '<h2>', '0', '35');
+  (NULL, '<h2>', '0', '35'),
+  (NULL, '<th>', '1', '36)',
+  (NULL, '<tr>', '0', '36'),
+  (NULL, '<td>', '0', '36'),
+  (NULL, '<tr>', '1', '37'),
+  (NULL, '<th>', '0', '37'),
+  (NULL, '<td>', '0', '37'),
+  (NULL, '<td>', '1', '38'),
+  (NULL, '<tr>', '0', '38'),
+  (NULL, '<th>', '0', '38');
 
-INSERT INTO `practical` VALUES ('1', '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks sinine, fontiks Verdana ja suuruseks 35 pikslit.; 2. Loo paragrahv, mille sisuks on vabalt valitud tekst. Määra paragrahvi värvuseks punane, fontiks Arial ja suuruseks 40 pikslit.; 3. Loo tabel, kus on kaks rida ja kolm veergu. Esimese rea esimesse veergu kirjuta "Eesnimi", teise veergu "Vanus" ja kolmandasse veergu "Lemmik värv". Teise rea veergudesse kirjuta esimese rea veergudele vastavad väärtused.; 4. Määra tabelile ühe piksline must raam, joonda tekst keskele, kasuta fonti Calibri ja määra teksti suuruseks 40 pikslit. Tabeli laiuseks määra 70%.;', 'Ülesanne 1');
-
-INSERT INTO `practical` VALUES ('NULL', '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks punane, fontiks Impact, suuruseks 50 pikslit ja joonda tekst keskele.; 2. Loo paragrahv, mille sisuks on lühike vabalt valitud tekst. Määra paragrahvi värvuseks roheline, fontiks Calibri, suuruseks 45 pikslit ja joonda tekst paremale. Lisaks sellele tee nii, et iga paragrahvis olev sõna oleks eraldi rea peal.; 3. Tekita pilt(https://i.ytimg.com/vi/c7oV1T2j5mc/maxresdefault.jpg), millele klikkimine viib www.khk.ee leheküljele. Joonda pilt keskele, määra pildi laiuseks 50% ning tee pildi nurgad ümaraks.;', 'Ülesanne 2');
+INSERT INTO `practical` (`practical_id`, `practical_text`, `practical_title`) VALUES
+(NULL, '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks sinine, fontiks Verdana ja suuruseks 35 pikslit.;2. Loo paragrahv, mille sisuks on vabalt valitud tekst. Määra paragrahvi värvuseks punane, fontiks Arial ja suuruseks 40 pikslit.;3. Loo tabel, kus on kaks rida ja kolm veergu. Esimese rea esimesse veergu kirjuta "Eesnimi", teise veergu "Vanus" ja kolmandasse veergu "Lemmik värv". Teise rea veergudesse kirjuta esimese rea veergudele vastavad väärtused.;4. Määra tabelile ühe piksline must raam, joonda tekst keskele, kasuta fonti Calibri ja määra teksti suuruseks 40 pikslit. Tabeli laiuseks määra 70%.;', 'Ülesanne 1'),
+(NULL, '1. Loo suurima formaadiga pealkiri, mille sisuks on vabalt valitud tekst. Määra pealkirja värvuseks punane, fontiks Impact, suuruseks 50 pikslit ja joonda tekst keskele.; 2. Loo paragrahv, mille sisuks on lühike vabalt valitud tekst. Määra paragrahvi värvuseks roheline, fontiks Calibri, suuruseks 45 pikslit ja joonda tekst paremale. Lisaks sellele tee nii, et iga paragrahvis olev sõna oleks eraldi rea peal.; 3. Tekita pilt(https://i.ytimg.com/vi/c7oV1T2j5mc/maxresdefault.jpg), millele klikkimine viib www.khk.ee leheküljele. Joonda pilt keskele, määra pildi laiuseks 50% ning tee pildi nurgad ümaraks.;', 'Ülesanne 2');
