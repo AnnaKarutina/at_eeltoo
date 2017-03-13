@@ -5,15 +5,15 @@
     src: local('Open Sans'), local('OpenSans'), url('opensans.woff2') format('woff2');
 }
 
-html{
-    position:relative;
+html {
+    position: relative;
     min-height: 94%;
 }
 
 /*Normalise html and body elements */
-html,body{
-    margin:0;
-    padding:0;
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -46,7 +46,7 @@ footer {
     background: #fcf7cc;
 }
 
-.modal-footer{
+.modal-footer {
     display: block !important;
     margin: auto !important;
 }
@@ -65,9 +65,11 @@ footer {
 .modal-open {
     padding-right: 0 !important;
 }
+
 html {
     overflow-y: scroll !important;
 }
+
 /************** MODAL FIX END *****************/
 
 /************** NAVBAR *****************/
@@ -105,7 +107,7 @@ html {
 }
 
 .navbar-admin {
-    background:  #194f72;
+    background: #194f72;
     /*font-size: 18px;*/
 }
 
@@ -114,18 +116,19 @@ html {
     margin-right: 4px;
     margin-top: 7.5px;
     border-radius: 5px;
-    color: white!important;
-    text-shadow: none!important;
+    color: white !important;
+    text-shadow: none !important;
 }
 
 .navbar-admin a:hover {
-    background: #5498cb!important;
+    background: #5498cb !important;
 }
 
-.navbar-nav>.active>a {
+.navbar-nav > .active > a {
     background: #fcf7cc !important;
     color: grey !important;
 }
+
 /************** NAVBAR END *****************/
 
 /************** LOGIN PAGE ****************/
@@ -181,6 +184,7 @@ div.input-group {
 form.form-signin {
     background-color: #ffffff;
 }
+
 /************** LOGIN PAGE END ****************/
 
 /************** RESULT PAGE ****************/
@@ -194,9 +198,13 @@ form.form-signin {
     padding: 8px;
 }
 
-.results tr:nth-child(even){background-color: #f2f2f2;}
+.results tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-.results tr:hover {background-color: #ddd;}
+.results tr:hover {
+    background-color: #ddd;
+}
 
 .results th {
     padding-top: 12px;
@@ -225,29 +233,33 @@ form.form-signin {
     margin-bottom: 60px;
 }
 
-
 /************** RESULT PAGE END ****************/
 
 /************** THEORETICAL PAGE ****************/
 
-.question-heading{
+.question-heading {
     font-weight: bolder;
     color: white;
 }
+
 .question-heading ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color:    white !important;
+    color: white !important;
 }
+
 .question-heading :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    white;
-    opacity:  1;
+    color: white;
+    opacity: 1;
 }
+
 .question-heading ::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color:    white;
-    opacity:  1;
+    color: white;
+    opacity: 1;
 }
+
 .question-heading :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:   white;
+    color: white;
 }
+
 .question-head {
     background-color: #5498cb;
 }
@@ -257,21 +269,26 @@ form.form-signin {
     margin: 0 auto;
     max-width: 900px;
 }
-.theoretical tr:hover {background-color: #ddd;}
 
-.theoretical tr:last-child:hover {background-color: transparent;}
+.theoretical tr:hover {
+    background-color: #ddd;
+}
+
+.theoretical tr:last-child:hover {
+    background-color: transparent;
+}
 
 .theoretical .questions {
     width: 100%;
     border: none;
-    background:rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     padding: 5px;
 }
 
 .theoretical .answers {
     width: 100%;
     border: none;
-    background:rgba(0,0,0,0);
+    background: rgba(0, 0, 0, 0);
     padding: 10px;
 }
 
@@ -293,17 +310,21 @@ form.form-signin {
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #504f60;
 }
+
 :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color: #504f60;
     opacity: 1;
 }
+
 ::-moz-placeholder { /* Mozilla Firefox 19+ */
     color: #504f60;
     opacity: 1;
 }
+
 :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color: #504f60;
 }
+
 /************** THEORETICAL PAGE END ****************/
 
 /************** PRACTICTAL PAGE *********************/
@@ -322,19 +343,21 @@ form.form-signin {
 .h4-custom {
     font-weight: bold;
 }
+
 /************** PRACTICTAL PAGE END *********************/
 
 /************** SETTINGS PAGE  ****************/
-.settings-box{
+.settings-box {
     box-shadow: 5px 5px 3px lightgrey;
     background: #fcf7cc;
     padding: 20px;
     border: 1px solid lightblue;
 }
 
-.settings-hr{
+.settings-hr {
     border-bottom: 1px solid lightgrey;
 }
+
 .settings-btn {
     font-size: 14px;
     padding: 3px;
@@ -356,7 +379,7 @@ form.form-signin {
     margin-bottom: 80px;
 }
 
-#passwordForm input{
+#passwordForm input {
     margin-bottom: 15px;
 }
 
@@ -368,15 +391,15 @@ form.form-signin {
 
 /************** GRADING PAGE *********************/
 label.btn span {
-    font-size: 1.5em ;
+    font-size: 1.5em;
 }
 
-div[data-toggle="pill"] label.active{
+div[data-toggle="pill"] label.active {
     color: #7AA3CC;
 }
 
-div[data-toggle="pill"] label input{
-    display: none!important;
+div[data-toggle="pill"] label input {
+    display: none !important;
 }
 
 div[data-toggle="pill"] label {
@@ -390,8 +413,7 @@ div[data-toggle="pill"] label {
     white-space: nowrap;
     vertical-align: top;
     cursor: pointer;
-    border: 0px solid
-    #c8c8c8;
+    border: 0px solid #c8c8c8;
     border-radius: 3px;
     color: #c8c8c8;
     -webkit-user-select: none;
@@ -411,7 +433,7 @@ div[data-toggle="pill"] label:active, div[data-toggle="pills"] label.active {
 }
 
 div[data-toggle="pill"] label.hover {
-    outline: none!important;
+    outline: none !important;
     display: none;
 }
 
@@ -420,7 +442,7 @@ div[data-toggle="pill"] label.hover {
     border-radius: 5px;
 }
 
-.nav-pills>li>a:hover {
+.nav-pills > li > a:hover {
     background: #e5f1f9;
 }
 
@@ -456,7 +478,28 @@ div[data-toggle="pill"] label.hover {
     border: 1px solid lightblue;
 }
 
-.grading-wrapper{
+.grading-wrapper {
     width: 100%;
 }
+
 /****************** GRADING PAGE END ***********************/
+
+/****************** HELP PAGE ***********************/
+
+.help-box {
+    box-shadow: 5px 5px 3px lightgrey;
+    border: 1px solid lightblue;
+    padding: 10px 40px 10px 40px;
+    margin-bottom: 60px;
+}
+
+.help-box h4 {
+    font-weight: bold;
+}
+
+.help-box hr {
+    border-bottom: 1px solid lightgrey;
+
+}
+
+/****************** HELP PAGE END ***********************/

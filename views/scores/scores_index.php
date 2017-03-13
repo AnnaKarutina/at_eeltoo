@@ -2,8 +2,8 @@
 
     <div id="public-results">
         <h3><?= __("Tulemused") ?></h3>
-
-        <table class="table table-bordered">
+        <div class="table-box">
+        <table class="table table-bordered results">
             <tr>
                 <th>Nimi</th>
                 <th>Teoreetiline test</th>
