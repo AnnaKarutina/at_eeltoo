@@ -4,7 +4,7 @@
     <article>
         <ul>
             <h2 class="toDo">Lahenda järgmised ülesanded:</h2>
-            <?php foreach ($practicalQuestions as $practicalQuestion): ?>
+            <?php foreach ($practicalQuestions[1] as $practicalQuestion): ?>
 
                 <li>
                     <label>

@@ -32,8 +32,11 @@ class Questions
     }
 
     static function getPractical() {
-        $practicalText = get_first('SELECT practical_text FROM practical ORDER BY RAND()');
-        return explode(';', $practicalText['practical_text'], -1);
+        $practicalText = get_first('SELECT * FROM practical ORDER BY RAND()');
+        $array = array();
+        array_push($array, $practicalText['practical_id']);
+        array_push($array, explode(';', $practicalText['practical_text'], -1));
+        return $array;
     }
 
     static function getResult() {

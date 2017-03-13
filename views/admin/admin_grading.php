@@ -24,8 +24,8 @@
                                 <?php else: ?>
                                     <span class="graded">Hinnatud: </span>
                                     <span class="graded"
-                                          id="graded-<?= $result['user_id'] ?>">"<?= $result['practical_points'] ?>
-                                        "</span>
+                                          id="graded-<?= $result['user_id'] ?>">
+                                        "<?= $result['practical_points'] ?>"</span>
                                 <?php endif; ?>
                             </a>
                         </li>
@@ -48,15 +48,13 @@
                                 $result['lastname'] . ', ' .
                                 $result['social_id'] . ', ' .
                                 date("d.m.Y", strtotime($result['date']));
-                                ?>
+                                ?>,
+                                <a href src="#" id="practical-<?= $result['user_id'] ?>" class="practical-text"
+                                   data-target="#practical-text-<?= $result['user_id'] ?>"
+                                   data-toggle="modal">
+                                    <?= $result['practical_title']; ?>
+                                </a>
                             </h4>
-
-                            <a href src="#" id="practical-<?= $result['user_id'] ?>" class="practical-text"
-                                    data-target="#practical-text-<?= $result['user_id'] ?>"
-                                    data-toggle="modal">
-                                <?= $result['practical_title']; ?>
-                            </a>
-
                             <?php if (file_exists('results/' . $result['social_id'] . '.html')): ?>
                                 <button id="view-<?= $result['user_id'] ?>" class="preview"
                                         data-target="#modal-<?= $result['user_id'] ?>"
@@ -202,7 +200,7 @@
                 $.post('admin/gradePractical', {'user_id': id, 'grade': value},
                     function (res) {
                         if (res == 'ok') {
-                            $('.not-graded-' + id).removeClass('not-graded').addClass('graded').html('Hinnatud: "' + value + '"');
+                            $('.not-graded-' + id).removeClass('not-graded').addClass('graded').html('Hinnatud: "'+value+'"');
                             $('.bottom-not-graded-' + id).removeClass('not-graded').addClass('graded-green').hide().html('Hinnatud').fadeIn('fast');
                             $('#graded-' + id).html('"' + value + '"');
                         } else {

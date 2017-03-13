@@ -63,7 +63,7 @@ class test extends Controller
             }
             // update table
             update('results', [
-                'theoretical_points' => $correctAnswers
+                'theoretical_points' => $correctAnswers,
             ], "user_id = '$user_id'");
         }
 
@@ -77,6 +77,12 @@ class test extends Controller
 
         // the user has started practical test
         $_SESSION['practical'] = true;
+
+        // update table with the practical test given
+        update('results', [
+            'practical_id' => $_SESSION['task'][0],
+        ], "user_id = '{$_SESSION['user_id']}'");
+
     }
 
     // write HTML file, get HTML errors using W3 validator
