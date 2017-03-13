@@ -84,7 +84,7 @@
                     <?php for ($i = 0; $i <= 10; $i++): ?>
                         <?php if ($result['practical_points'] == $i): ?>
                             <label id="<?= $result['user_id'] ?>" class="btn active focus">
-                                <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>" checked>
+                                <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
                                 <span><?= $i; ?></span>
                             </label>
                         <?php else: ?>
@@ -155,6 +155,9 @@
     <script>
 
         $(document).ready(function () {
+
+            var x = 0;
+
             // make the first items active
             $('ul#myTabs li:first').addClass('active');
             $('.tab-content .tab-pane:first').addClass('in active');
@@ -167,18 +170,20 @@
             // fancy grading
             $('label').on('click', function (event) {
 
-                var id = this.id;
-                var value = $('input[name=' + id + ']:checked').val();
-
                 $(this).closest('.btn-group').find('.active').removeClass('active focus');
+                $(this).prop('checked', true);
                 $(this).addClass('active focus');
 
-                event.stopPropagation();
+                var id = this.id;
+                var value = $('.active>input[name=' + id + ']').val();
+
+                console.log(x + ". Grade: " + value + ", ID: " + id);
 
                 $.post('admin/gradePractical', {'user_id': id, 'grade': value},
                     function (res) {
                         if (res == 'ok') {
-                            // window.location.reload();
+                            x++;
+                            console.log(x + ". Grade: " + value + ", ID: " + id);
                             $('#graded-' + id).html('"' + value + '"');
                             $('.graded-' + id).hide().html("Hinnatud").fadeIn('fast');
                         } else {
