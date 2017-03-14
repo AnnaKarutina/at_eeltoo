@@ -22,6 +22,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.responsive {
+    overflow-x:auto;
+}
+
 .blue-hr {
     border-bottom: 1px solid lightblue;
 }
@@ -80,24 +84,6 @@ html {
 
 .navbar-default {
     box-shadow: 2px 1px 1px lightgrey;
-}
-
-@media (min-width: 768px) and (max-width: 1000px) {
-
-    .log-out-txt {
-        display: none;
-    }
-}
-
-@media (min-width: 10px) and (max-width: 1000px) {
-
-    #khk-logo {
-        display: none;
-    }
-
-    .logout {
-        padding-right: 10px;
-    }
 }
 
 .logout {
@@ -536,3 +522,62 @@ div[data-toggle="pill"] label.hover {
 }
 
 /****************** HELP PAGE END ***********************/
+
+/***************** COLLAPSE NAVBAR SOONER *********************/
+@media (max-width: 995px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+
+    .navbar-admin a:active {
+        width: 80%;
+    }
+
+    .logout {
+        float: right!important;
+        padding-right: 10px!important;
+    }
+
+    .responsive {
+        margin-bottom: 20px;
+    }
+
+    .left-side {
+        margin-bottom: 20px;
+    }
+
+    footer {
+        opacity: 0;
+    }
+}

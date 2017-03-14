@@ -2,7 +2,7 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Tulemused") ?></h3>
-<div class="table-box">
+<div class="table-box responsive">
     <table class="table table-bordered results">
         <tr>
             <th>Nimi</th>

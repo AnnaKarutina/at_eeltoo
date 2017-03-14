@@ -37,7 +37,7 @@
                 <li <?= isset($help) ? 'class="active"' : ''?>><a href="admin/help"><?= __('Abi') ?></a></li>
             </ul>
             <div class="nav navbar-nav navbar-right logout">
-                <a href="logout" class="btn btn-info btn-lg"
+                <a href="logout" class="btn btn-info btn-lg logout-btn"
                    data-toggle="tooltip" data-placement="bottom" title="Logi välja">
                     <span class="glyphicon glyphicon-log-out"></span> <span class="log-out-txt">Logi välja</span>
                 </a>

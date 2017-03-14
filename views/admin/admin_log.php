@@ -2,7 +2,7 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Logi") ?></h3>
-    <div class="table-box">
+    <div class="table-box responsive">
 
     <h5>Otsing</h5>
     <input type="text" id="search-log" onkeyup="searchFilter()" placeholder="&#128269; Otsi inimest...">
