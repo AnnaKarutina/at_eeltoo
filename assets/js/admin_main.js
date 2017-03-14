@@ -55,14 +55,17 @@ $(document).ready(function () {
     // add theoretical questions
     $(".addTheoretical").click(function (event) {
         event.preventDefault();
-        var data = $(this).closest('form').serialize();
+        var data = $('#add-new-form').serialize();
+
+        // every time user clicks the button the opacity is restored to its default value
+        $('#error-adding').css('opacity', '0');
 
         $.post('admin/addTheoretical', data,
             function (res) {
                 if (res == 'ok') {
                     window.location.reload();
                 } else {
-                    alert(res);
+                    $('#error-adding').css('opacity', '1');
                 }
             });
     });

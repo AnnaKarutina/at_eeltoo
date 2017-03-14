@@ -22,6 +22,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.blue-hr {
+    border-bottom: 1px solid lightblue;
+}
+
 /*************** FOOTER ****************/
 #fb-logo {
     height: 50px;
@@ -310,6 +314,16 @@ form.form-signin {
     color: red;
 }
 
+#search-theoretical {
+    width: 100%;
+}
+
+#error-adding {
+    color: red;
+    opacity: 0;
+    transition: 0.2s;
+}
+
 /*************** placeholder text ********************/
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color: #504f60;
@@ -494,6 +508,15 @@ div[data-toggle="pill"] label.hover {
 
 /****************** GRADING PAGE END ***********************/
 
+/****************** LOG PAGE ***********************/
+
+#search-log {
+    display: block;
+    margin: 0 auto;
+    width: 99%;
+}
+
+/****************** LOG PAGE END ***********************/
 /****************** HELP PAGE ***********************/
 
 .help-box {

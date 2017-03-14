@@ -3,6 +3,10 @@
 
     <h3><?= __("Logi") ?></h3>
     <div class="table-box">
+
+    <h5>Otsing</h5>
+    <input type="text" id="search-log" onkeyup="searchFilter()" placeholder="&#128269; Otsi inimest...">
+        <br>
     <table class="table table-bordered results">
         <tr>
             <th>Nimi</th>
@@ -49,5 +53,19 @@
     <?php if(empty($resultsLog)): ?>
         <h4>Pole midagi kuvada</h4>
     <?php endif; ?>
+
+    <script>
+        function searchFilter() {
+            var filter = $('#search-log').val().toUpperCase();
+
+            $('tr:not(:first-child)').each(function(){
+                if($(this).html().toUpperCase().indexOf(filter) > -1) {
+                    $(this).fadeIn('fast');
+                } else {
+                    $(this).fadeOut('fast');
+                }
+            });
+        }
+    </script>
 
 <?php endif; ?>
