@@ -203,9 +203,14 @@
                 $.post('admin/gradePractical', {'user_id': id, 'grade': value},
                     function (res) {
                         if (res == 'ok') {
-                            $('.not-graded-' + id).removeClass('not-graded').addClass('graded').html('Hinnatud: "'+value+'"');
-                            $('.bottom-not-graded-' + id).removeClass('not-graded').addClass('graded-green').hide().html('Hinnatud').fadeIn('fast');
+                            // remove not graded class, hide it, change value, add class and fade it in (in pillar title)
+                            $('.not-graded-' + id).removeClass('not-graded').addClass('graded').hide().html('Hinnatud: "'+value+'"').fadeIn();
+                            // same as above but for the pillar data (next to grades)
+                            $('.bottom-not-graded-' + id).removeClass('not-graded').addClass('graded-green').hide().html('Hinnatud');
+                            // change the grade in the title should it be changed
                             $('#graded-' + id).html('"' + value + '"');
+                            // blink the graded text when a change is made
+                            $('.graded-green').fadeOut('fast').fadeIn('fast');
                         } else {
                             alert(res);
                         }

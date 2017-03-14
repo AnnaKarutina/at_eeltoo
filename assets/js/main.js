@@ -1,65 +1,142 @@
 /**
  * Created by Renee on 2/16/2017.
  */
-$(document).ready(function() {
+
+// import isikukood.min.js file directly here (javascript social id validation)
+!function (a) {
+    function b(a) {
+        "use strict";
+        this.code = a, this.getControlNumber = function () {
+            for (var a, b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1], c = [3, 4, 5, 6, 7, 8, 9, 1, 2, 3], d = 0, e = 0; e < 10; e++)d += this.code.charAt(e) * b[e];
+            if (a = d % 11, d = 0, 10 === a) {
+                for (e = 0; e < 10; e++)d += this.code.charAt(e) * c[e];
+                a = d % 11, 10 === a && (a = 0)
+            }
+            return a
+        }, this.validate = function () {
+            if (11 !== this.code.length)return !1;
+            var b = this.getControlNumber(a);
+            if (b !== parseInt(this.code.charAt(10)))return !1;
+            var c = Number(this.code.substr(1, 2)), d = Number(this.code.substr(3, 2)), e = Number(this.code.substr(5, 2)), f = this.getBirthday();
+            return c === f.getFullYear() % 100 && f.getMonth() + 1 === d && e === f.getDate()
+        }, this.getGender = function () {
+            var a = this.code.charAt(0), b = "";
+            switch (a) {
+                case"1":
+                case"3":
+                case"5":
+                    b = "male";
+                    break;
+                case"2":
+                case"4":
+                case"6":
+                    b = "female";
+                    break;
+                default:
+                    b = "unknown"
+            }
+            return b
+        }, this.getAge = function () {
+            return Math.floor(((new Date).getTime() - this.getBirthday().getTime()) / 864e5 / 365.25)
+        }, this.getBirthday = function () {
+            var a = parseInt(this.code.substring(1, 3)), b = parseInt(this.code.substring(3, 5).replace(/^0/, "")) - 1, c = this.code.substring(5, 7).replace(/^0/, ""), d = this.code.charAt(0);
+            return a += "1" === d || "2" === d ? 1800 : "3" === d || "4" === d ? 1900 : "5" === d || "6" === d ? 2e3 : 2100, new Date(a, b, c)
+        }
+    }
+
+    function c(a) {
+        console.error(a)
+    }
+
+    b.generate = function (a) {
+        "use strict";
+        a = a || {};
+        var d, e, f, g = a.gender || (0 === Math.round(Math.random()) ? "male" : "female"), h = "", i = ["00", "01", "02", "22", "27", "37", "42", "47", "49", "52", "57", "60", "65", "70", "95"];
+        if ("female" !== g && "male" !== g)throw new c('gender param accepts only "male" or "female" values.');
+        if (d = a.birthYear ? a.birthYear : Math.round(100 * Math.random() + 1900 + ((new Date).getFullYear() - 2e3)), e = a.birthMonth ? a.birthMonth : Math.floor(12 * Math.random()) + 1, a.birthDay) f = a.birthDay; else {
+            var j = new Date(d, e, 0).getDate();
+            f = Math.floor(Math.random() * j) + 1
+        }
+        return "male" === g && d >= 1800 && d <= 1899 ? h += "1" : "female" === g && d >= 1800 && d <= 1899 ? h += "2" : "male" === g && d >= 1900 && d <= 1999 ? h += "3" : "female" === g && d >= 1900 && d <= 1999 ? h += "4" : "male" === g && d >= 2e3 ? h += "5" : "female" === g && d >= 2e3 && (h += "6"), h += parseInt(d, 0).toString().substring(2, 4), h += 1 === e.toString().length ? "0" + e : e, h += 1 === f.toString().length ? "0" + f : f, h += i[Math.floor(Math.random() * i.length)], h += Math.floor(10 * Math.random()), h += new b(h).getControlNumber()
+    }, "undefined" != typeof module && module.exports ? module.exports = b : a.Isikukood = b
+}(this);
+
+// when document ready
+$(document).ready(function () {
 
     // clear any input that might have been saved via browser itself earlier
     $('input:text').val("");
     $('input:password').val("");
 
     // toggle quiz modal
-    $( "#yes" ).click(function() {
-        $( "#quiz" ).submit();
+    $("#yes").click(function () {
+        $("#quiz").submit();
     });
-    $( "#no" ).click(function() {
+    $("#no").click(function () {
         $('.confirm').modal('hide');
     });
 
 });
 
-// limits
-var lowerLimitName = 2;
-var upperLimitName = 100;
-var lowerLimitLastname = 2;
-var upperLimitLastname = 100;
-var lowerLimitSocial = 8;
-var upperLimitSocial = 14;
+// disable login button by default
+$('#btnLogin').prop('disabled', true);
 
-// validate form
-function validateForm() {
+// define limits
+var lowerLimitName = 2;
+var upperLimitName = 50;
+var lowerLimitLastname = 2;
+var upperLimitLastname = 50;
+
+// define variables
+var firstnameLength;
+var lastnameLength;
+var socialID;
+
+$(".validate-new-user").keyup(function () {
 
     var firstname = document.forms["register"]["firstName"].value;
     var lastname = document.forms["register"]["lastName"].value;
     var social = document.forms["register"]["social_id"].value;
+    var ik = new Isikukood(social);
 
-
-    if (firstname == "" || firstname.length < lowerLimitName) {
-        alert("Eesnimi on liiga lühike! Miinimum on " + lowerLimitName + " tähemärki!");
-        return false;
+    // check if firstname is too short or too long
+    if (firstname.length < lowerLimitName && firstname.length !=0) {
+        $("#firstName").addClass("border-red no-outline");
+        firstnameLength = false;
     } else if (firstname.length > upperLimitName) {
-        alert("Eesnimi on liiga pikk! Limiit on " + upperLimitName);
-        return false;
+        $("#firstName").addClass("border-red no-outline");
+        firstnameLength = false;
+    } else {
+        $("#firstName").removeClass("border-red no-outline");
+        firstnameLength = true;
     }
 
-
-    if (lastname.length < lowerLimitLastname) {
-        alert("Perenimi on liiga lühike! Miinimum on " + lowerLimitLastname + " tähemärki!");
-        return false;
+    // check if lastname is too short or too long
+    if (lastname.length < lowerLimitLastname && lastname.length !=0) {
+        $("#lastName").addClass("border-red no-outline");
+        lastnameLength = false;
     } else if (lastname.length > upperLimitLastname) {
-        alert("Perenimi on liiga pikk! Limiit on " + upperLimitLastname);
-        return false;
+        $("#lastName").addClass("border-red no-outline");
+        lastnameLength = false;
+    } else {
+        $("#lastName").removeClass("border-red no-outline");
+        lastnameLength = true;
     }
 
-    if (social.length < lowerLimitSocial) {
-        alert("Isikukood on liiga lühike!");
-        return false;
-    } else if (social.length > upperLimitSocial) {
-        alert("Isikukood on liiga pikk!");
-        return false;
-    } else if (isNaN(social)) {
-        alert("Isikukood võib sisaldada ainult numbreid!");
-        return false;
+    // validate social id... isikukood.min.js needs to be imported before this file
+    if (!(ik.validate()) && social !=0) {
+        $("#social_id").addClass("border-red no-outline");
+        socialID = false;
+    } else {
+        $("#social_id").removeClass("border-red no-outline");
+        socialID = true;
     }
-    return true;
-}
+
+    if(firstnameLength === true && lastnameLength === true && socialID === true) {
+        $('#btnLogin').prop('disabled', false);
+    } else {
+        $('#btnLogin').prop('disabled', true);
+    }
+
+});
 

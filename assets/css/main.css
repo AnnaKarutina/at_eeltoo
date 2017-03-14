@@ -36,6 +36,14 @@ body {
     padding: 7px;
 }
 
+.border-red {
+    border: 2px solid red!important;
+}
+
+.no-outline {
+    outline: none;
+}
+
 /************** PUBLIC RESULTS **********************/
 #public-results {
     margin-top: 60px;
@@ -169,7 +177,7 @@ footer {
     position: relative;
     font-weight: 400;
     font-size: 22px;
-    padding: 14.5px 25px 25px 60px;
+    padding: 14px 25px 25px 60px;
     margin: 10px auto;
     height: 60px;
     z-index: 9;
@@ -184,8 +192,8 @@ footer {
     border-radius: 100%;
     height: 25px;
     width: 25px;
-    top: 22px;
-    left: 22px;
+    top: 19px;
+    left: 20px;
     z-index: 5;
     transition: border .25s linear;
     -webkit-transition: border .25s linear;
@@ -518,40 +526,6 @@ mark.orange {
     /* border-radius: 3px; */
     /* -webkit-user-select: none;
       user-select: none; */
-}
-
-.loginmodal-submit {
-    /* border: 1px solid #3079ed; */
-   /* border: 0px;
-    color: #fff;
-    text-shadow: 0 1px rgba(0,0,0,0.1);
-    background-color: #4d90fe;
-    padding: 17px 0px;
-    font-family: roboto;
-    font-size: 14px;
-    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-    background-color: transparent;
-    border: 1px solid #5498cb;
-    border-radius: 1.5em;
-    color: #5498cb;
-    padding: 5px 20px;
-    text-align: center;
-    font-size: 18px;
-    margin: 4px 2px;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    cursor: pointer;
-
-
-}
-
-.loginmodal-submit:hover {
-    /* border: 1px solid #2f5bb7; */
-    border: 1px;
-    color: white;
-    /*text-shadow: white;*/
-    background-color: #357ae8;
-    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
 .loginmodal-container a {
