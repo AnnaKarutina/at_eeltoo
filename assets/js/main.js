@@ -97,15 +97,18 @@ $(".validate-new-user").keyup(function () {
     var firstname = document.forms["register"]["firstName"].value;
     var lastname = document.forms["register"]["lastName"].value;
     var social = document.forms["register"]["social_id"].value;
+    var pin = document.forms["register"]["password"].value;
     var ik = new Isikukood(social);
 
     // check if firstname is too short or too long
-    if (firstname.length < lowerLimitName && firstname.length !=0) {
+    if (firstname.length < lowerLimitName && firstname.length != 0) {
         $("#firstName").addClass("border-red no-outline");
         firstnameLength = false;
     } else if (firstname.length > upperLimitName) {
         $("#firstName").addClass("border-red no-outline");
         firstnameLength = false;
+    } else if (firstname.length == 0) {
+        $('#btnLogin').prop('disabled', true);
     } else {
         $("#firstName").removeClass("border-red no-outline");
         firstnameLength = true;
@@ -118,21 +121,34 @@ $(".validate-new-user").keyup(function () {
     } else if (lastname.length > upperLimitLastname) {
         $("#lastName").addClass("border-red no-outline");
         lastnameLength = false;
+    } else if (lastname.length ==0) {
+        $('#btnLogin').prop('disabled', true);
     } else {
         $("#lastName").removeClass("border-red no-outline");
         lastnameLength = true;
     }
 
     // validate social id... isikukood.min.js needs to be imported before this file
-    if (!(ik.validate()) && social !=0) {
+    if (!(ik.validate()) && social != 0) {
         $("#social_id").addClass("border-red no-outline");
         socialID = false;
+    } else if (social == 0) {
+        $('#btnLogin').prop('disabled', true);
     } else {
         $("#social_id").removeClass("border-red no-outline");
         socialID = true;
     }
 
-    if(firstnameLength === true && lastnameLength === true && socialID === true) {
+    // if password is not numeric
+    if (!($.isNumeric(pin)) && pin != 0) {
+        $("#password").addClass("border-red no-outline");
+    } else {
+        $("#password").removeClass("border-red no-outline");
+    }
+
+    // if all is well (including pin is not empty), enable the button
+    if(firstnameLength === true && lastnameLength === true && socialID === true && pin != 0 &&
+    $.isNumeric(pin)) {
         $('#btnLogin').prop('disabled', false);
     } else {
         $('#btnLogin').prop('disabled', true);

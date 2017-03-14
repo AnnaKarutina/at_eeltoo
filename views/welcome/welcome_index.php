@@ -33,7 +33,7 @@
                 <input type="text" id="prevent_autofill" value="" style="display:none;"/>
                 <input type="text" class="validate-new-user" name="social_id" id="social_id" placeholder="Isikukood"/>
                 <input type="text" id="prevent_autofill" value="" style="display:none;"/>
-                <input type="password" id="password" placeholder="PIN-kood"/>
+                <input type="password" class="validate-new-user" id="password" placeholder="PIN-kood"/>
                 <input type="submit" class="btn btn-primary btn-load btn-lg loginmodal-submit" id="btnLogin"
                        data-loading-text="Changing Password..." value="Alusta">
             </form>
