@@ -108,6 +108,7 @@ $(".validate-new-user").keyup(function () {
         $("#firstName").addClass("border-red no-outline");
         firstnameLength = false;
     } else if (firstname.length == 0) {
+        $("#firstName").removeClass("border-red no-outline");
         $('#btnLogin').prop('disabled', true);
     } else {
         $("#firstName").removeClass("border-red no-outline");
@@ -122,6 +123,7 @@ $(".validate-new-user").keyup(function () {
         $("#lastName").addClass("border-red no-outline");
         lastnameLength = false;
     } else if (lastname.length ==0) {
+        $("#lastName").removeClass("border-red no-outline");
         $('#btnLogin').prop('disabled', true);
     } else {
         $("#lastName").removeClass("border-red no-outline");
@@ -133,6 +135,7 @@ $(".validate-new-user").keyup(function () {
         $("#social_id").addClass("border-red no-outline");
         socialID = false;
     } else if (social == 0) {
+        $("#social_id").removeClass("border-red no-outline");
         $('#btnLogin').prop('disabled', true);
     } else {
         $("#social_id").removeClass("border-red no-outline");
