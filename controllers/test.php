@@ -153,6 +153,7 @@ class test extends Controller
     {
         $this->points = Questions::getResult();
         killSession();
+        header( "refresh:10;url=".BASE_URL."" );
     }
 
 }
