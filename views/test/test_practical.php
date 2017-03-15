@@ -2,8 +2,8 @@
 <script src="assets/js/codemirror.js"></script>
 <div id="practical-questions">
     <article>
+        <h2 class="toDo">Lahenda järgmised ülesanded:</h2>
         <ul>
-            <h2 class="toDo">Lahenda järgmised ülesanded:</h2>
             <?php foreach ($practicalQuestions[1] as $practicalQuestion): ?>
 
                 <li>
@@ -20,8 +20,8 @@
 <div class="row">
     <div class="col-md-6">
         <form action="test/result" method="post" id="target">
-            <div class="practical-div"><mark class="practical-heading center"><h2>Koodi kirjutamine:</h2></mark></div>
-            <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
+            <div class="practical-div"><mark class="practical-heading center">Koodi kirjutamine:</mark></div>
+            <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML" cols="20"></textarea>
             <br>
             <input type="hidden" value="Submit">
             <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"
@@ -63,7 +63,7 @@
 
 <form action="test/result" method="post" id="target">
     <div class="practical-div"><mark class="practical-heading center"><h2>Koodi kirjutamine:</h2></mark></div>
-    <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML""></textarea>
+    <textarea wrap="hard" name="validateHTML" id="code" class="validateHTML" cols="20"></textarea>
     <br>
     <input type="hidden" value="Submit">
     <a href="#" id="submit-practical" class="btn btn-info btn-lg form-button" data-toggle="modal"

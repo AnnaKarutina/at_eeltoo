@@ -306,8 +306,10 @@ input[type=radio]:checked ~ label{
     color: white;
     display: block;
     margin: auto;
-    margin-bottom: 20px;
+    margin-bottom: 21px;
+    padding-top: 22px;
     height: 60px;
+    font-size: 30px;
 }
 
 .practical-div{
