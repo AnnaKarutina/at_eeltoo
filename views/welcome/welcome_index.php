@@ -1,4 +1,5 @@
 <style>
+    /************** CUSTOM CSS FOR WELCOME PAGE **********/
     body {
         background: url("images/bg.jpg");
         background-size: cover;
@@ -28,6 +29,36 @@
 
     .welcome-text {
         box-shadow: 5px 5px 3px rgba(235, 235, 235, 0.6);
+    }
+
+    /**** FOOTER FIX FOR WELCOME PAGE *********/
+    @media (min-width: 625px) and (max-width: 1000px) {
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width:100%;
+            height: 120px;
+            margin-top: 15vh;
+        }
+    }
+
+    @media (min-width: 482px) and (max-width: 625px) {
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            width:100%;
+            height: 120px;
+            margin-top: 45vh;
+        }
+    }
+
+    @media (min-width: 10px) and (max-width: 482px) {
+
+        footer {
+            display: none;
+        }
     }
 </style>
 <h1 class="">Noorem tarkvaraarendaja ja veebispetsialist</h1>
