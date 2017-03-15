@@ -384,12 +384,11 @@ input[type=radio]:checked ~ label{
 
 
 /************ FINISHED PAGE *******************************/
-#score {
+.bordered-box {
     /*border-top: solid 1px #5498cb;*/
     margin-top: 10%;
     box-shadow: 5px 5px 3px lightgrey;
     background-color: #fff;
-
 }
 
 /* some yellow text or sign */
@@ -401,6 +400,8 @@ mark.orange {
 }
 
 .finish-p{
+    margin-top: -45px;
+    text-align: center!important;
     height: 20%;
     background-color: transparent;
     font-size: 21px;
