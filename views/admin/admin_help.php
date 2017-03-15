@@ -47,8 +47,9 @@
         <hr>
         <h4>Logi</h4>
         <ul>
-            <li>Logi tabelist saab vaadata vanu tulemusi.</li>
-            <li>Logi tabelist saab otsida inimesi kõigi tabeli parameetrite järgi.</li>
+            <li>Logi tabelist saab vaadata vanu tulemusi, mis on tulemuste tabelist ära kustutatud.</li>
+            <li>Logi tabelist saab otsida inimesi kõigi tabeli väärtuste järgi.</li>
+            <li>Logi tabelis saab järjestada inimesi kõigi tabeli parameetrite järgi kasvavalt kahanevaks või vastupidi.</li>
         </ul>
         <hr>
         <h4>Seaded</h4>
