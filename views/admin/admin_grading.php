@@ -38,9 +38,6 @@
         <!-- CONTENT -->
         <div class="col-md-9">
             <div class="tab-content">
-                <?php if(empty($results['user_id'])): ?>
-                <h4>Midagi pole kuvada</h4>
-                <?php endif; ?>
 
                 <?php foreach ($results as $result): ?>
                     <?php if ($result['practical_points'] != -2): ?>
@@ -70,9 +67,17 @@
                             <?php else: ?>
                                 <h5>Antud isiku kohta puudub HTML fail</h5>
                             <?php endif; ?>
+
+    <?php if (empty(htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')))): ?>
+<pre>
+Fail on tühi
+</pre>
+    <?php else: ?>
 <pre>
 <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
 </pre>
+    <?php endif; ?>
+
                             <?php if (!empty($result['practical_errors'])): ?>
                             <h4>HTML errorid</h4>
                         <?php if (empty(unserialize($result['practical_errors']))): ?>

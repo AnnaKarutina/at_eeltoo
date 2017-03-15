@@ -12,6 +12,7 @@
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/admin_main.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.tablesorter.min.js"></script>
 </head>
 <body>
 

@@ -7,16 +7,18 @@
     <h5>Otsing</h5>
     <input type="text" id="search-log" onkeyup="searchFilter()" placeholder="&#128269; Otsi inimest...">
         <br>
-    <table class="table table-bordered results">
-        <tr>
-            <th>Nimi</th>
-            <th>Isikukood</th>
-            <th>T. test (punktid)</th>
-            <th>Küsimusi</th>
-            <th>P. test (punktid)</th>
-            <th>Kuupäev</th>
-            <th>Kokku (punktid)</th>
-        </tr>
+    <table class="table table-bordered results" id="sort-log">
+        <thead id="log-head">
+            <tr>
+                <th>Nimi <span class="sort-right">&#x21D5;</span></th>
+                <th>Isikukood <span class="sort-right">&#x21D5;</span></th>
+                <th>T. test (punktid) <span class="sort-right">&#x21D5;</span></th>
+                <th>Küsimusi <span class="sort-right">&#x21D5;</span></th>
+                <th>P. test (punktid) <span class="sort-right">&#x21D5;</span></th>
+                <th>Kuupäev <span class="sort-right">&#x21D5;</span></th>
+                <th>Kokku (punktid) <span class="sort-right">&#x21D5;</span></th>
+            </tr>
+        </thead>
         <?php foreach ($resultsLog as $resultLog): ?>
             <tr>
                 <td><?= $resultLog['firstname'].' '.$resultLog['lastname'] ?></td>
@@ -55,6 +57,14 @@
     <?php endif; ?>
 
     <script>
+
+        // make table sortable
+        $(document).ready(function()
+            {
+                $("#sort-log").tablesorter();
+            }
+        );
+
         function searchFilter() {
             var filter = $('#search-log').val().toUpperCase();
 

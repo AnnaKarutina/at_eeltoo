@@ -510,6 +510,16 @@ div[data-toggle="pill"] label.hover {
     width: 99%;
 }
 
+.sort-right {
+    float: right!important;
+    margin-top: -2px;
+}
+
+#log-head th:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
 /****************** LOG PAGE END ***********************/
 /****************** HELP PAGE ***********************/
 

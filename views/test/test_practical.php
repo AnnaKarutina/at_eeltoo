@@ -38,6 +38,7 @@
 </div>
 
 <script>
+
     // start the live editor magic! :)
     $( document ).ready(function() {
         var delay;
