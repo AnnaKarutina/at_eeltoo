@@ -7,6 +7,14 @@
         background-position: center center;
         padding-bottom: 120px;
     }
+
+    @media (min-width: 10px) and (max-width: 600px) {
+
+        body {
+            background: none;
+        }
+    }
+
     footer {
         background: white;
         font-weight: bold;
