@@ -3,7 +3,7 @@
     punkti.<br>
     <hr>
     <mark class="finish-p">Kokku saadakse punkte teoreetilise ja praktilise testi ning vestlusvooru eest! Praktilise
-        testi tulemused saadakse teada hiljem. Automaatne suunamine avalehele toimub <span id="counter">10</span>
+        testi tulemused saadakse teada hiljem. Automaatne suunamine avalehele toimub <span id="counter">15</span>
         sekundi pärast.
     </mark>
 </h1>
@@ -14,6 +14,6 @@
         $('#counter').html(cc);
         if (cc > 0)
             setTimeout(function() { count(--cc); }, 1000);
-    })(10);
+    })(15);
 
 </script>

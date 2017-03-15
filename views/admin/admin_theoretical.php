@@ -47,7 +47,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Oled kindel, et soovid kustutada?</h4>
-                    <h4 id="checked"></h4>
                 </div>
                 <div class="modal-footer">
                     <button id = "yes" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
@@ -63,7 +62,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Küsimuse lisamine</h4>
-                    <h4 id="checked"></h4>
                 </div>
                 <div class="modal-body">
                     <!-- add new question -->

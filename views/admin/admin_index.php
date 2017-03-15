@@ -52,7 +52,7 @@
                 <td>
                     <a href="#" data-toggle="modal" data-target=".confirm-delete"
                        id="delete-<?= $result['user_id']; ?>" class="del-icon">
-                        <img src="images/trash.png" height="20px" alt="trash">
+                        <img src="images/trash.png" height="20" alt="trash">
                     </a>
                 </td>
             </tr>
@@ -74,7 +74,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Oled sa kindel, et soovid tabelit tühjendada? Tagasiteed ei ole!</h4>
-                    <h4 id="checked"></h4>
                 </div>
                 <div class="modal-footer">
                     <button id="yes" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
@@ -90,7 +89,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Oled sa kindel, et soovid antud sissekannet kustutada?</h4>
-                    <h4 id="checked"></h4>
                 </div>
                 <div class="modal-footer">
                     <button id="yes-delete" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
@@ -141,6 +139,7 @@
         // allow admin to delete files from result page and push them to the log table
         $(".del-icon").click(function (event) {
             event.preventDefault();
+            // remove delete- and get only the id
             var id = $(this).attr('id').replace('delete-', '');
             console.log(id);
 

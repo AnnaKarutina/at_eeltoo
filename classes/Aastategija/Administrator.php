@@ -11,6 +11,9 @@ namespace Aastategija;
 
 class Administrator
 {
+    // getting the results, if statements are there because the sum would be incorrect otherwise
+    // for theoretical -1 means it is not done
+    // for practical -2 means it is not done, -1 means it is not graded
     static function getResults()
     {
         return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
@@ -32,7 +35,7 @@ class Administrator
         return get_all("SELECT *, (IF(results_log.theoretical_points>0, results_log.theoretical_points,0) + 
         IF(results_log.practical_points>0,results_log.practical_points,0)) AS sum 
         FROM results_log INNER JOIN users WHERE results_log.user_id = users.user_id ORDER BY 
-        IF(results_log.practical_points >= 0, sum, results_log.practical_points) DESC");
+        date DESC");
     }
 
     static function getQuestions() {

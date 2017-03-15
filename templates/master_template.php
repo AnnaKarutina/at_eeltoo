@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<meta charset="utf-8"/>
 <html>
 <head>
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="<?= BASE_URL ?>">
     <title>Sisseastumine</title>
@@ -48,11 +48,11 @@
 <footer>
     <div class="col-md-4 footer-block">
         <span>Tartu Kutsehariduskeskus</span><br/>
-        <span>Kopli 1, 50115 Tartu</span><br/>
+        <span><a href="https://goo.gl/wGteKA" target="_blank">Kopli 1, 50115 Tartu</a></span><br/>
     </div>
     <div class="col-md-4 footer-block">
-        <span>E-post: <a href="info@khk.ee">info@khk.ee</a> </span><br/>
-        <span>Telefon: 7 361 866</span><br/>
+        <span>E-post: <a href="mailto:info@khk.ee">info@khk.ee</a> </span><br/>
+        <span>Telefon: <a href="tel:+3727361866">7 361 866</a></span><br/>
     </div>
     <div class="col-md-4 footer-block">
         <a href="http://www.facebook.com/kutseharidus" target="_blank">

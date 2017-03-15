@@ -259,6 +259,7 @@
             });
 
         });
+
     </script>
 
 <?php endif; ?>

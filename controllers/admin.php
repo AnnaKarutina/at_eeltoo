@@ -171,7 +171,7 @@ class admin extends Controller
     function AJAX_generatePassword() {
         $randomPIN = generateRandomPIN(4);
         update('settings', ['pwd' => ''.$randomPIN.''], "id = '1'");
-        exit(generateRandomPIN(4));
+        exit($randomPIN);
     }
 
     function AJAX_liveOption() {

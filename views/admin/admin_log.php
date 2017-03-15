@@ -45,7 +45,7 @@
                     <?php endif; ?>
                 </td>
                 <td><?= date("d.m.Y", strtotime($resultLog['date']));;?></td>
-                <td><?= $resultLog['sum'] ?></td>
+                <td><?= $resultLog['sum'] ?> / <?= $resultLog['nr_of_questions']+10 ?></td>
             </tr>
         <?php endforeach ?>
     </table>

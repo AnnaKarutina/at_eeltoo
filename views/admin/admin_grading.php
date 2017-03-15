@@ -52,7 +52,7 @@
                                 $result['social_id'] . ', ' .
                                 date("d.m.Y", strtotime($result['date']));
                                 ?>,
-                                <a href src="#" id="practical-<?= $result['user_id'] ?>" class="practical-text"
+                                <a href="#" id="practical-<?= $result['user_id'] ?>" class="practical-text"
                                    data-target="#practical-text-<?= $result['user_id'] ?>"
                                    data-toggle="modal">
                                     <?= $result['practical_title']; ?>
@@ -80,7 +80,7 @@
                         <?php endif; ?>
                             <ul>
                                 <?php foreach (unserialize($result['practical_errors']) as $error): ?>
-                                    <li><?= $error; ?></li>
+                                    <li><?= htmlentities($error); ?></li>
                                 <?php endforeach; ?>
                                 <?php endif; ?>
                             </ul>
@@ -91,12 +91,12 @@
                             <div class="btn-group" data-toggle="pill">
                                 <?php for ($i = 0; $i <= 10; $i++): ?>
                                     <?php if ($result['practical_points'] == $i): ?>
-                                        <label id="<?= $result['user_id'] ?>" class="btn active focus">
+                                        <label class="btn active focus">
                                             <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
                                             <span><?= $i; ?></span>
                                         </label>
                                     <?php else: ?>
-                                        <label id="<?= $result['user_id'] ?>" class="btn">
+                                        <label class="btn">
                                             <input type="radio" name="<?= $result['user_id'] ?>" value="<?= $i; ?>">
                                             <span><?= $i; ?></span>
                                         </label>
@@ -114,8 +114,6 @@
                 <?php endforeach ?>
             </div>
         </div>
-
-    </div>
     </div>
 
     <?php foreach ($results as $result): ?>
@@ -196,8 +194,7 @@
                 $(this).closest('.btn-group').find('.active').removeClass('active focus');
                 $(this).prop('checked', true);
                 $(this).addClass('active focus');
-
-                var id = this.id;
+                var id = $(this).find(':input').attr('name');
                 var value = $('.active>input[name=' + id + ']').val();
 
                 $.post('admin/gradePractical', {'user_id': id, 'grade': value},

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
     <base href="<?= BASE_URL ?>">
     <title><?= PROJECT_NAME ?></title>
@@ -65,7 +65,7 @@
         } ?>
 
 
-        <label for="user"><?= __('Kasutaja') ?></label>
+        <label><?= __('Kasutaja') ?></label>
 
         <div class="input-group">
             <span class="input-group-addon"><i class="icon-user"></i></span>
@@ -74,7 +74,7 @@
 
         <br/>
 
-        <label for="pass"><?= __('Parool') ?></label>
+        <label><?= __('Parool') ?></label>
 
         <div class="input-group">
             <span class="input-group-addon"><i class="icon-key"></i></span>
