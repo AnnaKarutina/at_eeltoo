@@ -116,6 +116,7 @@ Näide:
                 });
             });
 
+            // add practical task
             $("#add-practical").click(function (event) {
                 event.preventDefault();
                 var practicalTitle = $('#new-title').val();
@@ -137,6 +138,7 @@ Näide:
 
         });
 
+        // function to fix multiline placeholder weird behaviour across different browsers
         $(function() {
             var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 

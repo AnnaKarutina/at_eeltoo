@@ -1,3 +1,35 @@
+<style>
+    body {
+        background: url("images/bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        padding-bottom: 120px;
+    }
+    footer {
+        background: white;
+        font-weight: bold;
+        opacity: 0.9;
+    }
+
+    #start {
+        background: rgba(0, 0, 0, 0.8);
+        font-size: 19px;
+    }
+
+    .navbar {
+        border: none;
+    }
+
+    .navbar-form {
+        padding: 0;
+        margin-bottom: 0;
+    }
+
+    .welcome-text {
+        box-shadow: 5px 5px 3px rgba(235, 235, 235, 0.6);
+    }
+</style>
 <h1 class="">Noorem tarkvaraarendaja ja veebispetsialist</h1>
 <h3>Sisseastumiskatsed</h3>
 <div class="welcome-text">
@@ -16,7 +48,7 @@
     </p>
 </div>
 <div class="center">
-    <a href="#" class="btn btn-info btn-lg" data-toggle="modal"
+    <a id="start" href="#" class="btn btn-info btn-lg" data-toggle="modal"
        data-target="#login-modal">Registreeri testile</a>
 </div>
 
