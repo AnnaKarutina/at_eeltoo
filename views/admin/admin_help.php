@@ -24,6 +24,8 @@
         <h4>Teoreetilised küsimused</h4>
         <ul>
             <li>Teoreetiliste küsimuste lehel saab lisada, muuta ja kustutada teoreetilisi küsimusi.</li>
+            <li>Teoreetiliste küsimuste lisamiseks on nupp "Lisa küsimus", millele vajutades avaneb moodulaken, kus saab lisada küsimuse ja vastusevariandid.</li>
+            <li>Teoreetilisi küsimusi saab pealkirja järgi otsida kasutades otsingumootorit.</li>
         </ul>
         <hr>
         <h4>Hindamine</h4>
@@ -46,6 +48,7 @@
         <h4>Logi</h4>
         <ul>
             <li>Logi tabelist saab vaadata vanu tulemusi.</li>
+            <li>Logi tabelist saab otsida inimesi kõigi tabeli parameetrite järgi.</li>
         </ul>
         <hr>
         <h4>Seaded</h4>
