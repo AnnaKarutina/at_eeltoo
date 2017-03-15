@@ -9,6 +9,9 @@
     <link href="vendor/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/codemirror.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
+    <?php if (isset($welcome)): ?>
+        <link href="assets/css/welcome_page.css" rel="stylesheet">
+    <?php endif; ?>
     <script src="vendor/components/jquery/jquery.min.js"></script>
     <script src="vendor/components/bootstrap/js/bootstrap.min.js"></script>
 

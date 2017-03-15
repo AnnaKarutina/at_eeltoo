@@ -8,6 +8,8 @@ class welcome extends Controller
 
     function index()
     {
+        $this->welcome = true;
+
         if (isset($_SESSION['practical']) || Questions::getResult() >= 0) {
             header('Location: test/practical');
             exit();
