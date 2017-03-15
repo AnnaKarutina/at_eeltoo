@@ -3,16 +3,19 @@
     body {
         background: url("images/bg.jpg");
         background-size: cover;
-        background-repeat: no-repeat;
         background-position: center center;
         padding-bottom: 120px;
     }
 
-    @media (min-width: 10px) and (max-width: 600px) {
+    @media (min-width: 10px) and (max-width: 1200px) {
 
         body {
-            background: none;
+            background-size: auto  ;
         }
+    }
+
+    .footer-block {
+        background: white;
     }
 
     footer {
