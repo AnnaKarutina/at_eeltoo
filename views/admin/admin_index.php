@@ -46,7 +46,10 @@
                 <td><?= date("d.m.Y", strtotime($result['date'])); ?></td>
                 <td>
                     <?php if ($result['practical_points'] != -2 && $result['practical_points'] != -2): ?>
-                        <button type="button" id="<?= $result['user_id']; ?>" class="allowAgain">Luba</button>
+                        <button type="button"
+                                data-toggle="modal" data-target=".confirm-allow-again"
+                                id="<?= $result['user_id']; ?>" class="allowAgain">Luba
+                        </button>
                     <?php endif; ?>
                 </td>
                 <td>
@@ -98,18 +101,40 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- allow to take the test again modal -->
+    <div class="modal fade confirm-allow-again">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Oled sa kindel, et soovid antud isikut uuesti testile lubada?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button id="yes-allow" type="button" class="btn btn-default" data-dismiss="modal">Jah</button>
+                    <button id="no-allow" type="button" class="btn btn-primary">Ei</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <script>
         // allow user to take the test again in case of error or change of heart
         $(".allowAgain").click(function () {
             var id = this.id;
-            $.post('admin/allowAgain', {'user_id': id},
-                function (res) {
-                    if (res == 'ok') {
-                        window.location.reload();
-                    } else {
-                        alert(res);
-                    }
+
+            $("#yes-allow").click(function () {
+                $.post('admin/allowAgain', {'user_id': id},
+                    function (res) {
+                        if (res == 'ok') {
+                            window.location.reload();
+                        } else {
+                            alert(res);
+                        }
                 });
+            });
+
+            $("#no-allow").click(function () {
+                $('.confirm-allow-again').modal('hide');
+            });
         });
 
 
