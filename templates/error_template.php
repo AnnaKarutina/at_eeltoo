@@ -12,40 +12,5 @@
 
 <body>
 
-<div class="container">
-
-    <div class="wrapper">
-        <h1 class="title">Ahhhhhhhhhhh! This page doesn't exist</h1>
-        <h2 class="strapline">Not to worry. You can either head back to <a href="<?= BASE_URL ?>">our homepage</a>, or
-            sit
-            there and watch this goat.</h2>
-    </div>
-
-    <img id="goat" src="<?= BASE_URL ?>/images/goat.jpg" alt="goat">
-
-    <?php if (isset($errors)): ?>
-
-
-        <?php foreach ($errors as $error): ?>
-
-            <div class="alert alert-danger"><?= $error ?></div>
-
-        <?php endforeach; ?>
-
-
-    <?php else: ?>
-
-
-        Tundmatu viga!
-
-
-    <?php endif; ?>
-</div>
-<!-- /container -->
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
 </body>
 </html>
