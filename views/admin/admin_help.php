@@ -65,5 +65,10 @@
                 teatud kriteeriumid.
             </li>
         </ul>
+        <h4>Üldine</h4>
+        <ul>
+            <li>Samal ajal ei ole võimalik olla sisselogitud administraatorina ja testilahendajana.</li>
+            <li>Välja logida on ka võimalik brauseris kui kirjutada pealehe URL-i taha "/logout"</li>
+        </ul>
     </div>
 <?php endif; ?>
