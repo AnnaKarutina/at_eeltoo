@@ -1,5 +1,5 @@
-<h1 class="">Noorem tarkvaraarendaja ja veebispetsialist</h1>
-<h3>Sisseastumiskatsed</h3>
+<h1 id="welcome-large">Noorem tarkvaraarendaja ja veebispetsialist</h1>
+<h3 id="welcome-small">Sisseastumiskatsed</h3>
 <div class="welcome-text">
     <p>
         Tere tulemast Tartu Kutsehariduskeskuse noorem tarkvaraarendaja ja veebispetsialisti eriala

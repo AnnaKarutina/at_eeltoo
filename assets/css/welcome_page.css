@@ -6,6 +6,10 @@ body {
     padding-bottom: 120px;
 }
 
+#welcome-large {
+    color: #286090!important;
+}
+
 @media (min-width: 10px) and (max-width: 1200px) {
 
     body {
@@ -24,7 +28,16 @@ footer {
 }
 
 #start {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(255, 165, 0, 0.8);
+    border: 1px solid white;
+    color: white;
+    font-size: 19px;
+}
+
+#start:hover {
+    background: rgba(255, 165, 0, 1);
+    border: 1px solid white;
+    color: white;
     font-size: 19px;
 }
 
