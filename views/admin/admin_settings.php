@@ -152,7 +152,12 @@
             setInterval(function () {
                 $.post('admin/liveTime', 'test',
                     function (res) {
-                        $('#liveTime').html(res);
+                        console.log(res);
+                        if(res != 0) {
+                            $('#liveTime').html(res);
+                        } else {
+                            $('#liveTime').html('Test on suletud').fadeIn('fast');
+                        }
                     });
             }, 1000);
 
