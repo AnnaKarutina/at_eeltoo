@@ -29,7 +29,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <img id="khk-logo" src="images/khk_logo.png" alt="logo"/>
+            <a href="http://khk.ee/" target="_blank"><img id="khk-logo" src="images/khk_logo.png" alt="logo"/></a>
         </div>
         <div class="navbar-form navbar-right">
             <?php if(isset($_SESSION['user_id'])): ?>
