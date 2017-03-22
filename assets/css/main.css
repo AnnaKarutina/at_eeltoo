@@ -16,7 +16,7 @@ body {
     font-family: Lato;
 }
 
-.welcome-text{
+.welcome-text {
     box-shadow: 5px 5px 3px lightgrey;
     background-color: #fff;
     margin: 0 auto;
@@ -24,7 +24,7 @@ body {
     margin-top: 20px;
 }
 
-.welcome-text>p {
+.welcome-text > p {
     text-align: center !important;
 }
 
@@ -37,19 +37,30 @@ body {
 }
 
 .border-red {
-    border: 2px solid red!important;
+    border: 2px solid red !important;
 }
 
 .no-outline {
     outline: none;
 }
 
+/************** MODAL TWITCH FIX *****************/
+.modal-open {
+    padding-right: 0 !important;
+}
+
+html {
+    overflow-y: scroll !important;
+}
+
+/************** MODAL FIX END *****************/
+
 /************** PUBLIC RESULTS **********************/
 #public-results {
     margin-top: 60px;
 }
-/************** PUBLIC RESULTS END **********************/
 
+/************** PUBLIC RESULTS END **********************/
 
 /************ FOOTER AND HEADER *********************/
 /* header */
@@ -87,7 +98,7 @@ footer {
     border-top: solid 2px #5498cb;
 }
 
-.modal-footer{
+.modal-footer {
     display: block !important;
     margin: auto !important;
 }
@@ -100,16 +111,17 @@ footer {
         margin-top: 20px;
     }
 }
+
 /* footer end */
 /************ FOOTER AND HEADER END *********************/
 
 /************ TEST PAGE *********************************/
 
-.quiz-title{
+.quiz-title {
     text-shadow: 4px 4px 6px lightblue;
 }
 
-.question-box{
+.question-box {
     border: solid 1px #fff;
     background-color: #fff;
     box-shadow: 5px 5px 3px lightgrey;
@@ -118,7 +130,7 @@ footer {
     margin-top: 2%;
 }
 
-#submit-quiz{
+#submit-quiz {
     width: 130px;
     display: block;
     margin: auto;
@@ -128,13 +140,14 @@ footer {
 }
 
 .active-answer {
-    background: black!important;
+    background: black !important;
 }
 
 .question-box h2 {
     text-align: center;
 }
-.question-box ul{
+
+.question-box ul {
     list-style: none;
     height: 100%;
     width: 100%;
@@ -143,8 +156,7 @@ footer {
     margin-bottom: 3%;
 }
 
-
-.question-box ul li{
+.question-box ul li {
     margin: auto;
     margin-top: 2%;
     color: #fff;
@@ -162,16 +174,16 @@ footer {
     }
 }
 
-.question-box ul li:hover{
+.question-box ul li:hover {
     background: #ddc03a;
 }
 
-.question-box ul li input[type=radio]{
+.question-box ul li input[type=radio] {
     position: absolute;
     visibility: hidden;
 }
 
-.question-box ul li label{
+.question-box ul li label {
     letter-spacing: 2px;
     display: block;
     position: relative;
@@ -185,7 +197,7 @@ footer {
     -webkit-transition: all 0.25s linear;
 }
 
-.question-box ul li .check{
+.question-box ul li .check {
     display: block;
     position: absolute;
     border: 2px solid #fff;
@@ -221,19 +233,19 @@ input[type=radio]:checked ~ .check {
     border: 5px solid #7db1b2;
 }
 
-input[type=radio]:checked ~ .check::before{
+input[type=radio]:checked ~ .check::before {
     background: #7db1b2;
 }
 
-input[type=radio]:checked ~ label{
+input[type=radio]:checked ~ label {
     color: #7db1b2;
 }
 
-.modal-title{
+.modal-title {
     margin-top: -2% !important;
 }
 
-.modal-btn{
+.modal-btn {
     font-size: 18px;
     margin-top: -6px !important;
     width: 60px;
@@ -244,10 +256,11 @@ input[type=radio]:checked ~ label{
     margin-bottom: -3px;
     color: red;
 }
+
 /************ TEST PAGE END ******************************/
 
 /************ PRACTICAL PAGE *****************************/
-.toDo{
+.toDo {
     display: block !important;
     margin: auto !important;
     text-align: center;
@@ -257,7 +270,7 @@ input[type=radio]:checked ~ label{
 
 }
 
-#practical-questions article{
+#practical-questions article {
     border: solid 1px #fff;
     background-color: #fff;
     margin-top: 2%;
@@ -265,7 +278,7 @@ input[type=radio]:checked ~ label{
     margin-bottom: 2%;
 }
 
-#practical-questions ul li{
+#practical-questions ul li {
     list-style: none;
     border-radius: 1.5em;
     color: black;
@@ -279,13 +292,13 @@ input[type=radio]:checked ~ label{
     text-align: left;
 }
 
-#target{
+#target {
     background-color: #d90;
     box-shadow: 5px 5px 3px lightgrey;
 
 }
 
-#submit-practical{
+#submit-practical {
     display: block;
     margin: auto;
     width: 100px;
@@ -295,13 +308,13 @@ input[type=radio]:checked ~ label{
     font-size: 22px;
 }
 
-#submit-practical:hover{
+#submit-practical:hover {
     border-color: #fff;
     background-color: #fff;
     color: black;
 }
 
-.practical-heading{
+.practical-heading {
     background-color: transparent;
     color: white;
     display: block;
@@ -312,11 +325,11 @@ input[type=radio]:checked ~ label{
     font-size: 30px;
 }
 
-.practical-div{
+.practical-div {
     margin-top: 60px;
 }
 
-.preview-heading{
+.preview-heading {
     background-color: #d90;
     color: white;
     display: block;
@@ -330,11 +343,12 @@ input[type=radio]:checked ~ label{
 .preview-div {
     margin-top: 60px;
 }
+
 /************ PRACTICAL PAGE END *************************/
 
 /************ PRACTICAL RESULT VIEW PAGE ******************/
 
-#submit-view{
+#submit-view {
     width: 130px;
     display: block;
     margin: auto;
@@ -343,7 +357,7 @@ input[type=radio]:checked ~ label{
     font-size: 22px;
 }
 
-#result-iframe{
+#result-iframe {
     display: block;
     margin: auto;
     width: 75%;
@@ -382,7 +396,6 @@ input[type=radio]:checked ~ label{
 
 /************ PRACTICAL RESULT VIEW PAGE END **************/
 
-
 /************ FINISHED PAGE *******************************/
 .bordered-box {
     /*border-top: solid 1px #5498cb;*/
@@ -399,13 +412,14 @@ mark.orange {
     margin-bottom: 2%;
 }
 
-.finish-p{
+.finish-p {
     margin-top: -45px;
-    text-align: center!important;
+    text-align: center !important;
     height: 20%;
     background-color: transparent;
     font-size: 21px;
 }
+
 /************ FINISHED PAGE END *******************************/
 
 /********** TO DO ***************/
@@ -457,6 +471,7 @@ mark.orange {
     color: #5498cb;
     width: 100%;
 }
+
 /* button */
 .btn {
     transition: .2s ease;
@@ -468,6 +483,7 @@ mark.orange {
     margin-top: 20px;
 
 }
+
 /********** TO DO END ***************/
 
 /****** LOGIN MODAL ******/
@@ -514,9 +530,9 @@ mark.orange {
 .loginmodal-container input[type=text]:hover, input[type=password]:hover {
     border: 1px solid #b9b9b9;
     border-top: 1px solid #a0a0a0;
-    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .loginmodal {
@@ -541,15 +557,17 @@ mark.orange {
     transition: opacity ease 0.5s;
 }
 
-.login-help{
+.login-help {
     font-size: 12px;
 }
+
 /************ LOGIN MODAL END *********************/
 
 /************ CHROME FORM FIX *********************/
 input:-webkit-autofill, input:focus:-webkit-autofill, input:hover:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0px 1000px white inset!important;
+    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
+
 /************ CHROME FORM END *********************/
 
 /************ PUBLIC SCORE *********************/

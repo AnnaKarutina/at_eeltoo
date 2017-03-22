@@ -12,8 +12,9 @@ namespace Aastategija;
 class Questions
 {
 
-    public static function get() {
-        // questions are ordered by randomly
+    public static function get()
+    {
+        // questions are ordered by random
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY RAND()', $q);
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
@@ -31,17 +32,24 @@ class Questions
         return array_slice($questions, 0, $questionCount['nr_of_questions']);
     }
 
-    static function getPractical() {
+
+    static function getPractical()
+    {
+        // get practical questions for the test
         $practicalText = get_first('SELECT * FROM practical ORDER BY RAND()');
         $array = array();
+
+        // organize the test description at the end of line mark ";"
         array_push($array, $practicalText['practical_id']);
         array_push($array, explode(';', $practicalText['practical_text'], -1));
         return $array;
     }
 
-    static function getResult() {
+
+    static function getResult()
+    {
         // get result only if user is logged in
-        if(isset($_SESSION['user_id'])) {
+        if (isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
             $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $user_id");
             return $points['theoretical_points'];

@@ -2,6 +2,11 @@
  * Created by Renee on 2/16/2017.
  */
 
+
+// MAIN COMPONENTS
+// SOME SCRIPTS ARE LOCATED IN THE SPECIFIC VIEW
+
+// ********************** IMPORT ISIKUKOOD.JS DIRECTLY ******************************//
 // import isikukood.min.js file directly here (javascript social id validation)
 !function (a) {
     function b(a) {
@@ -61,19 +66,69 @@
     }, "undefined" != typeof module && module.exports ? module.exports = b : a.Isikukood = b
 }(this);
 
-// when document ready
+
+// ********************** MAIN FUNCTIONS ******************************//
+// count unanswered questions
+function countUnansweredQuestions(count) {
+    var questionCount = count;
+    var numberOfCheckedRadio = $('input:radio:checked').length;
+    if (numberOfCheckedRadio != questionCount && (questionCount - numberOfCheckedRadio) !== 1) {
+        $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimust");
+    } else if ((questionCount - numberOfCheckedRadio) === 1) {
+        $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimus");
+    } else {
+        $('#checked').hide();
+    }
+}
+
+
+// ********************** WELCOME PAGE ******************************//
+// welcome page login
+$('#btnLogin').on('click', function (event) {
+    event.preventDefault();
+    console.log('clicked');
+
+    $.post('welcome/register', {
+        "firstName": $("#firstName").val(),
+        "lastName": $("#lastName").val(),
+        "social_id": $("#social_id").val(),
+        "password": $("#password").val()
+    }, function (res) {
+        if (res == 'ok') {
+            window.location.href = 'test';
+        } else {
+            alert(res);
+        }
+    });
+});
+
+// ********************** MAIN BUTTONS ******************************//
 $(document).ready(function () {
 
     // clear any input that might have been saved via browser itself earlier
     $('input:text').val("");
     $('input:password').val("");
 
-    // toggle quiz modal
-    $("#yes").click(function () {
+    // send theoretical quiz
+    $("#yes-theoretical").click(function () {
         $("#quiz").submit();
     });
-    $("#no").click(function () {
-        $('.confirm').modal('hide');
+
+    // send practical test
+    $("#yes-practical").click(function () {
+        $("#target").submit();
+    });
+
+    // ********************** THEORETICAL TEST PAGE ******************************//
+    // check the entire answer text boxes when clicked
+    $('input').click(function () {
+        $('input').each(function () {
+            $('input').closest('li').removeClass("active-answer");
+        });
+
+        $('input:checked').each(function () {
+            $('input:checked').closest('li').addClass("active-answer");
+        });
     });
 
 });
@@ -92,6 +147,7 @@ var firstnameLength;
 var lastnameLength;
 var socialID;
 
+// live user validation feedback
 $(".validate-new-user").keyup(function () {
 
     var firstname = document.forms["register"]["firstName"].value;
@@ -116,13 +172,13 @@ $(".validate-new-user").keyup(function () {
     }
 
     // check if lastname is too short or too long
-    if (lastname.length < lowerLimitLastname && lastname.length !=0) {
+    if (lastname.length < lowerLimitLastname && lastname.length != 0) {
         $("#lastName").addClass("border-red no-outline");
         lastnameLength = false;
     } else if (lastname.length > upperLimitLastname) {
         $("#lastName").addClass("border-red no-outline");
         lastnameLength = false;
-    } else if (lastname.length ==0) {
+    } else if (lastname.length == 0) {
         $("#lastName").removeClass("border-red no-outline");
         $('#btnLogin').prop('disabled', true);
     } else {
@@ -150,8 +206,8 @@ $(".validate-new-user").keyup(function () {
     }
 
     // if all is well (including pin is not empty), enable the button
-    if(firstnameLength === true && lastnameLength === true && socialID === true && pin != 0 &&
-    $.isNumeric(pin)) {
+    if (firstnameLength === true && lastnameLength === true && socialID === true && pin != 0 &&
+        $.isNumeric(pin)) {
         $('#btnLogin').prop('disabled', false);
     } else {
         $('#btnLogin').prop('disabled', true);

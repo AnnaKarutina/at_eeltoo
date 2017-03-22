@@ -1,3 +1,7 @@
+/*
+* In case you need the error template to show a fancy warning/error
+*/
+
 <?php if (isset($errors)): ?>
 
 

@@ -7,13 +7,13 @@ body {
 }
 
 #welcome-large {
-    color: #286090!important;
+    color: #286090 !important;
 }
 
 @media (min-width: 10px) and (max-width: 1200px) {
 
     body {
-        background-size: auto  ;
+        background-size: auto;
     }
 }
 
@@ -60,7 +60,7 @@ footer {
     footer {
         position: absolute;
         bottom: 0;
-        width:100%;
+        width: 100%;
         height: 120px;
         margin-top: 15vh;
     }
@@ -71,7 +71,7 @@ footer {
     footer {
         position: absolute;
         bottom: 0;
-        width:100%;
+        width: 100%;
         height: 120px;
         margin-top: 45vh;
     }

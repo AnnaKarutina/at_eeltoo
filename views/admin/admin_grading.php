@@ -68,15 +68,15 @@
                                 <h5>Antud isiku kohta puudub HTML fail</h5>
                             <?php endif; ?>
 
-    <?php if (empty(htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')))): ?>
-<pre>
+                            <?php if (empty(htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')))): ?>
+                                <pre>
 Fail on tühi
 </pre>
-    <?php else: ?>
-<pre>
+                            <?php else: ?>
+                                <pre>
 <?= htmlentities(file_get_contents('results/' . $result["social_id"] . '.html')); ?>
 </pre>
-    <?php endif; ?>
+                            <?php endif; ?>
 
                             <?php if (!empty($result['practical_errors'])): ?>
                             <h4>HTML errorid</h4>
@@ -134,9 +134,9 @@ Fail on tühi
                     </div>
                     <div class="modal-body">
                         <ul class="list-none">
-                        <?php foreach (explode(';', $result['practical_text'], -1) as $line ): ?>
-                            <li><?= $line; ?></li>
-                        <?php endforeach ?>
+                            <?php foreach (explode(';', $result['practical_text'], -1) as $line): ?>
+                                <li><?= $line; ?></li>
+                            <?php endforeach ?>
                         </ul>
                     </div>
                     <div class="modal-footer">
@@ -183,44 +183,8 @@ Fail on tühi
     <script>
 
         $(document).ready(function () {
-
-            // make the first items active
-            $('ul#myTabs li:first').addClass('active');
-            $('.tab-content .tab-pane:first').addClass('in active');
-
-            // display preview window on click
-            $(".practical-text").on('click', function (event) {
-                event.preventDefault();
-            });
-
-            // fancy grading
-            $('label').on('click', function (event) {
-
-                $(this).closest('.btn-group').find('.active').removeClass('active focus');
-                $(this).prop('checked', true);
-                $(this).addClass('active focus');
-                var id = $(this).find(':input').attr('name');
-                var value = $('.active>input[name=' + id + ']').val();
-
-                $.post('admin/gradePractical', {'user_id': id, 'grade': value},
-                    function (res) {
-                        if (res == 'ok') {
-                            // remove not graded class, hide it, change value, add class and fade it in (in pillar title)
-                            $('.not-graded-' + id).removeClass('not-graded').addClass('graded').hide().html('Hinnatud: "'+value+'"').fadeIn();
-                            // same as above but for the pillar data (next to grades)
-                            $('.bottom-not-graded-' + id).removeClass('not-graded').addClass('graded-green').hide().html('Hinnatud');
-                            // change the grade in the title should it be changed
-                            $('#graded-' + id).html('"' + value + '"');
-                            // blink the graded text when a change is made
-                            $('.graded-green').fadeOut('fast').fadeIn('fast');
-                        } else {
-                            alert(res);
-                        }
-                    });
-
-            })
+            fancyGrading();
         });
-
 
     </script>
 

@@ -1,17 +1,20 @@
 <?php namespace Halo;
 
 use Aastategija\Questions;
+use Aastategija\ValidatorAPI;
+use Aastategija\Tests;
 
 class test extends Controller
 {
     // theoretical test page
     function index()
     {
+
         // handle redirection if necessary
-        if(isset($_SESSION['result'])) {
+        if (isset($_SESSION['result'])) {
             header('Location: result');
             exit();
-        } else if(isset($_SESSION['practical'])) {
+        } else if (isset($_SESSION['practical'])) {
             header('Location: practical');
             exit();
         } else if (Questions::getResult() >= 0) {
@@ -19,11 +22,12 @@ class test extends Controller
             exit();
         }
 
-        // catch the questions into session
-        if(!isset($_SESSION['questions'])) {
+        // catch the questions into session if it is not previously done
+        if (!isset($_SESSION['questions'])) {
             $_SESSION['questions'] = Questions::get();
         }
 
+        // get the questions if they already exist in session
         $this->questions = $_SESSION['questions'];
 
         // the user has started theoretical quiz
@@ -33,46 +37,39 @@ class test extends Controller
         update('results', [
             'nr_of_questions' => $this->settings['nr_of_questions']
         ], "user_id = '{$_SESSION['user_id']}'");
+
     }
+
 
     // confirm theoretical test answers and redirects user to practical test
     function practical()
     {
 
         // handle redirection if necessary
-        if(isset($_SESSION['result'])) {
+        if (isset($_SESSION['result'])) {
             header('Location: result');
             exit();
         }
 
         // check the theoretical answers if necessary
-        if(Questions::getResult() == -1) {
+        if (Questions::getResult() == -1) {
+
             // get user answers
             $_SESSION['practical'] = true;
-            $user_id = $_SESSION['user_id'];
+            $user_id = (int)$_SESSION['user_id'];
             $answers = $_POST;
-            $correctAnswers = 0;
 
-            foreach ($answers as $answer) {
-                foreach ($answer as $value) {
-                    $check = get_first("SELECT answer_correct FROM answers WHERE answer_id = $value");
-                    if ($check['answer_correct'] == 1) {
-                        $correctAnswers++;
-                    }
-                }
-            }
-            // update table
-            update('results', [
-                'theoretical_points' => $correctAnswers,
-            ], "user_id = '$user_id'");
+            // set test result
+            Tests::setTestResult($answers, $user_id);
+
         }
 
-        // cache the practical task
-        if(!isset($_SESSION['task'])) {
+        // catch the practical task into session if it is not previously done
+        if (!isset($_SESSION['task'])) {
             $_SESSION['task'] = Questions::getPractical();
         }
 
-        // use the test
+        // get the practical task if it already exist in session
         $this->practicalQuestions = $_SESSION['task'];
 
         // the user has started practical test
@@ -90,71 +87,42 @@ class test extends Controller
     {
 
         // handle redirection if necessary
-        if(!isset($_SESSION['practical'])) {
+        if (!isset($_SESSION['practical'])) {
             header('Location: ../');
             exit();
         }
 
-        $user_id = $_SESSION['user_id'];
-        $social_id = $_SESSION['social_id'];
-        // localhost
-        $whitelist = array(
-            '127.0.0.1',
-            '::1'
-        );
-
-        if(!isset($_SESSION['practical'])) {
-            header('Location: ../');
-            exit();
-        }
+        // define variables and set session to true
         $_SESSION['result'] = true;
+        $user_id = (int)$_SESSION['user_id'];
+        $social_id = $_SESSION['social_id'];
 
-        if(!empty($_POST)) {
+        // write the html file
+        if (!empty($_POST)) {
             $html = $_POST['validateHTML'];
-            $htmlFile = fopen('results/' . $social_id . '.html', 'w');
-            fwrite($htmlFile, $html);
-            fclose($htmlFile);
-            // update practical points, if -1 then practical is done but ungraded
-            update('results', ['practical_points' => -1], "user_id = '$user_id'");
+            Tests::writePracticalTestFile($user_id, $social_id, $html);
         }
 
         // if in localhost, skip HTML validator as it needs live URL... also check the settings
-        if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist) && $this->settings['htmlvalidator'] == 1){
-            $html = 'https://validator.w3.org/nu/?&doc=' . BASE_URL.'results/'.$social_id.'.html' . '&out=json';
-
-            // get the json data
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $html);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.0.3705; .NET CLR 1.1.4322)');
-            $data = curl_exec($curl);
-            curl_close($curl);
-
-            // decode json to php array
-            $check = json_decode($data, true);
-
-            // get only the errors and push em into array
-            $errorList = array();
-            foreach ($check['messages'] as $key => $value) {
-                foreach ($check['messages'][$key] as $key1 => $value1) {
-                    if ($value1 == 'error') {
-                        array_push($errorList, $check['messages'][$key]['message']);
-                    }
-                }
-            }
-
-            $insertErrors = serialize($errorList);
-            update('results', ['practical_errors' => ''.$insertErrors.''], "user_id = '$user_id'");
+        if (notLocalhost() && $this->settings['htmlvalidator'] == 1) {
+            ValidatorAPI::setValidatorErrors($user_id, $social_id);
         }
 
     }
 
     function finished()
     {
+        // get theoretical test result
         $this->points = Questions::getResult();
+
+        // kill the session
         killSession();
-        header( "refresh:15;url=".BASE_URL."" );
+
+        // redirect user to homepage after 15 seconds
+        header("refresh:15;url=" . BASE_URL . "");
+
     }
+
 
 }
 

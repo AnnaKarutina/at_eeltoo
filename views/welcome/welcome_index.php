@@ -20,7 +20,7 @@
        data-target="#login-modal">Registreeri testile</a>
 </div>
 
-<!-- log in modal -->
+<!-- LOG IN MODAL -->
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
      aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -40,25 +40,3 @@
         </div>
     </div>
 </div>
-
-<script>
-
-    $('#btnLogin').on('click', function (event) {
-        event.preventDefault();
-
-        $.post('welcome/register', {
-            "firstName": $("#firstName").val(),
-            "lastName": $("#lastName").val(),
-            "social_id": $("#social_id").val(),
-            "password": $("#password").val()
-        }, function (res) {
-            if (res == 'ok') {
-                window.location.href = 'test';
-            } else {
-                alert(res);
-            }
-        });
-
-    });
-
-</script>

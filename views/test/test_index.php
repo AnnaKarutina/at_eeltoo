@@ -2,26 +2,30 @@
 <h1 class="quiz-title">HTML & CSS - Vali õige vastus!</h1>
 <form action="test/practical " method="POST" id="quiz">
     <?php foreach ($questions as $question): ?>
-    <div class="question-box">
-        <h2><?= $question['question'] ?></h2>
-        <ul>
-            <?php foreach ($question['answers'] as $answer): ?>
-                <li>
-                    <input type="radio" id="<?= $answer['id'] ?>" name="answers[<?= $question['question_id'] ?>]"
-                           value="<?= $answer['id'] ?>">
-                    <label for="<?= $answer['id'] ?>"><?= $answer['text'] ?></label>
+        <div class="question-box">
+            <h2><?= $question['question'] ?></h2>
+            <ul>
+                <?php foreach ($question['answers'] as $answer): ?>
+                    <li>
+                        <input type="radio" id="<?= $answer['id'] ?>" name="answers[<?= $question['question_id'] ?>]"
+                               value="<?= $answer['id'] ?>">
+                        <label for="<?= $answer['id'] ?>"><?= $answer['text'] ?></label>
 
-                    <div class="check">
-                        <div class="inside"></div>
-                    </div>
-                </li>
-            <?php endforeach ?>
-        </ul>
-    </div>
+                        <div class="check">
+                            <div class="inside"></div>
+                        </div>
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
     <?php endforeach ?>
-    <a href="#" id="submit-quiz" class="btn btn-info btn-lg form-button" data-toggle="modal" data-target=".confirm">Esita</a>
+    <a href="#" id="submit-quiz" class="btn btn-info btn-lg"
+       data-toggle="modal" data-target=".confirm">
+        Esita
+    </a>
 </form>
 
+<!-- SUBMIT CONFIRM MODAL -->
 <div class="modal fade confirm">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -30,39 +34,22 @@
                 <h4 id="checked"></h4>
             </div>
             <div class="modal-footer">
-                <button id="yes" type="button" class="modal-btn btn btn-primary" data-dismiss="modal">Jah</button>
-                <button id="no" type="button" class="modal-btn btn btn-primary">Ei</button>
+                <button id="yes-theoretical" type="button" class="modal-btn btn btn-primary" data-dismiss="modal">
+                    Jah
+                </button>
+                <button id="no" type="button" class="modal-btn btn btn-primary" data-dismiss="modal">Ei</button>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
 
 <script>
 
-    $(document).ready(function(){
-
-        // check the entire answer text boxes when clicked
-        $('input').click(function(){
-            $('input').each(function () {
-                $('input').closest('li').removeClass("active-answer");
-            });
-
-            $('input:checked').each(function () {
-                $('input:checked').closest('li').addClass("active-answer");
-            });
-        });
+    $(document).ready(function () {
 
         // if some questions are left unanswered then warn the user
-        $("#submit-quiz").click(function() {
-            var questionCount = <?= count($questions); ?>;
-            var numberOfCheckedRadio = $('input:radio:checked').length;
-            if (numberOfCheckedRadio != questionCount && (questionCount - numberOfCheckedRadio) !== 1) {
-                $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimust");
-            } else if ((questionCount - numberOfCheckedRadio) === 1) {
-                $('#checked').html("Sul on " + (questionCount - numberOfCheckedRadio) + " vastamata küsimus");
-            } else {
-                $('#checked').hide();
-            }
+        $("#submit-quiz").click(function () {
+            countUnansweredQuestions(<?= count($questions); ?>);
         });
 
     });

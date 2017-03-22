@@ -102,6 +102,8 @@ function __($text, $global = true)
 
 }
 
+
+// shuffle associative array
 function shuffle_assoc($list) {
     if (!is_array($list)) return $list;
 
@@ -114,6 +116,7 @@ function shuffle_assoc($list) {
     return $random;
 }
 
+// generate random PIN
 function generateRandomPIN($length) {
     $characters = '0123456789';
     $charactersLength = strlen($characters);
@@ -124,6 +127,8 @@ function generateRandomPIN($length) {
     return $randomString;
 }
 
+
+// kill session including all session related files
 function killSession() {
 // Destroy session completely
 // Unset all of the session variables.
@@ -143,7 +148,30 @@ function killSession() {
     session_destroy();
 }
 
+// replace every letter in string with asterisks, except for the first letter
 function hideString($str) {
     return substr($str, 0, 1).str_repeat("*", strlen($str) - 1);
 }
+
+
+// check if server is using localhost or not
+function notLocalhost() {
+    // localhost
+    $whitelist = array('127.0.0.1', '::1');
+
+    if(!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// show php errors
+function dbg() {
+    echo htmlspecialchars("<?php error_reporting(E_ALL); ini_set('display_errors', 1); ?>");
+}
+
+
+
+
 

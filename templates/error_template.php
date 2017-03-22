@@ -4,7 +4,7 @@
     <title>Oops!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link href="<?= BASE_URL ?>/assets/css/404.css" rel="stylesheet">
 </head>
 <body>

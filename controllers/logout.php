@@ -1,10 +1,7 @@
 <?php namespace Halo;
 
 /**
- * Created by PhpStorm.
- * User: hennotaht
- * Date: 7/29/13
- * Time: 21:48
+ * Logout the user if <BASE_URL>/logout link is visited
  */
 class logout extends Controller
 {

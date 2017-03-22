@@ -11,6 +11,7 @@
 
 <script>
 
+    // start the counter (15 seconds)
     (function count(cc) {
         $('#counter').html(cc);
         if (cc > 0)

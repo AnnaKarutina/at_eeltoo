@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <base href="<?= BASE_URL ?>">
     <title>Sisseastumine</title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link href="vendor/components/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/codemirror.css" rel="stylesheet">
     <link href="assets/css/main.css" rel="stylesheet">
@@ -49,8 +49,8 @@ ___________              __           ____  __.___ ___  ____  __.
             <a href="http://khk.ee/" target="_blank"><img id="khk-logo" src="images/khk_logo.png" alt="logo"/></a>
         </div>
         <div class="navbar-form navbar-right">
-            <?php if(isset($_SESSION['user_id'])): ?>
-                <h4><?= $_SESSION['name'].', '.$_SESSION['social_id'] ?></h4>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <h4><?= $_SESSION['name'] . ', ' . $_SESSION['social_id'] ?></h4>
             <?php endif; ?>
         </div>
     </div>

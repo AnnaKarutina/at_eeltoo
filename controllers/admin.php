@@ -1,16 +1,21 @@
 <?php namespace Halo;
 
 use Aastategija\Administrator;
+use Aastategija\Tests;
 
 class admin extends Controller
 {
+    // does not require a logged in user (login page)
     public $requires_auth = false;
+
+    // set template to use
     public $template = 'auth';
 
     function AJAX_login()
     {
+
         // check if one of the form elements is missing
-        if(empty($_POST['username'] || $_POST['password'])) {
+        if (empty($_POST['username'] || $_POST['password'])) {
             exit('Error. Missing required parameters.');
         }
 
@@ -20,141 +25,299 @@ class admin extends Controller
 
         // check the username
         $user_id = get_one("SELECT user_id FROM users WHERE user_name = '$username'");
-        if(empty($user_id)) {
+        if (empty($user_id)) {
             exit('Invalid username or password.');
         }
-
         // if for some reason there is no password
         $realPassword = get_one("SELECT password FROM users WHERE user_name = '$username' AND user_id = '$user_id'");
-        if(empty($realPassword)) {
+        if (empty($realPassword)) {
             exit('Error. Please try again later.');
         }
 
         // check if password matches the one in the database
-        if(password_verify($password, $realPassword) != $realPassword) {
+        if (password_verify($password, $realPassword) != $realPassword) {
             exit('Invalid username or password.');
         }
 
+        // store the user id in session
         $_SESSION['user_id'] = $user_id;
 
         echo "ok";
 
     }
 
+
     function index()
     {
+        // set this true so this page can be active in nav menu
         $this->resultpage = true;
+
+        // get results
         $this->results = Administrator::getResults();
     }
 
-    function practical() {
+
+    function practical()
+    {
+        // set this true so this page can be active in nav menu
         $this->practical = true;
+
+        // get the practical tasks
         $this->practicalQuestions = Administrator::getPracticalQuestions();
     }
 
+
     function theoretical()
     {
+        // set this true so this page can be active in nav menu
         $this->theoretical = true;
+
+        // get theoretical questions
         $this->questions = Administrator::getQuestions();
     }
 
+
     function grading()
     {
+        // set this true so this page can be active in nav menu
         $this->grading = true;
+
+        // get the tests that need to be graded
         $this->results = Administrator::getGradings();
     }
 
+
     function log()
     {
+        // set this true so this page can be active in nav menu
         $this->log = true;
+
+        // get the log
         $this->resultsLog = Administrator::getLog();
     }
+
+
     function settings()
     {
+        // set this true so this page can be active in nav menu
         $this->properties = true;
+
+        // get the settings
         $this->settings;
+
+        // get the theoretical question count
         $this->totalQuestions = Administrator::countQuestions();
+
+        // get the time left
         $this->time;
     }
 
+
     function help()
     {
+        // set this true so this page can be active in nav menu
         $this->help = true;
     }
 
-    function AJAX_gradePractical() {
+
+    function AJAX_allowAgain()
+    {
+        // reset fields
+        Tests::resetResults($_POST['user_id']);
+
+        // get the social id necessary for html file deletion
+        $socialId = get_first("SELECT social_id FROM users WHERE user_id = {$_POST['user_id']}")['social_id'];
+
+        // delete file if exists
+        Administrator::deleteHTMLFile($socialId);
+
+        echo 'ok';
+    }
+
+
+    function AJAX_deleteResult()
+    {
+        // get the user id and delete table entry
+        $id = (int)$_POST['user_id'];
+        q("DELETE FROM results WHERE user_id = $id");
+
+        // get the social id necessary for html file deletion
+        $socialId = get_first("SELECT social_id from users WHERE user_id = $id")['social_id'];
+
+        // delete file if exists
+        Administrator::deleteHTMLFile($socialId);
+
+        echo 'ok';
+    }
+
+
+    function AJAX_pushToLog()
+    {
+        // delete all files and table entries from results
+        q('DELETE FROM results');
+        Administrator::deleteAllHTMLFiles();
+        echo 'ok';
+    }
+
+
+    function AJAX_editPractical()
+    {
+        // remove new lines from practical text
+        $practicalText = str_replace("\n", '', $_POST['practical_text']);
+
+        // get the id, title and update database
+        $practicalId = (int)$_POST['practical_id'];
+        $practicalTitle = $_POST['practical_title'];
+        update('practical', [
+            'practical_text' => '' . $practicalText . '',
+            'practical_title' => '' . $practicalTitle . ''
+        ], "practical_id = '$practicalId'");
+        echo 'ok';
+    }
+
+
+    function AJAX_deletePractical()
+    {
+        // get the id and delete database entry
+        $practicalId = (int)$_POST['practical_id'];
+        q("DELETE FROM practical WHERE practical_id = '$practicalId'");
+        echo 'ok';
+    }
+
+
+    function AJAX_addPractical()
+    {
+        // if empty
+        if (empty($_POST['practical_title'] && $_POST['practical_text'])) {
+            exit('All fields are required!');
+        }
+
+        // get the title and text (remove new lines from text)
+        $practicalTitle = $_POST['practical_title'];
+        $practicalText = str_replace("\n", '', $_POST['practical_text']);
+
+        // insert it into database
+        insert('practical', [
+            'practical_text' => $practicalText,
+            'practical_title' => $practicalTitle
+        ]);
+
+        echo 'ok';
+    }
+
+
+    function AJAX_editTheoretical()
+    {
+        // get the answers
+        $answers = $_POST['answers'];
+
+        // exit if a field is missing
+        Administrator::checkFields($answers);
+
+        // add question and get the recently added id
+        $question = addslashes(array_values($_POST['question'])[0]);
+        $questionID = key($_POST['question']);
+
+        // update database
+        update('questions', ['question' => '' . $question . ''], "question_id = '$questionID'");
+        foreach ($answers as $key => $answer) {
+            $answer_text = addslashes($answer);
+            update('answers', ['answer_text' => '' . $answer_text . ''], "answer_id = '$key'");
+        }
+
+        echo 'ok';
+
+    }
+
+
+    function AJAX_deleteTheoretical()
+    {
+        // delete question and answers
+        $questionID = key($_POST['question']);
+        q("DELETE FROM answers WHERE question_id = '$questionID'");
+        q("DELETE FROM questions WHERE question_id = '$questionID'");
+        echo 'ok';
+    }
+
+
+    function AJAX_addTheoretical()
+    {
+
+        // if empty
+        if (empty($_POST)) {
+            exit('All fields are required.');
+        }
+
+        // get the elements necessary for a new theoretical question
+        $elements = $_POST;
+
+        // exit if a field is missing
+        Administrator::checkFields($elements);
+
+        // set the new questions
+        Administrator::setNewTheoretical($elements);
+
+        echo 'ok';
+
+    }
+
+
+    function AJAX_gradePractical()
+    {
+        // update the practical grade
         update('results', ['practical_points' => $_POST['grade']], "user_id = {$_POST['user_id']}");
 
         echo 'ok';
     }
 
-    function AJAX_allowAgain() {
-        $result = update('results', [
-            'theoretical_points' => -1,
-            'practical_errors' => '',
-            'practical_points' => -2,
-            'nr_of_questions' => 0
-        ], "user_id = {$_POST['user_id']}");
 
-        $social_id = get_first("SELECT social_id FROM users WHERE user_id = {$_POST['user_id']}")['social_id'];
-
-        if(file_exists('results/'.$social_id.'.html')) {
-            unlink('results/'.$social_id.'.html');
-        }
-
-        echo 'ok';
-    }
-
-    function AJAX_deleteResult() {
-        $id = addslashes($_POST['user_id']);
-        $socialId = get_first("SELECT social_id from users WHERE user_id = $id")['social_id'];
-
-        if(file_exists('results/'.$socialId.'.html')) {
-            unlink('results/'.$socialId.'.html');
-        }
-
-        q("DELETE FROM results WHERE user_id = $id");
-        echo 'ok';
-    }
-
-    
-    function AJAX_pushToLog() {
-        q('DELETE FROM results');
-
-        foreach (glob("results/*.html") as $filename) {
-            if (is_file($filename)) {
-                unlink($filename);
-            }
-        }
-
-        echo 'ok';
-    }
-
-    function AJAX_editQuestionCount() {
+    function AJAX_editQuestionCount()
+    {
+        // update the nr of questions
         $questionCount = addslashes($_POST['nr_of_questions']);
-        update('settings', ['nr_of_questions' => ''.$questionCount.''], "id = '1'");
+        update('settings', ['nr_of_questions' => '' . $questionCount . ''], "id = '1'");
+
         echo 'ok';
     }
 
-    function AJAX_openTest() {
+
+    function AJAX_generatePassword()
+    {
+        // generate a random PIN and update database
+        $randomPIN = generateRandomPIN(4);
+        update('settings', ['pwd' => '' . $randomPIN . ''], "id = '1'");
+        exit($randomPIN);
+    }
+
+
+    function AJAX_openTest()
+    {
+        // get the test hours and current date
         $testHours = addslashes($_POST['test_hours']);
         $currentDate = date('Y-m-d H:i:s');
+
+        // update database
         update('settings', [
             'start' => $currentDate,
-            'end' => date('Y-m-d H:i:s', strtotime ("+$testHours hour"))
-            ], "id = '1'");
-        echo 'ok';
-    }
-
-    function AJAX_closeTest() {
-        update('settings', [
-            'start' => NULL,
-            'end' => NULL
+            'end' => date('Y-m-d H:i:s', strtotime("+$testHours hour"))
         ], "id = '1'");
+
         echo 'ok';
     }
 
-    function AJAX_liveTime() {
+
+    function AJAX_closeTest()
+    {
+        // close the test
+        Tests::closeTest();
+
+        echo 'ok';
+    }
+
+
+    function AJAX_liveTime()
+    {
+        // check if the test is already closed
         if ($this->time['time'] >= 0) {
             echo $this->time['time'];
         } else {
@@ -162,159 +325,49 @@ class admin extends Controller
         }
     }
 
-    function AJAX_validationOption() {
+
+    function AJAX_validationOption()
+    {
+        // get the validation option and update database
         $validateHTML = addslashes($_POST['validationOption']);
-        update('settings', ['htmlvalidator' => ''.$validateHTML.''], "id = '1'");
+        update('settings', ['htmlvalidator' => '' . $validateHTML . ''], "id = '1'");
         echo 'ok';
     }
 
-    function AJAX_generatePassword() {
-        $randomPIN = generateRandomPIN(4);
-        update('settings', ['pwd' => ''.$randomPIN.''], "id = '1'");
-        exit($randomPIN);
-    }
 
-    function AJAX_liveOption() {
+    function AJAX_liveOption()
+    {
+        // get the live option and update database
         $livehtml = addslashes($_POST['liveOption']);
-        update('settings', ['livehtml' => ''.$livehtml.''], "id = '1'");
+        update('settings', ['livehtml' => '' . $livehtml . ''], "id = '1'");
         echo 'ok';
     }
 
-    function AJAX_scoreOption() {
+
+    function AJAX_scoreOption()
+    {
+        // change score options
         $score = addslashes($_POST['scoreOption']);
         $scorePrivate = addslashes($_POST['scorePrivateOption']);
-        update('settings', ['scores' => ''.$score.''], "id = '1'");
-        update('settings', ['scores_private' => ''.$scorePrivate.''], "id = '1'");
+        update('settings', ['scores' => '' . $score . ''], "id = '1'");
+        update('settings', ['scores_private' => '' . $scorePrivate . ''], "id = '1'");
+
         echo 'ok';
     }
 
-    function AJAX_changePassword() {
+
+    function AJAX_changePassword()
+    {
+        // change password
         $old = addslashes($_POST['old-password']);
-        $real = get_one("SELECT password FROM users WHERE user_id = '{$_SESSION['user_id']}'");
         $new1 = addslashes($_POST['password1']);
         $new2 = addslashes($_POST['password2']);
+        $real = get_one("SELECT password FROM users WHERE user_id = '{$_SESSION['user_id']}'");
 
-        if(empty($old) || empty($new1) || empty($new2)) {
-            exit('All fields are required.');
-        }
-
-        if(password_verify($old, $real) != $real) {
-            exit('Invalid password.');
-        }
-
-        if($new1 != $new2) {
-            exit('Passwords do not match.');
-        }
-
-        $new = password_hash($new1, PASSWORD_DEFAULT);
-        $query = update('users', ['password' => ''.$new.''], "user_id = '{$_SESSION['user_id']}'");
-
-        if($query) {
-            echo 'ok';
-        } else {
-            exit('Something went wrong. Please try again.');
-        }
-
-        //$2y$10$awo99t94fHCRveHtwlS0CefVizfvur6SB8B9Gve6mC7i9l43mURjm
-
-
-    }
-
-    function AJAX_editTheoretical() {
-        $answers = $_POST['answers'];
-
-        foreach ($answers as $answer) {
-            if($answer == NULL) {
-                exit('All fields are required.');
-            }
-        }
-
-        $question = addslashes(array_values($_POST['question'])[0]);
-        $questionID = key($_POST['question']);
-        update('questions', ['question' => ''.$question.''], "question_id = '$questionID'");
-        foreach ($answers as $key=>$answer) {
-            $answer_text = addslashes($answer);
-            update('answers', ['answer_text' => ''.$answer_text.''], "answer_id = '$key'");
-        }
-        echo 'ok';
-    }
-
-    function AJAX_deleteTheoretical() {
-        $questionID = key($_POST['question']);
-        q("DELETE FROM answers WHERE question_id = '$questionID'");
-        q("DELETE FROM questions WHERE question_id = '$questionID'");
-        echo 'ok';
-    }
-
-    function AJAX_addTheoretical() {
-
-        if(empty($_POST)) {
-            exit('All fields are required.');
-        }
-
-        $elements = $_POST;
-
-        foreach ($elements as $element) {
-            if($element == NULL) {
-                exit('All fields are required.');
-            }
-        }
-
-        foreach ($elements as $key=>$element) {
-            switch ($key) {
-                case 'question':
-                    insert('questions', ['question' => ''.$element.'']);
-                    $questionID = get_first('SELECT LAST_INSERT_ID() as question_id');
-                    break;
-                case 'correct':
-                    insert('answers', [
-                        'answer_text' => $element,
-                        'question_id' => $questionID['question_id'],
-                        'answer_correct' => 1
-                    ]);
-                    break;
-                default:
-                    insert('answers', [
-                        'answer_text' => $element,
-                        'question_id' => $questionID['question_id']
-                    ]);
-                    break;
-            }
-        }
-        echo 'ok';
-    }
-
-    function AJAX_editPractical() {
-        $practicalText = str_replace("\n", '', $_POST['practical_text']);
-        $practicalId = $_POST['practical_id'];
-        $practicalTitle = $_POST['practical_title'];
-        update('practical', [
-            'practical_text' => ''.$practicalText.'',
-            'practical_title' => ''.$practicalTitle.''
-        ], "practical_id = '$practicalId'");
-        echo 'ok';
-    }
-
-    function AJAX_deletePractical() {
-        $practicalId = $_POST['practical_id'];
-        q("DELETE FROM practical WHERE practical_id = '$practicalId'");
-        echo 'ok';
-    }
-
-    function AJAX_addPractical() {
-        if(empty($_POST['practical_title'] && $_POST['practical_text'])) {
-            exit('All fields are required!');
-        }
-
-        $practicalTitle = $_POST['practical_title'];
-        $practicalText = str_replace("\n", '', $_POST['practical_text']);
-
-        insert('practical', [
-            'practical_text' => $practicalText,
-            'practical_title' => $practicalTitle
-        ]);
+        Administrator::changePassword($old, $new1, $new2, $real);
 
         echo 'ok';
+
     }
 
 }
