@@ -2,12 +2,12 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Logi") ?></h3>
-    <div class="table-box responsive">
+    <div class="responsive">
 
         <h5>Otsing</h5>
         <input type="text" id="search-log" onkeyup="searchFilterLog()" placeholder="&#128269; Otsi inimest...">
         <br>
-        <table class="table table-bordered results" id="sort-log">
+        <table class="table table-bordered results table-box" id="sort-log">
             <thead id="log-head">
             <tr>
                 <th>Nimi <span class="sort-right">&#x21D5;</span></th>
@@ -52,9 +52,12 @@
             <?php endforeach ?>
         </table>
     </div>
-    <?php if (empty($resultsLog)): ?>
-        <h4>Pole midagi kuvada</h4>
-    <?php endif; ?>
+        <?php if (empty($resultsLog)): ?>
+            <h4>Pole midagi kuvada</h4>
+        <?php endif; ?>
+    <br>
+    <br>
+    <br>
 
     <script>
 

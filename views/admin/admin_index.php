@@ -2,8 +2,8 @@
 <?php if ($auth->is_admin): ?>
 
     <h3><?= __("Tulemused") ?></h3>
-    <div class="table-box responsive">
-        <table class="table table-bordered results">
+    <div class="responsive">
+        <table class="table table-bordered results table-box">
             <tr>
                 <th>Nimi</th>
                 <th>Isikukood</th>
