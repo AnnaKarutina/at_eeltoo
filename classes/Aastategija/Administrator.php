@@ -182,4 +182,28 @@ class Administrator
 
     }
 
+    static function changeTheoreticalQuestion($questionId, $question, $answers)
+    {
+        // update database
+        update('questions', ['question' => '' . $question . ''], "question_id = '$questionId'");
+        foreach ($answers as $key => $answer) {
+            $answer_text = addslashes($answer);
+            update('answers', ['answer_text' => '' . $answer_text . ''], "answer_id = '$key'");
+        }
+    }
+
+    static function deleteTheoreticalQuestion($questionId)
+    {
+        // delete the question and its answers
+        q("DELETE FROM answers WHERE question_id = '$questionId'");
+        q("DELETE FROM questions WHERE question_id = '$questionId'");
+    }
+
+    static function updateScoreOption($score, $scorePrivate)
+    {
+        // if the public scoreboard is visible and if the names are private
+        update('settings', ['scores' => '' . $score . ''], "id = '1'");
+        update('settings', ['scores_private' => '' . $scorePrivate . ''], "id = '1'");
+    }
+
 }

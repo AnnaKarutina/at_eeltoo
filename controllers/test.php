@@ -17,7 +17,7 @@ class test extends Controller
         } else if (isset($_SESSION['practical'])) {
             header('Location: practical');
             exit();
-        } else if (Questions::getResult() >= 0) {
+        } else if (Questions::getResult($_SESSION['user_id']) >= 0) {
             header('Location: test/practical');
             exit();
         }
@@ -51,16 +51,16 @@ class test extends Controller
             exit();
         }
 
-        // check the theoretical answers if necessary
-        if (Questions::getResult() == -1) {
+        // check the theoretical answers if necessary (check also session variable)
+        if (Questions::getResult($_SESSION['user_id']) == -1) {
 
             // get user answers
             $_SESSION['practical'] = true;
-            $user_id = (int)$_SESSION['user_id'];
+            $userId = (int)$_SESSION['user_id'];
             $answers = $_POST;
 
             // set test result
-            Tests::setTestResult($answers, $user_id);
+            Tests::setTestResult($answers, $userId);
 
         }
 
@@ -82,7 +82,7 @@ class test extends Controller
 
     }
 
-    // write HTML file, get HTML errors using W3 validator
+
     function result()
     {
 
@@ -103,7 +103,7 @@ class test extends Controller
             Tests::writePracticalTestFile($user_id, $social_id, $html);
         }
 
-        // if in localhost, skip HTML validator as it needs live URL... also check the settings
+        // if in localhost, skip HTML validator as it needs live URL... also check the setting
         if (notLocalhost() && $this->settings['htmlvalidator'] == 1) {
             ValidatorAPI::setValidatorErrors($user_id, $social_id);
         }
@@ -112,8 +112,12 @@ class test extends Controller
 
     function finished()
     {
+
+        // get the user id from session
+        $userId = (int)$_SESSION['user_id'];
+
         // get theoretical test result
-        $this->points = Questions::getResult();
+        $this->points = Questions::getResult($userId);
 
         // kill the session
         killSession();

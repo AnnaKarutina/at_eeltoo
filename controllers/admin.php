@@ -155,7 +155,10 @@ class admin extends Controller
     {
         // delete all files and table entries from results
         q('DELETE FROM results');
+
+        // delete all html files
         Administrator::deleteAllHTMLFiles();
+
         echo 'ok';
     }
 
@@ -168,6 +171,8 @@ class admin extends Controller
         // get the id, title and update database
         $practicalId = (int)$_POST['practical_id'];
         $practicalTitle = $_POST['practical_title'];
+
+        // update database
         update('practical', [
             'practical_text' => '' . $practicalText . '',
             'practical_title' => '' . $practicalTitle . ''
@@ -179,8 +184,10 @@ class admin extends Controller
 
     function AJAX_deletePractical()
     {
-        // get the id and delete database entry
+        // get the id
         $practicalId = (int)$_POST['practical_id'];
+
+        // delete the entry
         q("DELETE FROM practical WHERE practical_id = '$practicalId'");
 
         echo 'ok';
@@ -216,16 +223,12 @@ class admin extends Controller
         // exit if a field is missing
         Administrator::checkFields($answers);
 
-        // add question and get the recently added id
+        // get the questions and the question id
         $question = addslashes(array_values($_POST['question'])[0]);
-        $questionID = key($_POST['question']);
+        $questionId = key($_POST['question']);
 
         // update database
-        update('questions', ['question' => '' . $question . ''], "question_id = '$questionID'");
-        foreach ($answers as $key => $answer) {
-            $answer_text = addslashes($answer);
-            update('answers', ['answer_text' => '' . $answer_text . ''], "answer_id = '$key'");
-        }
+        Administrator::changeTheoreticalQuestion($questionId, $question, $answers);
 
         echo 'ok';
 
@@ -235,9 +238,10 @@ class admin extends Controller
     function AJAX_deleteTheoretical()
     {
         // delete question and answers
-        $questionID = key($_POST['question']);
-        q("DELETE FROM answers WHERE question_id = '$questionID'");
-        q("DELETE FROM questions WHERE question_id = '$questionID'");
+        $questionId = key($_POST['question']);
+
+        // delete question and answers
+        Administrator::deleteTheoreticalQuestion($questionId);
 
         echo 'ok';
     }
@@ -278,6 +282,8 @@ class admin extends Controller
     {
         // update the nr of questions
         $questionCount = addslashes($_POST['nr_of_questions']);
+
+        // update the question count in database
         update('settings', ['nr_of_questions' => '' . $questionCount . ''], "id = '1'");
 
         echo 'ok';
@@ -288,8 +294,11 @@ class admin extends Controller
     {
         // generate a random PIN and update database
         $randomPIN = generateRandomPIN(4);
+
+        // update database
         update('settings', ['pwd' => '' . $randomPIN . ''], "id = '1'");
 
+        // exit with the generated PIN
         exit($randomPIN);
     }
 
@@ -332,8 +341,10 @@ class admin extends Controller
 
     function AJAX_validationOption()
     {
-        // get the validation option and update database
+        // get the validation option value
         $validateHTML = addslashes($_POST['validationOption']);
+
+        // update validation option
         update('settings', ['htmlvalidator' => '' . $validateHTML . ''], "id = '1'");
 
         echo 'ok';
@@ -344,6 +355,8 @@ class admin extends Controller
     {
         // get the live option and update database
         $livehtml = addslashes($_POST['liveOption']);
+
+        // update database
         update('settings', ['livehtml' => '' . $livehtml . ''], "id = '1'");
 
         echo 'ok';
@@ -355,8 +368,9 @@ class admin extends Controller
         // change score options
         $score = addslashes($_POST['scoreOption']);
         $scorePrivate = addslashes($_POST['scorePrivateOption']);
-        update('settings', ['scores' => '' . $score . ''], "id = '1'");
-        update('settings', ['scores_private' => '' . $scorePrivate . ''], "id = '1'");
+
+        // update score option
+        Administrator::updateScoreOption($score, $scorePrivate);
 
         echo 'ok';
     }
@@ -364,12 +378,13 @@ class admin extends Controller
 
     function AJAX_changePassword()
     {
-        // change password
+        // get the old password (user given), new password (new1, new2) and the real password from database
         $old = addslashes($_POST['old-password']);
         $new1 = addslashes($_POST['password1']);
         $new2 = addslashes($_POST['password2']);
         $real = get_one("SELECT password FROM users WHERE user_id = '{$_SESSION['user_id']}'");
 
+        // change password if all is well
         Administrator::changePassword($old, $new1, $new2, $real);
 
         echo 'ok';

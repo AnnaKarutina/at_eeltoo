@@ -42,16 +42,17 @@ class Questions
         // organize the test description at the end of line mark ";"
         array_push($array, $practicalText['practical_id']);
         array_push($array, explode(';', $practicalText['practical_text'], -1));
+
+        // return the structured array
         return $array;
     }
 
 
-    static function getResult()
+    static function getResult($userId = NULL)
     {
         // get result only if user is logged in
-        if (isset($_SESSION['user_id'])) {
-            $user_id = $_SESSION['user_id'];
-            $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $user_id");
+        if (isset($userId)) {
+            $points = get_first("SELECT theoretical_points FROM results WHERE user_id = $userId");
             return $points['theoretical_points'];
         } else {
             $points = -1;
