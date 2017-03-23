@@ -32,7 +32,7 @@ keywords. Also, when adding questions, all fields have to be filled.
 After third page comes practical test grading, where admin can rate potential stundents from 0 to 10. All the potential
 student's written code is available to see and judge. It is possible to see html errors, if the admin settings are
 adjusted accordingly.
-Fifth page is about log table, which maintains all the deleted results from the results page results table. More 
+Fifth page is about log table, which maintains all the deleted results from the results page results table. For more 
 effective usage, it is possible to sort information by different parameters. However, by default it sorts information 
 by date ASC.
 After log page comes admin settings page, where's possible to change the number of theoretical questions for client's
