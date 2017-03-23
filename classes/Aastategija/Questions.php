@@ -16,6 +16,7 @@ class Questions
     {
         // questions are ordered by random
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY RAND()', $q);
+
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
             $questions[$row['question_id']]['question_id'] = $row['question_id'];

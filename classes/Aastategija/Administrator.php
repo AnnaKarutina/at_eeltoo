@@ -17,30 +17,45 @@ class Administrator
     static function getResults()
     {
         // get results for admin index view
-        return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
-        IF(results.practical_points>0,results.practical_points,0)) AS sum 
-        FROM results INNER JOIN users WHERE results.user_id = users.user_id ORDER BY 
-        IF(results.practical_points >= 0, sum, results.practical_points) DESC");
+        return get_all("SELECT
+                          *,
+                          (IF(results.theoretical_points > 0, results.theoretical_points, 0) +
+                           IF(results.practical_points > 0, results.practical_points, 0)) AS sum
+                        FROM results
+                          INNER JOIN users
+                        WHERE results.user_id = users.user_id
+                        ORDER BY
+                          IF(results.practical_points >= 0, sum, results.practical_points) DESC");
     }
 
 
     static function getGradings()
     {
         // get entries that for grading view (graded and ungraded)
-        return get_all("SELECT *, (IF(results.theoretical_points>0, results.theoretical_points,0) + 
-        IF(results.practical_points>0,results.practical_points,0)) AS sum 
-        FROM results INNER JOIN users ON results.user_id = users.user_id INNER JOIN
-        practical ON results.practical_id = practical.practical_id ORDER BY date ASC");
+        return get_all("SELECT
+                          *,
+                          (IF(results.theoretical_points > 0, results.theoretical_points, 0) +
+                           IF(results.practical_points > 0, results.practical_points, 0)) AS sum
+                        FROM results
+                          INNER JOIN users ON results.user_id = users.user_id
+                          INNER JOIN
+                          practical ON results.practical_id = practical.practical_id
+                        ORDER BY date ASC");
     }
 
 
     static function getLog()
     {
         // get log data
-        return get_all("SELECT *, (IF(results_log.theoretical_points>0, results_log.theoretical_points,0) + 
-        IF(results_log.practical_points>0,results_log.practical_points,0)) AS sum 
-        FROM results_log INNER JOIN users WHERE results_log.user_id = users.user_id ORDER BY 
-        date DESC");
+        return get_all("SELECT
+                          *,
+                          (IF(results_log.theoretical_points > 0, results_log.theoretical_points, 0) +
+                           IF(results_log.practical_points > 0, results_log.practical_points, 0)) AS sum
+                        FROM results_log
+                          INNER JOIN users
+                        WHERE results_log.user_id = users.user_id
+                        ORDER BY
+                          date DESC");
     }
 
 
@@ -48,6 +63,7 @@ class Administrator
     {
         // get all the theoretical questions and answers
         q('SELECT * FROM questions JOIN answers USING (question_id) ORDER BY question_id DESC', $q);
+
         while ($row = mysqli_fetch_assoc($q)) {
             $questions[$row['question_id']]['question'] = htmlentities($row['question']);
             $questions[$row['question_id']]['question_id'] = $row['question_id'];
@@ -65,6 +81,7 @@ class Administrator
     {
         // get all the theoretical questions for counting puproses
         $totalQuestions = q('SELECT * FROM questions');
+
         return $totalQuestions;
     }
 
@@ -186,6 +203,7 @@ class Administrator
     {
         // update database
         update('questions', ['question' => '' . $question . ''], "question_id = '$questionId'");
+
         foreach ($answers as $key => $answer) {
             $answer_text = addslashes($answer);
             update('answers', ['answer_text' => '' . $answer_text . ''], "answer_id = '$key'");
@@ -201,7 +219,7 @@ class Administrator
 
     static function updateScoreOption($score, $scorePrivate)
     {
-        // if the public scoreboard is visible and if the names are private
+
         update('settings', ['scores' => '' . $score . ''], "id = '1'");
         update('settings', ['scores_private' => '' . $scorePrivate . ''], "id = '1'");
     }
