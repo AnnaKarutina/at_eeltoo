@@ -6,8 +6,8 @@ won first place in school competition. This project uses
 
 Overview
 ------
-##### Front-end
-Front-end (client side) starts with welcome view, which introduces the test. From there
+#### Front-end
+Front-end (client side) starts with the welcome view, which introduces the test. From there
 the user can login using their credentials and PIN given by the teacher. Social id is validated using
 [Isikukood.js](https://github.com/dknight/Isikukood-js). The test starts with theoretical quiz 
 (the number of questions are assigned in back-end settings). The questions and the question answers 
