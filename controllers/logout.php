@@ -5,12 +5,14 @@
  */
 class logout extends Controller
 {
+    // does not require a logged in user
     public $requires_auth = false;
 
     function index()
     {
         session_destroy();
         header('Location: ' . BASE_URL);
+
         exit();
     }
 } 

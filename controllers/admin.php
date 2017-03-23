@@ -172,6 +172,7 @@ class admin extends Controller
             'practical_text' => '' . $practicalText . '',
             'practical_title' => '' . $practicalTitle . ''
         ], "practical_id = '$practicalId'");
+
         echo 'ok';
     }
 
@@ -181,6 +182,7 @@ class admin extends Controller
         // get the id and delete database entry
         $practicalId = (int)$_POST['practical_id'];
         q("DELETE FROM practical WHERE practical_id = '$practicalId'");
+
         echo 'ok';
     }
 
@@ -236,6 +238,7 @@ class admin extends Controller
         $questionID = key($_POST['question']);
         q("DELETE FROM answers WHERE question_id = '$questionID'");
         q("DELETE FROM questions WHERE question_id = '$questionID'");
+
         echo 'ok';
     }
 
@@ -286,6 +289,7 @@ class admin extends Controller
         // generate a random PIN and update database
         $randomPIN = generateRandomPIN(4);
         update('settings', ['pwd' => '' . $randomPIN . ''], "id = '1'");
+
         exit($randomPIN);
     }
 
@@ -331,6 +335,7 @@ class admin extends Controller
         // get the validation option and update database
         $validateHTML = addslashes($_POST['validationOption']);
         update('settings', ['htmlvalidator' => '' . $validateHTML . ''], "id = '1'");
+
         echo 'ok';
     }
 
@@ -340,6 +345,7 @@ class admin extends Controller
         // get the live option and update database
         $livehtml = addslashes($_POST['liveOption']);
         update('settings', ['livehtml' => '' . $livehtml . ''], "id = '1'");
+
         echo 'ok';
     }
 
