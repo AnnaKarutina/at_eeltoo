@@ -13,7 +13,7 @@ class Administrator
 {
     // for theoretical -1 means it is not done
     // for practical -2 means it is not done, -1 means it is not graded
-    // this is needed because otherwise the sum would be incorrect
+    // if statements in sql query are needed because otherwise the sum would be incorrect
     static function getResults()
     {
         // get results for admin index view
@@ -31,7 +31,7 @@ class Administrator
 
     static function getGradings()
     {
-        // get entries that for grading view (graded and ungraded)
+        // get entries for grading view (graded and ungraded)
         return get_all("SELECT
                           *,
                           (IF(results.theoretical_points > 0, results.theoretical_points, 0) +
