@@ -41,3 +41,50 @@ W3C API, change user's practical test online code view. To hide public results i
 password.
 And the last page is about admin side operating instruction.
 
+#### Installation
+
+##### Requirements
+* PHP 7 or newer
+* MySQL 5.7 or newer
+* [Composer](https://getcomposer.org/)
+
+You can use [XAMPP](https://www.apachefriends.org/index.html) to install all the requirements for Windows and [MAMP](https://www.mamp.info/en/) for Mac and LAMP from tasksel for Debian-based Linuxes. 
+
+1. Clone the repository into your web server's document root folder (e.g. `/var/www/html` on Linux and `C:\xampp\htdocs` on Windows and /Applications/MAMP/htdocs on Mac)
+```
+git clone https://github.com/AnnaKarutina/at_eeltoo.git
+cd at_eeltoo
+```
+2. Use composer to install dependencies
+```
+composer install
+```
+3. Create a database and import `doc/database.sql` to it
+```
+mysql -u root -p -e "CREATE DATABASE at_eeltoo"
+mysql -u root -p at_eeltoo < doc/database.sql
+```
+4. Copy the included example configuration file to `config.php` and edit it to match your database settings
+```
+cp config.example.php config.php
+```
+5. Visit the site in your browser
+```
+http://localhost/at_eeltoo
+```
+
+
+#### Usage
+
+1. Log in as admin with username `admin` and password `admin`
+2. Go to Settings and open the test for specified period
+3. Make a note of the PIN
+4. Log out
+5. Click on Register for a test and fill in the form
+6. Complete the test
+7. Go back to the admin panel to see the results
+8. Go to Grading and rate the tests by selecting a number from 0 to 10
+
+#### License
+
+This project is licensed under the MIT License
